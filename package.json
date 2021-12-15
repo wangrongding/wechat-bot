@@ -1,0 +1,17 @@
+{
+  "name": "wechat-boot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node ./index.js"
+  },
+  "author": "rongding",
+  "license": "ISC",
+  "dependencies": {
+    "qrcode-terminal": "^0.12.0",
+    "wechaty": "^1.10.4",
+    "wechaty-puppet-wechat": "^1.10.5"
+  }
+}
