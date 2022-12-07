@@ -28,7 +28,7 @@ token 在这里拿到 ↓：
 npm run dev
 ```
 
-就可以扫码登录，然后根绝你的需求，自己修改 `index.js` 文件。
+就可以扫码登录，然后根据你的需求，自己修改 `index.js` 文件。
 
 ![](https://assets.fedtop.com/picbed/202212071315670.png)
 
