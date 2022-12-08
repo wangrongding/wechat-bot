@@ -1,5 +1,4 @@
 import { ChatGPTAPI } from "chatgpt";
-import pTimeout from "p-timeout";
 import dotenv from "dotenv";
 
 // 定义ChatGPT的配置
@@ -13,11 +12,17 @@ const config = {
 export async function getChatGPTReply(content) {
   const api = new ChatGPTAPI(config);
   await api.ensureAuth();
+
   // 调用ChatGPT的接口
-  return await pTimeout(api.sendMessage(content), {
-    // 设置超时时间
-    milliseconds: 60 * 1000,
-    // 超时的错误信息
-    message: "ChatGPT 请求超时！最好开下全局代理。",
+  return await api.sendMessage(content, {
+    //  "ChatGPT 请求超时！最好开下全局代理。"
+    timeoutMs: 2 * 60 * 1000,
   });
+
+  // // 如果你想要连续语境对话，可以使用下面的代码
+  // const conversation = api.getConversation();
+  // return await conversation.sendMessage(content, {
+  //   //  "ChatGPT 请求超时！最好开下全局代理。"
+  //   timeoutMs: 2 * 60 * 1000,
+  // });
 }
