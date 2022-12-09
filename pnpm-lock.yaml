@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  chatgpt: ^1.4.0
+  chatgpt: ^2.0.5
   dotenv: ^16.0.3
   p-timeout: ^6.0.0
   qrcode-terminal: ^0.12.0
@@ -9,7 +9,7 @@ specifiers:
   wechaty-puppet-wechat: ^1.18.4
 
 dependencies:
-  chatgpt: 1.4.0
+  chatgpt: 2.0.5
   dotenv: 16.0.3
   p-timeout: 6.0.0
   qrcode-terminal: 0.12.0
@@ -689,6 +689,14 @@ packages:
       ieee754: 1.2.1
     dev: false
 
+  /busboy/1.6.0:
+    resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
+    engines: {node: '>=10.16.0'}
+    dependencies:
+      streamsearch: 1.1.0
+    dev: false
+    optional: true
+
   /camelcase/5.3.1:
     resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==}
     engines: {node: '>=6'}
@@ -719,18 +727,19 @@ packages:
     resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
     dev: false
 
-  /chatgpt/1.4.0:
-    resolution: {integrity: sha512-954YN2XTaICfi6ELTEJKC/ueVSiFiqoK1bRxbzzp7aJZbzBM6eGOY8WsL3REzFuTiGkDZurbxDzHEslmMLKk7A==}
-    engines: {node: '>=14'}
+  /chatgpt/2.0.5:
+    resolution: {integrity: sha512-eVswcmvAfYcYh3TK8ryP7305lnvUJXM4CTLayEtFoS25Ovd9mNsOYJPWYLa/B10+ClEOWpeRe1cLR9VssY6STQ==}
+    engines: {node: '>=16.8'}
     dependencies:
       eventsource-parser: 0.0.5
       expiry-map: 2.0.0
-      node-fetch: 2.6.7
+      p-timeout: 6.0.0
       remark: 14.0.2
       strip-markdown: 5.0.0
       uuid: 9.0.0
+    optionalDependencies:
+      undici: 5.14.0
     transitivePeerDependencies:
-      - encoding
       - supports-color
     dev: false
 
@@ -2709,6 +2718,12 @@ packages:
       xstate: 4.35.0
     dev: false
 
+  /streamsearch/1.1.0:
+    resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
+    engines: {node: '>=10.0.0'}
+    dev: false
+    optional: true
+
   /string-width/4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
     engines: {node: '>=8'}
@@ -2843,6 +2858,15 @@ packages:
       buffer: 5.7.1
       through: 2.3.8
     dev: false
+
+  /undici/5.14.0:
+    resolution: {integrity: sha512-yJlHYw6yXPPsuOH0x2Ib1Km61vu4hLiRRQoafs+WUgX1vO64vgnxiCEN9dpIrhZyHFsai3F0AEj4P9zy19enEQ==}
+    engines: {node: '>=12.18'}
+    requiresBuild: true
+    dependencies:
+      busboy: 1.6.0
+    dev: false
+    optional: true
 
   /unified/10.1.2:
     resolution: {integrity: sha512-pUSWAi/RAnVy1Pif2kAoeWNBa3JVrx0MId2LASj8G+7AiHWoKZNTomq6LG326T68U7/e263X6fTdcXIy7XnF7Q==}
