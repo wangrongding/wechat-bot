@@ -1,6 +1,9 @@
 // 收到消息
 import {getChatGPTReply} from "./chatgpt";
 
+// 定义机器人的名称
+let botName = "@lzys522";
+
 /**
  * 消息发送
  * @param msg
@@ -41,9 +44,8 @@ async function defaultMessage(msg) {
         try {
             // 如果是群聊   @lzys522 为你群聊当中的名称
             if (room) {
-                const baseName = "@lzys522"
                 // 群聊必须为@xx才能发送否则消息太多
-                if (content.indexOf(`${baseName}`) === -1) {
+                if (content.indexOf(`${botName}`) === -1) {
                     return
                 }
                 await room.say(reply);
@@ -56,9 +58,6 @@ async function defaultMessage(msg) {
         }
     }
 }
-
-// 定义机器人的名称
-let botName = "@lzys522";
 
 /**
  * 分片消息发送
