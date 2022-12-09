@@ -1,7 +1,6 @@
 import { WechatyBuilder, ScanStatus, log } from "wechaty";
 import qrTerminal from "qrcode-terminal";
-import { getChatGPTReply } from "./chatgpt.js";
-
+import { onMessage } from "./sendMessage"
 // 扫码
 function onScan(qrcode, status) {
   if (status === ScanStatus.Waiting || status === ScanStatus.Timeout) {
@@ -36,44 +35,6 @@ async function onFriendShip(friendship) {
   if (friendship.type() === 2) {
     if (frienddShipRe.test(friendship.hello())) {
       await friendship.accept();
-    }
-  }
-}
-
-// 收到消息
-async function onMessage(msg) {
-  const contact = msg.talker(); // 发消息人
-  const receiver = msg.to(); // 消息接收人
-  const content = msg.text(); // 消息内容
-  const room = msg.room(); // 是否是群消息
-  const alias = (await contact.alias()) || (await contact.name()); // 发消息人昵称
-  const isText = msg.type() === bot.Message.Type.Text; // 消息类型是否为文本
-  // TODO 你们可以根据自己的需求修改这里的逻辑，测试记得加限制，我这边消息太多了，这里只处理指定的人的消息
-  if (isText) {
-    // console.log("🚀🚀🚀 / msg", msg);
-    // console.log("🚀🚀🚀 / contact", contact);
-    // console.log("🚀🚀🚀 / receiver", receiver);
-    // console.log("🚀🚀🚀 / room", room);
-    // console.log("🚀🚀🚀 / alias", alias);
-    // console.log("🚀🚀🚀 / isText", isText);
-    console.log("🚀🚀🚀 / content", content);
-    const reply = await getChatGPTReply(content);
-    console.log("🚀🚀🚀 / reply", reply);
-    try {
-      // 如果是群聊   @lzys522 为你群聊当中的名称
-      if (room) {
-        const baseName = "@lzys522"
-        // 群聊必须为@xx才能发送否则消息太多
-        if (content.indexOf(`${baseName}`) === -1) {
-          return
-        }
-        await room.say(reply);
-      }else {
-        // 表示私人聊天
-        await contact.say(reply);
-      }
-    } catch (e) {
-      console.error(e);
     }
   }
 }
