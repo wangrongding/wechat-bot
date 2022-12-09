@@ -49,7 +49,7 @@ async function onMessage(msg) {
   const alias = (await contact.alias()) || (await contact.name()); // 发消息人昵称
   const isText = msg.type() === bot.Message.Type.Text; // 消息类型是否为文本
   // TODO 你们可以根据自己的需求修改这里的逻辑，测试记得加限制，我这边消息太多了，这里只处理指定的人的消息
-  if (alias === "曹淑杭" && isText) {
+  if (isText) {
     // console.log("🚀🚀🚀 / msg", msg);
     // console.log("🚀🚀🚀 / contact", contact);
     // console.log("🚀🚀🚀 / receiver", receiver);
@@ -60,11 +60,21 @@ async function onMessage(msg) {
     const reply = await getChatGPTReply(content);
     console.log("🚀🚀🚀 / reply", reply);
     try {
-      await contact.say(reply);
+      // 如果是群聊   @lzys522 为你群聊当中的名称
+      if (room) {
+        const baseName = "@lzys522"
+        // 群聊必须为@xx才能发送否则消息太多
+        if (content.indexOf(`${baseName}`) === -1) {
+          return
+        }
+        await room.say(reply);
+      }else {
+        // 表示私人聊天
+        await contact.say(reply);
+      }
     } catch (e) {
       console.error(e);
     }
-    return;
   }
 }
 
