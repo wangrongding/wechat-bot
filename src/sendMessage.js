@@ -1,5 +1,5 @@
-// 收到消息
 import {getChatGPTReply} from "./chatgpt.js";
+import {bot} from "./wechaty.js";
 
 // 定义机器人的名称
 let botName = "@lzys522";

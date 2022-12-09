@@ -40,7 +40,7 @@ async function onFriendShip(friendship) {
 }
 
 // 初始化机器人
-const bot = WechatyBuilder.build({
+export const bot = WechatyBuilder.build({
   name: "WechatEveryDay",
   puppet: "wechaty-puppet-wechat", // 如果有token，记得更换对应的puppet
   puppetOptions: {
