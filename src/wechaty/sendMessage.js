@@ -21,7 +21,7 @@ export async function defaultMessage(msg, bot) {
   // 群聊白名单，白名单内的群聊才会自动回复
   const isRoom = ['前端超人技术交流群', '这里填写更加多的群聊名称'].includes(roomName)
   // 联系人白名单，白名单内的联系人才会自动回复
-  const isAlias = ['荣顶', '这里填写更加多的私聊人名称(如果设置了备注那么就填写备注)'].includes(alias)
+  const isAlias = ['张三', '李四', '这里填写更加多的私聊人名称(如果设置了备注那么就填写备注)'].includes(alias)
   // TODO 你们可以根据自己的需求修改这里的逻辑
   if ((isAlias || isRoom) && isText) {
     // console.log("🚀🚀🚀 / msg", msg);
