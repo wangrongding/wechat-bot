@@ -1,1 +1,1 @@
-import "./src/wechaty.js";
+import "./src/wechaty/index.js";

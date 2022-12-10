@@ -13,9 +13,6 @@
 ```sh
 # 执行下面命令，拷贝一份 .env.example 文件
 cp .env.example .env
-```
-
-```sh
 # 完善.env 文件内容
 CHATGPT_SESSION_TOKEN='你的token'
 ```
@@ -44,6 +41,6 @@ npm run dev
 
 很多人说运行后不会自动收发信息，其实不是的哈~
 
-[wechaty.js](./src/wechaty.js) 文件中这块你们可以根据自己的需求来改的，我这里设置的是，指定备注名的好友，要不然消息太多了，非常恐怖，会给所有给你发消息的人都回复。😅
+[sendMessage.js](./src/sendMessage.js) 文件中这块你们可以根据自己的需求来改的，记得添加好限制条件，要不然谁给你发消息都自动回复，chatgpt 接口可能请求不过来😅
 
 ![](https://assets.fedtop.com/picbed/202212071716514.png)
