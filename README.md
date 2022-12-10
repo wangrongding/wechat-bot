@@ -17,8 +17,7 @@ cp .env.example .env
 CHATGPT_SESSION_TOKEN='你的token'
 ```
 
-token 在这里拿到 ↓：
-![](https://assets.fedtop.com/picbed/202212071104566.png)
+token 在这里拿到 ↓： ![](https://assets.fedtop.com/picbed/202212071104566.png)
 
 4. 启动服务
 
@@ -41,6 +40,9 @@ npm run dev
 
 很多人说运行后不会自动收发信息，其实不是的哈~
 
-[sendMessage.js](./src/sendMessage.js) 文件中这块你们可以根据自己的需求来改的，记得添加好限制条件，要不然谁给你发消息都自动回复，chatgpt 接口可能请求不过来😅
+[sendMessage.js](./src/sendMessage.js) 文件中这块你们可以根据自己的需求来改的，记得添加好限制条件，要不然谁给你发消息都自动回复，chatgpt 接口可能请求不过来 😅
 
-![](https://assets.fedtop.com/picbed/202212071716514.png)
+- 群聊，记得把机器人名称改成你自己微信号的名称，然后添加对应群聊的名称到白名单中，这样就可以自动回复群聊消息了。
+- 私聊，记得把需要自动回复的好友名称添加到白名单中，这样就可以自动回复私聊消息了。
+
+![](https://assets.fedtop.com/picbed/202212102344274.png)
