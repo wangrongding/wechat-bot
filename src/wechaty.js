@@ -1,7 +1,6 @@
 import { WechatyBuilder, ScanStatus, log } from "wechaty";
 import qrTerminal from "qrcode-terminal";
-import { getChatGPTReply } from "./chatgpt.js";
-
+import { defaultMessage,shardingMessage } from "./sendMessage.js"
 // 扫码
 function onScan(qrcode, status) {
   if (status === ScanStatus.Waiting || status === ScanStatus.Timeout) {
@@ -40,36 +39,21 @@ async function onFriendShip(friendship) {
   }
 }
 
-// 收到消息
+/**
+ * 消息发送
+ * @param msg
+ * @param isSharding
+ * @returns {Promise<void>}
+ */
 async function onMessage(msg) {
-  const contact = msg.talker(); // 发消息人
-  const receiver = msg.to(); // 消息接收人
-  const content = msg.text(); // 消息内容
-  const room = msg.room(); // 是否是群消息
-  const alias = (await contact.alias()) || (await contact.name()); // 发消息人昵称
-  const isText = msg.type() === bot.Message.Type.Text; // 消息类型是否为文本
-  // TODO 你们可以根据自己的需求修改这里的逻辑，测试记得加限制，我这边消息太多了，这里只处理指定的人的消息
-  if (alias === "曹淑杭" && isText) {
-    // console.log("🚀🚀🚀 / msg", msg);
-    // console.log("🚀🚀🚀 / contact", contact);
-    // console.log("🚀🚀🚀 / receiver", receiver);
-    // console.log("🚀🚀🚀 / room", room);
-    // console.log("🚀🚀🚀 / alias", alias);
-    // console.log("🚀🚀🚀 / isText", isText);
-    console.log("🚀🚀🚀 / content", content);
-    const reply = await getChatGPTReply(content);
-    console.log("🚀🚀🚀 / reply", reply);
-    try {
-      await contact.say(reply);
-    } catch (e) {
-      console.error(e);
-    }
-    return;
-  }
+  // 默认消息回复
+  await defaultMessage(msg,bot)
+  // 消息分片
+  // await shardingMessage(msg,bot)
 }
 
 // 初始化机器人
-const bot = WechatyBuilder.build({
+export const bot = WechatyBuilder.build({
   name: "WechatEveryDay",
   puppet: "wechaty-puppet-wechat", // 如果有token，记得更换对应的puppet
   puppetOptions: {
