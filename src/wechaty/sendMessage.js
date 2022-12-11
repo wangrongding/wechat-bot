@@ -1,13 +1,17 @@
 import { getChatGPTReply } from '../chatgpt/index.js'
-import dotenv from 'dotenv'
+import { botName_, roomWhiteList_, aliasWhiteList_ } from '../../config.js'
 
 // 定义机器人的名称，这里是为了防止群聊消息太多，所以只有艾特机器人才会回复，
 // TODO 记得修改成你自己的微信名称 ↓
-const botName = dotenv.config().parsed.botName
+const botName = botName_
 // 群聊白名单，白名单内的群聊才会自动回复
-const roomWhiteList = dotenv.config().parsed.roomWhiteList
+const roomWhiteList = roomWhiteList_
 // 联系人白名单，白名单内的联系人才会自动回复
-const aliasWhiteList = dotenv.config().parsed.aliasWhiteList.concat([botName])
+const aliasWhiteList = aliasWhiteList_.concat([botName])
+
+console.log(botName)
+console.log(roomWhiteList)
+console.log(aliasWhiteList)
 
 /**
  * 默认消息发送
@@ -24,13 +28,13 @@ export async function defaultMessage(msg, bot) {
   let roomName = (await room?.topic()) || null // 群名称
   const alias = (await contact.alias()) || (await contact.name()) // 发消息人昵称
   const isText = msg.type() === bot.Message.Type.Text // 消息类型是否为文本
-  const isRoom = roomWhiteList.includes(roomName) && RegExp(`^@${botName}\s+`).test(content) // 是否在群聊白名单内并且艾特了机器人
+  const isRoom = roomWhiteList.includes(roomName) && RegExp(`^@${botName} `).test(content) // 是否在群聊白名单内并且艾特了机器人
   const isAlias = aliasWhiteList.includes(alias) && RegExp(`^${botName}`).test(content) // 是否在联系人白名单内且提到机器人
 
   // TODO 你们可以根据自己的需求修改这里的逻辑
   if (isText && ((!isRoom && isAlias) || isRoom)) {
     console.log('🚀🚀🚀 / content', content)
-    let reply = await getChatGPTReply(content.replace(RegExp(`^${botName}\s*`), ''))
+    let reply = await getChatGPTReply(content.replace(RegExp(`^@?${botName}\s*`), ''))
     console.log('🤖🤖🤖 / reply', reply)
     try {
       // 区分群聊和私聊

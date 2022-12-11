@@ -1,0 +1,3 @@
+export const botName_ = 'arXiv'
+export const roomWhiteList_ = ['群名称']
+export const aliasWhiteList_ = ['备注名', '李四']
