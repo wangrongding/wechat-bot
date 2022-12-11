@@ -22,7 +22,7 @@ export async function defaultMessage(msg, bot) {
   let roomName = (await room?.topic()) || '不是群聊消息.' // 群名称
   const alias = (await contact.alias()) || (await contact.name()) // 发消息人昵称
   const isText = msg.type() === bot.Message.Type.Text // 消息类型是否为文本
-  const isRoom = roomWhiteList.includes(roomName) // 是否在群聊白名单内
+  const isRoom = roomWhiteList.includes(roomName)&&content.includes(`${botName}`) // 是否在群聊白名单内并且艾特了机器人
   const isAlias = aliasWhiteList.includes(alias) // 是否在联系人白名单内
   // TODO 你们可以根据自己的需求修改这里的逻辑
   if ((isAlias || isRoom) && isText) {
@@ -36,9 +36,9 @@ export async function defaultMessage(msg, bot) {
     const reply = await getChatGPTReply(content)
     console.log('🚀🚀🚀 / reply', reply)
     try {
-      // 如果是群聊，必须为@xx才能发送，否则消息太多
+      // 区分群聊和私聊
       if (room) {
-        content.includes(`${botName}`) && (await room.say(reply))
+          await room.say(reply)
       } else {
         // 私人聊天，白名单内的直接发送
         await contact.say(reply)
