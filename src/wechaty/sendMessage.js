@@ -1,14 +1,7 @@
 import { getChatGPTReply } from '../chatgpt/index.js'
-import { botName_, roomWhiteList_, aliasWhiteList_, botWechatName } from '../../config.js'
+import { botName, roomWhiteList, aliasWhiteList, botWechatName } from '../../config.js'
 
-// 定义机器人的名称，这里是为了防止群聊消息太多，所以只有艾特机器人才会回复，
-// TODO 记得修改成你自己的微信名称 ↓
-const botName = botName_
-// 群聊白名单，白名单内的群聊才会自动回复
-const roomWhiteList = roomWhiteList_
-// 联系人白名单，白名单内的联系人才会自动回复
-const aliasWhiteList = aliasWhiteList_ //.concat([botWechatName])
-
+console.log(botWechatName)
 console.log(botName)
 console.log(roomWhiteList)
 console.log(aliasWhiteList)
@@ -30,12 +23,13 @@ export async function defaultMessage(msg, bot) {
   const isText = msg.type() === bot.Message.Type.Text // 消息类型是否为文本
   const isRoom = roomWhiteList.includes(roomName) && RegExp(`^@${botName}`).test(content) // 是否在群聊白名单内并且艾特了机器人
   const isAlias = aliasWhiteList.includes(alias) && RegExp(`^${botName}`).test(content) // 是否在联系人白名单内且提到机器人
-  const isBotSelf =
-    alias == botWechatName && aliasWhiteList.includes((await receiver.alias()) || (await receiver.name())) && RegExp(`^${botName}`).test(content) // 发送方为机器人微信号，接收方在白名单内
+  const isBotSelf = room
+    ? false
+    : alias == botWechatName && aliasWhiteList.includes((await receiver.alias()) || (await receiver.name())) && RegExp(`^${botName}`).test(content) // 发送方为机器人微信号，接收方在白名单内
 
   if (isText && ((!isRoom && (isAlias || isBotSelf)) || isRoom)) {
     console.log('🚀🚀🚀 / content', content)
-    let reply = '我好像运行崩溃了'
+    let reply = '我好像运行崩溃了🥲'
     try {
       reply = await getChatGPTReply(content.replace(RegExp(`^@?${botName}\s*`), ''))
     } catch (e) {
@@ -45,12 +39,12 @@ export async function defaultMessage(msg, bot) {
     try {
       // 区分群聊和私聊
       if (room) {
+        // Room chat
         await room.say(reply)
       } else {
-        // 私人聊天，白名单内的直接发送
-
-        // in case of answer loop
+        // personal chat
         if (RegExp(`^${botName}`).test(reply)) {
+          // in case of answer loop
           reply = ' ' + reply
         }
 
