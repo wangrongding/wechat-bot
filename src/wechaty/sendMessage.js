@@ -28,10 +28,9 @@ export async function defaultMessage(msg, bot) {
   let roomName = (await room?.topic()) || null // 群名称
   const alias = (await contact.alias()) || (await contact.name()) // 发消息人昵称
   const isText = msg.type() === bot.Message.Type.Text // 消息类型是否为文本
-  const isRoom = roomWhiteList.includes(roomName) && RegExp(`^@${botName} `).test(content) // 是否在群聊白名单内并且艾特了机器人
+  const isRoom = roomWhiteList.includes(roomName) && RegExp(`^@${botName}`).test(content) // 是否在群聊白名单内并且艾特了机器人
   const isAlias = aliasWhiteList.includes(alias) && RegExp(`^${botName}`).test(content) // 是否在联系人白名单内且提到机器人
 
-  // TODO 你们可以根据自己的需求修改这里的逻辑
   if (isText && ((!isRoom && isAlias) || isRoom)) {
     console.log('🚀🚀🚀 / content', content)
     let reply = await getChatGPTReply(content.replace(RegExp(`^@?${botName}\s*`), ''))
