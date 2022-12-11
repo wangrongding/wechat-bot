@@ -18,8 +18,8 @@ export async function defaultMessage(msg, bot) {
   let roomName = (await room?.topic()) || '不是群聊消息.' // 群名称
   const alias = (await contact.alias()) || (await contact.name()) // 发消息人昵称
   const isText = msg.type() === bot.Message.Type.Text // 消息类型是否为文本
-  // 群聊白名单，白名单内的群聊才会自动回复
-  const isRoom = ['前端超人技术交流群', '这里填写更加多的群聊名称'].includes(roomName)
+  // 群聊白名单，白名单内的群聊才会自动回复  后置判断为群聊必须为@xx才能发送否则消息太多
+  const isRoom = ['前端超人技术交流群', '这里填写更加多的群聊名称'].includes(roomName)&&!(content.indexOf(`${botName}`) === -1)
   // 联系人白名单，白名单内的联系人才会自动回复
   const isAlias = ['张三', '李四', '这里填写更加多的私聊人名称(如果设置了备注那么就填写备注)'].includes(alias)
   // TODO 你们可以根据自己的需求修改这里的逻辑
@@ -36,10 +36,6 @@ export async function defaultMessage(msg, bot) {
     try {
       // 如果是群聊  @lzys522 为你群聊当中的名称
       if (room) {
-        // 群聊必须为@xx才能发送否则消息太多
-        if (content.indexOf(`${botName}`) === -1) {
-          return
-        }
         await room.say(reply)
       } else {
         // 表示私人聊天
