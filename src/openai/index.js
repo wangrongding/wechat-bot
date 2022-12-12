@@ -1,3 +1,5 @@
+import { remark } from 'remark'
+import stripMarkdown from 'strip-markdown'
 import { Configuration, OpenAIApi } from 'openai'
 import dotenv from 'dotenv'
 const env = dotenv.config().parsed // 环境参数
@@ -13,13 +15,21 @@ export async function getOpenAiReply(prompt) {
     model: 'text-davinci-003',
     prompt: prompt,
     temperature: 0.9,
-    max_tokens: 150,
+    max_tokens: 4000,
     top_p: 1,
     frequency_penalty: 0.0,
     presence_penalty: 0.6,
     stop: [' Human:', ' AI:'],
   })
-  const reply = response.data.choices[0].text
+
+  const reply = markdownToText(response.data.choices[0].text)
   console.log('🚀🚀🚀 / reply', reply)
   return reply
+}
+
+function markdownToText(markdown) {
+  return remark()
+    .use(stripMarkdown)
+    .processSync(markdown ?? '')
+    .toString()
 }
