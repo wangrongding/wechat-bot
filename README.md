@@ -6,9 +6,28 @@
 
 `简单`，`好用`，`2分钟` 就能玩起来了。🌸 如果对您有所帮助，请点个 Star ⭐️ 支持一下。
 
+## 12.12 更新
+
+- `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)
+
+所以补充了以下配置：
+
+```sh
+# .env文件
+
+# ChatGPT的sessionToken, 从cookie取值
+CHATGPT_SESSION_TOKEN=''
+#  ChatGPT的clearance，从cookie取值
+CHATGPT_CLEARANCE=''
+# ChatGPT的user-agent，从浏览器取值,或者替换为与你的真实浏览器的User-Agent相匹配的值
+CHATGPT_USER_AGENT=''
+# 在用户授权情况下，访问https://chat.openai.com/api/auth/session，获取accesstoken
+CHATGPT_ACCESS_TOKEN=''
+```
+
 ## 开发
 
-1. 检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v16.8 ，版本太低会导致运行报错,最好使用 LTS 版本。
+1. 检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v18.0 ，版本太低会导致运行报错,最好使用 LTS 版本。
 2. 先获取自己的 `chatgpt` token，地址戳这里 👉🏻 ：[https://chat.openai.com/chat](https://chat.openai.com/chat)
 3. 登录完了，在控制台把 `token` 复制下来，然后在项目根目录下创建一个 `.env` 文件，内容如下：
 

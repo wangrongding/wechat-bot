@@ -10,7 +10,7 @@
   "author": "rongding",
   "license": "ISC",
   "dependencies": {
-    "chatgpt": "^2.0.5",
+    "chatgpt": "^2.1.1",
     "dotenv": "^16.0.3",
     "p-timeout": "^6.0.0",
     "qrcode-terminal": "^0.12.0",
