@@ -5,7 +5,10 @@ import dotenv from 'dotenv'
 const config = {
   markdown: true, // 返回的内容是否需要markdown格式
   AutoReply: true, // 是否自动回复
+  clearanceToken: dotenv.config().parsed.CHATGPT_CLEARANCE,// ChatGPT的clearance，从cookie取值
   sessionToken: dotenv.config().parsed.CHATGPT_SESSION_TOKEN, // ChatGPT的sessionToken
+  userAgent: dotenv.config().parsed.CHATGPT_USER_AGENT, // User-Agent
+  accessToken:dotenv.config().parsed.CHATGPT_ACCESS_TOKEN// 在用户授权情况下，访问https://chat.openai.com/api/auth/session，获取accesstoken
 }
 const api = new ChatGPTAPI(config)
 
