@@ -8,7 +8,7 @@
 
 ## 12.12 更新
 
-- `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)，所以我改用官方自己的了，目前可用了。
+- `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)，所以我改用官方自己的了，目前机器人可用。
 
 ## 开发
 
@@ -28,6 +28,8 @@ OPENAI_API_KEY='你的key'
 
 4. 运行服务
 
+> 安装依赖时，大陆的朋友推荐切到 taobao 镜像源后再安装，要不然可能会因为依赖安装不完整导致出错， 推荐使用我的工具 👉🏻 [prm-cli](https://github.com/wangrongding/prm-cli) 快速切换。
+
 ```sh
 # 安装依赖
 npm i
@@ -35,7 +37,7 @@ npm i
 npm run dev
 ```
 
-就可以扫码登录了，然后根据你的需求，自己修改相关逻辑文件。
+然后就可以扫码登录了，然后根据你的需求，自己修改相关逻辑文件。
 
 ![](https://assets.fedtop.com/picbed/202212071315670.png)
 
