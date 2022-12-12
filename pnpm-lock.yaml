@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  chatgpt: ^2.0.5
+  chatgpt: ^2.1.1
   dotenv: ^16.0.3
   p-timeout: ^6.0.0
   qrcode-terminal: ^0.12.0
@@ -9,7 +9,7 @@ specifiers:
   wechaty-puppet-wechat: ^1.18.4
 
 dependencies:
-  chatgpt: 2.0.5
+  chatgpt: 2.1.1
   dotenv: 16.0.3
   p-timeout: 6.0.0
   qrcode-terminal: 0.12.0
@@ -30,16 +30,16 @@ packages:
       regenerator-runtime: 0.13.11
     dev: false
 
-  /@grpc/grpc-js/1.7.3:
-    resolution: {integrity: sha512-H9l79u4kJ2PVSxUNA08HMYAnUBLj9v6KjYQ7SQ71hOZcEXhShE/y5iQCesP8+6/Ik/7i2O0a10bPquIcYfufog==}
+  /@grpc/grpc-js/1.8.0:
+    resolution: {integrity: sha512-ySMTXQuMvvswoobvN+0LsaPf7ITO2JVfJmHxQKI4cGehNrrUms+n81BlHEX7Hl/LExji6XE3fnI9U04GSkRruA==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
-      '@grpc/proto-loader': 0.7.3
-      '@types/node': 18.11.11
+      '@grpc/proto-loader': 0.7.4
+      '@types/node': 18.11.13
     dev: false
 
-  /@grpc/proto-loader/0.7.3:
-    resolution: {integrity: sha512-5dAvoZwna2Py3Ef96Ux9jIkp3iZ62TUsV00p3wVBPNX5K178UbNi8Q7gQVqwXT1Yq9RejIGG9G2IPEo93T6RcA==}
+  /@grpc/proto-loader/0.7.4:
+    resolution: {integrity: sha512-MnWjkGwqQ3W8fx94/c1CwqLsNmHHv2t0CFn+9++6+cDphC1lolpg9M2OU0iebIjK//pBNX9e94ho+gjx6vz39w==}
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
@@ -501,8 +501,8 @@ packages:
     resolution: {integrity: sha512-QpLcX9ZSsq3YYUUnD3nFDY8H7wctAhQj/TFKL8Ya8v5fMm3CFXxo8zStsLAl780ltoYoo1WvKUVGBQK+1ifr7g==}
     dev: false
 
-  /@types/node/18.11.11:
-    resolution: {integrity: sha512-KJ021B1nlQUBLopzZmPBVuGU9un7WJd/W4ya7Ih02B4Uwky5Nja0yGYav2EfYIk0RR2Q9oVhf60S2XR1BCWJ2g==}
+  /@types/node/18.11.13:
+    resolution: {integrity: sha512-IASpMGVcWpUsx5xBOrxMj7Bl8lqfuTY7FKAnPmu5cHkfQVWF8GulWS1jbRqA934qZL35xh5xN/+Xe/i26Bod4w==}
     dev: false
 
   /@types/unist/2.0.6:
@@ -513,7 +513,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 18.11.11
+      '@types/node': 18.11.13
     dev: false
     optional: true
 
@@ -727,8 +727,8 @@ packages:
     resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
     dev: false
 
-  /chatgpt/2.0.5:
-    resolution: {integrity: sha512-eVswcmvAfYcYh3TK8ryP7305lnvUJXM4CTLayEtFoS25Ovd9mNsOYJPWYLa/B10+ClEOWpeRe1cLR9VssY6STQ==}
+  /chatgpt/2.1.1:
+    resolution: {integrity: sha512-vFSKaDlXUGuBOMDAFkHS7tGuT0NOg7t0Pv0qAN06IcRoThHymDVu+F53p32vSFrFtcNYKSiQZQSgUZRQPbLUZA==}
     engines: {node: '>=16.8'}
     dependencies:
       eventsource-parser: 0.0.5
@@ -2256,7 +2256,7 @@ packages:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 18.11.11
+      '@types/node': 18.11.13
       long: 5.2.1
     dev: false
 
@@ -2388,6 +2388,7 @@ packages:
   /puppeteer/13.7.0:
     resolution: {integrity: sha512-U1uufzBjz3+PkpCxFrWzh4OrMIdIb2ztzCu0YEPfRHjHswcSwHZswnK+WdsOQJsRV8WeTg3jLhJR4D867+fjsA==}
     engines: {node: '>=10.18.1'}
+    deprecated: < 18.1.0 is no longer supported
     requiresBuild: true
     dependencies:
       cross-fetch: 3.1.5
@@ -3017,7 +3018,7 @@ packages:
     resolution: {integrity: sha512-oOXU62oDf8/LIg8wAqSoZogZ+NFSGIAJvYuTewR6x5Ia4iWjbfrlwy7NHjWGBLkKM2EpnxgOAjyxhAb1iMxTJg==}
     engines: {node: '>=16', npm: '>=7'}
     dependencies:
-      '@grpc/grpc-js': 1.7.3
+      '@grpc/grpc-js': 1.8.0
       google-protobuf: 3.21.2
       stronger-typed-streams: 0.2.0
     dev: false
@@ -3080,8 +3081,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /wechaty-puppet-wechat4u/1.13.11_wechaty-puppet@1.20.2:
-    resolution: {integrity: sha512-OM+pXAcEYWcMmoscJLPazn5Ji+8ZFNetyromyzq05crDAM4ra7CQmUkJaQNZHxZZdoioTiBsTCAhDsIpHeOdDA==}
+  /wechaty-puppet-wechat4u/1.13.12_wechaty-puppet@1.20.2:
+    resolution: {integrity: sha512-ZX3qYcA7hdtdRA4RMHEa1AoIS3lI4BBc5ulFj6SuDHZMGijJWmxvyRO+t+jQ2EPdqlKoRWUiNKSaW/EFZsyCQw==}
     engines: {node: '>=16', npm: '>=7'}
     peerDependencies:
       wechaty-puppet: ^1.18.3
@@ -3174,7 +3175,7 @@ packages:
       uuid: 8.3.2
       wechaty-puppet: 1.20.2
       wechaty-puppet-service: 1.19.8_jkyvhh2danr4dcnhzsykeo22pa
-      wechaty-puppet-wechat4u: 1.13.11_wechaty-puppet@1.20.2
+      wechaty-puppet-wechat4u: 1.13.12_wechaty-puppet@1.20.2
       wechaty-token: 1.1.2
       ws: 8.11.0
     transitivePeerDependencies:
