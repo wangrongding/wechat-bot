@@ -1,10 +1,12 @@
 import { getChatGPTReply } from '../chatgpt/index.js'
-import { botName, roomWhiteList, aliasWhiteList, botWechatName } from '../../config.js'
 
-console.log(botWechatName)
-console.log(botName)
-console.log(roomWhiteList)
-console.log(aliasWhiteList)
+// 定义机器人的名称，这里是为了防止群聊消息太多，所以只有艾特机器人才会回复，
+// TODO 记得修改成你自己的微信名称 ↓
+const botName = '@荣顶'
+// 群聊白名单，白名单内的 群聊 在 @你 时才会自动回复
+const roomWhiteList = ['前端超人技术交流群', '这里填写更加多的群聊名称']
+// 联系人白名单，白名单内的联系人 私聊 会自动回复
+const aliasWhiteList = ['张三', '李四', '这里填写更多的联系人备注名或者微信名称']
 
 /**
  * 默认消息发送
@@ -17,43 +19,23 @@ export async function defaultMessage(msg, bot) {
   const receiver = msg.to() // 消息接收人
   const content = msg.text() // 消息内容
   const room = msg.room() // 是否是群消息
-
-  let roomName = (await room?.topic()) || null // 群名称
-  const alias = (await contact.alias()) || (await contact.name()) // 发消息人昵称
+  const roomName = (await room?.topic()) || '不是群聊消息.' // 群名称
+  const remarkName = await contact.alias() // 备注名称
+  const name = await contact.name() // 微信名称
   const isText = msg.type() === bot.Message.Type.Text // 消息类型是否为文本
-  const isRoom = roomWhiteList.includes(roomName) && RegExp(`^@${botName}`).test(content) // 是否在群聊白名单内并且艾特了机器人
-  const isAlias = aliasWhiteList.includes(alias) && RegExp(`^${botName}`).test(content) // 是否在联系人白名单内且提到机器人
-  const isBotSelf = room
-    ? false
-    : alias == botWechatName && aliasWhiteList.includes((await receiver.alias()) || (await receiver.name())) && RegExp(`^${botName}`).test(content) // 发送方为机器人微信号，接收方在白名单内
-
-  if (isText && ((!isRoom && (isAlias || isBotSelf)) || isRoom)) {
-    console.log('🚀🚀🚀 / content', content)
-    let reply = '我好像运行崩溃了🥲'
-    try {
-      reply = await getChatGPTReply(content.replace(RegExp(`^@?${botName}\s*`), ''))
-    } catch (e) {
-      console.error(e)
-    }
-    console.log('🤖🤖🤖 / reply', reply)
+  const isRoom = roomWhiteList.includes(roomName) && content.includes(`${botName}`) // 是否在群聊白名单内并且艾特了机器人
+  const isAlias = aliasWhiteList.includes(remarkName) || aliasWhiteList.includes(name) // 发消息的人是否在联系人白名单内
+  // TODO 你们可以根据自己的需求修改这里的逻辑
+  if (isText) {
     try {
       // 区分群聊和私聊
-      if (room) {
-        // Room chat
-        await room.say(reply)
-      } else {
-        // personal chat
-        if (RegExp(`^${botName}`).test(reply)) {
-          // in case of answer loop
-          reply = ' ' + reply
-        }
-
-        if (alias == botWechatName) {
-          // sender is bot itself
-          await receiver.say(reply)
-        } else {
-          await contact.say(reply)
-        }
+      if (isRoom && room) {
+        await room.say(await getChatGPTReply(content.replace(`${botName}`, '')))
+        return
+      }
+      // 私人聊天，白名单内的直接发送
+      if (isAlias && !room) {
+        await contact.say(await getChatGPTReply(content))
       }
     } catch (e) {
       console.error(e)
