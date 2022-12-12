@@ -4,18 +4,20 @@
 
 可以用来帮助你自动回复微信消息，或者管理微信群/好友.
 
-`简单`，`好用`，`2分钟` 就能玩起来了。🌸 如果对您有所帮助，请点个 Star ⭐️ 支持一下。
+`简单`，`好用`，`2分钟（4 个步骤）` 就能玩起来了。🌸 如果对您有所帮助，请点个 Star ⭐️ 支持一下。
 
 ## 12.12 更新
 
-- `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)，所以我改用官方自己的了，暂时是可用的。
+- `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)，所以我改用官方自己的了，目前可用了。
 
 ## 开发
 
 1. 检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v18.0 ，版本太低会导致运行报错,最好使用 LTS 版本。
 2. 先获取自己的 `api key`，地址戳这里 👉🏻 ：[创建你的 api key](https://beta.openai.com/account/api-keys)
 
-![](https://assets.fedtop.com/picbed/202212121817351.png) 3. 创建完了， 复制下来，然后在项目根目录下创建一个 `.env` 文件，内容如下：
+![](https://assets.fedtop.com/picbed/202212121817351.png)
+
+3. 创建完了， 复制下来，然后在项目根目录下创建一个 `.env` 文件，内容如下：
 
 ```sh
 # 执行下面命令，拷贝一份 .env.example 文件
@@ -24,7 +26,7 @@ cp .env.example .env
 OPENAI_API_KEY='你的key'
 ```
 
-1. 运行服务
+4. 运行服务
 
 ```sh
 # 安装依赖
