@@ -8,41 +8,22 @@
 
 ## 12.12 更新
 
-- `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)
-
-所以补充了以下配置：
-
-```sh
-# .env文件
-
-# ChatGPT的sessionToken, 从cookie取值
-CHATGPT_SESSION_TOKEN=''
-#  ChatGPT的clearance，从cookie取值
-CHATGPT_CLEARANCE=''
-# ChatGPT的user-agent，从浏览器取值,或者替换为与你的真实浏览器的User-Agent相匹配的值
-CHATGPT_USER_AGENT=''
-# 在用户授权情况下，访问https://chat.openai.com/api/auth/session，获取accesstoken
-CHATGPT_ACCESS_TOKEN=''
-```
+- `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)，所以我改用官方自己的了，暂时是可用的。
 
 ## 开发
 
 1. 检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v18.0 ，版本太低会导致运行报错,最好使用 LTS 版本。
-2. 先获取自己的 `chatgpt` token，地址戳这里 👉🏻 ：[https://chat.openai.com/chat](https://chat.openai.com/chat)
-3. 登录完了，在控制台把 `token` 复制下来，然后在项目根目录下创建一个 `.env` 文件，内容如下：
+2. 先获取自己的 `api key`，地址戳这里 👉🏻 ：[创建你的 api key](https://beta.openai.com/account/api-keys)
+3. 创建完了， 复制下来，然后在项目根目录下创建一个 `.env` 文件，内容如下：
 
 ```sh
 # 执行下面命令，拷贝一份 .env.example 文件
 cp .env.example .env
 # 完善.env 文件内容
-CHATGPT_SESSION_TOKEN='你的token'
+OPENAI_API_KEY='你的key'
 ```
 
-token 在这里拿到 ↓：
-
-![](https://assets.fedtop.com/picbed/202212071104566.png)
-
-4. 运行服务
+1. 运行服务
 
 ```sh
 # 安装依赖
