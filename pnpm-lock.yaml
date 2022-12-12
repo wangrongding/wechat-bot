@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   chatgpt: ^2.1.1
   dotenv: ^16.0.3
+  openai: ^3.1.0
   p-timeout: ^6.0.0
   qrcode-terminal: ^0.12.0
   wechaty: ^1.20.2
@@ -11,6 +12,7 @@ specifiers:
 dependencies:
   chatgpt: 2.1.1
   dotenv: 16.0.3
+  openai: 3.1.0
   p-timeout: 6.0.0
   qrcode-terminal: 0.12.0
   wechaty: 1.20.2
@@ -599,6 +601,14 @@ packages:
 
   /aws4/1.11.0:
     resolution: {integrity: sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==}
+    dev: false
+
+  /axios/0.26.1:
+    resolution: {integrity: sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==}
+    dependencies:
+      follow-redirects: 1.15.2_debug@2.6.9
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /axios/1.2.1_debug@2.6.9:
@@ -2114,6 +2124,15 @@ packages:
     dependencies:
       cheerio: 0.22.0
       request: 2.88.2
+    dev: false
+
+  /openai/3.1.0:
+    resolution: {integrity: sha512-v5kKFH5o+8ld+t0arudj833Mgm3GcgBnbyN9946bj6u7bvel4Yg6YFz2A4HLIYDzmMjIo0s6vSG9x73kOwvdCg==}
+    dependencies:
+      axios: 0.26.1
+      form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /p-defer/1.0.0:
