@@ -17,3 +17,14 @@ OpenAI ChatGPT 模型使用了大量的语料数据进行预训练，并通过�
 总的来说，OpenAI ChatGPT 是一个非常强大的语言模型，可以用于实现多种 NLP 应用程序，以提高对话和聊天的自然语言处理能力。
 
 ## 什么是 Wechaty
+
+## 一些相关链接
+
+- [OpenAI ChatGPT](https://openai.com/blog/chatting/)
+- [Wechaty](https://wechaty.js.org/)
+- [Wechaty Chatbot](https://wechaty.js.org/docs/examples/chatbot/)
+- [Wechaty Chatbot Tutorial](https://wechaty.js.org/docs/tutorials/chatbot-tutorial/)
+
+- https://openai.com/blog/chatgpt/
+- https://download-chromium.appspot.com/?platform=Mac_Arm&type=snapshots
+- https://registry.npmmirror.com/binary.html?path=chromium-browser-snapshots/Mac_Arm/

@@ -8,7 +8,13 @@
 
 `简单`，`好用`，`2分钟（4 个步骤）` 就能玩起来了。🌸 如果对您有所帮助，请点个 Star ⭐️ 支持一下。
 
-## 12.12 更新
+## 近期的改动
+
+### 12.13 更新
+
+不少人今天运行不了，参考这条 [issue](https://github.com/wangrongding/wechat-bot/issues/54#issuecomment-1347880291) ,暂时这样处理下，有好的方案大家可以提出来，谢谢~
+
+### 12.12 更新
 
 - `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)，所以我改用官方自己的了，目前机器人可用。
 
