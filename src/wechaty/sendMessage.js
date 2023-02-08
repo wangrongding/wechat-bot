@@ -23,15 +23,21 @@ export async function defaultMessage(msg, bot) {
   const isBotSelf = botName === remarkName || botName === name // 是否是机器人自己
   // TODO 你们可以根据自己的需求修改这里的逻辑
   if (isText && !isBotSelf) {
+    console.log(JSON.stringify(msg))
+    if ((Date.now() - 1e3 * msg.payload.timestamp) > 3000) return 
+    if (!content.startsWith('? ') && !content.startsWith('？ ') && !content.startsWith('> ')) return 
     try {
+      const trimed = content.substr(2)
+      if (trimed.length < 5) return 
+      
       // 区分群聊和私聊
       if (isRoom && room) {
-        await room.say(await getReply(content.replace(`${botName}`, '')))
+        await room.say(await getReply(trimed.replace(`${botName}`, '')))
         return
       }
       // 私人聊天，白名单内的直接发送
       if (isAlias && !room) {
-        await contact.say(await getReply(content))
+        await contact.say(await getReply(trimed))
       }
     } catch (e) {
       console.error(e)
