@@ -72,9 +72,9 @@ npm run dev
 - 运行报错？检查 node 版本是否符合，如果不符合，升级 node 版本即可，检查依赖是否安装完整，如果不完整，大陆推荐切换下 npm 镜像源，然后重新安装依赖即可。（可以用我的 [prm-cli](https://github.com/wangrongding/prm-cli) 工具快速切换）
 - 调整对话模式？可以修改[openai/index.js](./src/openai/index.js) ,具体可以根据官方文档给出的示例（非常多，自己对应调整参数即可） ：https://beta.openai.com/examples
 
-也可以添加我拉你进交流群,有问题多一起交流，添加记得备注来意。
+也可以进交流群,一起交流探讨相关问题和解决方案，添加记得备注来意。
 
-![](https://assets.fedtop.com/picbed/202302090942102.png)
+<img src="https://assets.fedtop.com/picbed/202302090947704.png" width="200px">
 
 ## 如果你使用 Docker
 
