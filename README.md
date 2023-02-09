@@ -18,6 +18,10 @@
 
 - `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)，所以我改用官方自己的了，目前机器人可用。
 
+也可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。
+
+<img src="https://assets.fedtop.com/picbed/202302090947704.png" width="200px">
+
 ## 开发
 
 1. 检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v18.0 ，版本太低会导致运行报错,最好使用 LTS 版本。
@@ -71,10 +75,6 @@ npm run dev
 - 怎么玩？ 完成自定义修改后，群聊时，在白名单中的群，有人 @你 时会触发自动回复，私聊中，联系人白名单中的人发消息给你时会触发自动回复。
 - 运行报错？检查 node 版本是否符合，如果不符合，升级 node 版本即可，检查依赖是否安装完整，如果不完整，大陆推荐切换下 npm 镜像源，然后重新安装依赖即可。（可以用我的 [prm-cli](https://github.com/wangrongding/prm-cli) 工具快速切换）
 - 调整对话模式？可以修改[openai/index.js](./src/openai/index.js) ,具体可以根据官方文档给出的示例（非常多，自己对应调整参数即可） ：https://beta.openai.com/examples
-
-也可以进交流群,一起交流探讨相关问题和解决方案，添加记得备注来意。
-
-<img src="https://assets.fedtop.com/picbed/202302090947704.png" width="200px">
 
 ## 如果你使用 Docker
 
