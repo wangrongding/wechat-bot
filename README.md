@@ -1,6 +1,6 @@
 # WeChat Bot
 
-![](https://assets.fedtop.com/picbed/202212131123257.png)
+![](https://assets.fedtop.com/picbed/202212071317377.png)
 
 一个 基于 `chatgpt` + `wechaty` 的微信机器人
 
@@ -19,7 +19,6 @@
 - `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)，所以我改用官方自己的了，目前机器人可用。
 
 也可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。
-
 
 | <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="200px"> | <img src="https://assets.fedtop.com/picbed/202302091031048.png" width="200px"> |
 | --- | --- |
@@ -70,7 +69,7 @@ npm run dev
 
 可以看到，自动回复都是基于 `chatgpt` 的，记得要开代理。
 
-![](https://assets.fedtop.com/picbed/202212071317377.png)
+![](https://assets.fedtop.com/picbed/202212131123257.png)
 
 ## 常见问题
 
