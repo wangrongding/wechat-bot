@@ -20,8 +20,9 @@
 
 也可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。
 
-<img src="https://assets.fedtop.com/picbed/202302090947704.png" width="200px">
-<img src="https://assets.fedtop.com/picbed/202302091031048.png" width="200px">
+
+| <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="200px"> | <img src="https://assets.fedtop.com/picbed/202302091031048.png" width="200px"> |
+| --- | --- |
 
 ## 开发
 
