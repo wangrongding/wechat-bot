@@ -20,8 +20,8 @@
 
 也可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。（如果项目对你有所帮助，也可以请我喝杯咖啡 ☕️ ~）
 
-| <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="180px"> | <img src="https://assets.fedtop.com/picbed/202302091031048.png" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202302092216101.png" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202302092215823.png" width="180px"> |
-| --- | --- | --- | --- |
+| <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="180px"> | <img src="https://assets.fedtop.com/picbed/202302091031048.png" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202302092216101.png" width="180px"> |
+| --- | --- | --- |
 
 ## 开发
 
