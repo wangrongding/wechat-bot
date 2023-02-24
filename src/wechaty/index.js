@@ -50,12 +50,14 @@ async function onMessage(msg) {
 }
 
 // 初始化机器人
+const CHROME_BIN = process.env.CHROME_BIN ? { endpoint: process.env.CHROME_BIN } : {}
 export const bot = WechatyBuilder.build({
   name: 'WechatEveryDay',
   // puppet: 'wechaty-puppet-wechat4u', // 如果有token，记得更换对应的puppet
   puppet: 'wechaty-puppet-wechat', // 如果 wechaty-puppet-wechat 存在问题，也可以尝试使用上面的 wechaty-puppet-wechat4u ，记得安装 wechaty-puppet-wechat4u
   puppetOptions: {
     uos: true,
+    ...CHROME_BIN
   },
 })
 
