@@ -18,6 +18,7 @@
     "remark": "^14.0.2",
     "strip-markdown": "^5.0.0",
     "wechaty": "^1.20.2",
-    "wechaty-puppet-wechat": "^1.18.4"
+    "wechaty-puppet-wechat": "^1.18.4",
+    "wechaty-puppet-wechat4u": "^1.13.13"
   }
 }
