@@ -11,10 +11,11 @@ const openai = new OpenAIApi(configuration)
 
 export async function getOpenAiReply(prompt) {
   console.log('🚀🚀🚀 / prompt', prompt)
-	//let chosen_model = 'text-davinci-003'
-	let chosen_model = 'gpt-3.5-turbo'
+  //let chosen_model = 'text-davinci-003'
+  let chosen_model = 'gpt-3.5-turbo'
+  let reply = ''
   //'gpt-3.5-turbo',
-	if (chosen_model == 'text-davinci-003'){
+  if (chosen_model == 'text-davinci-003'){
     console.log('🚀🚀🚀 / Using model', chosen_model)
     const response = await openai.createCompletion({
         model: chosen_model,
@@ -26,25 +27,21 @@ export async function getOpenAiReply(prompt) {
         presence_penalty: 0.6,
         stop: [' Human:', ' AI:'],
       })
-    
-      const reply = markdownToText(response.data.choices[0].text)
-      console.log('🚀🚀🚀 / reply', reply)
-      return `${reply}\nVia davinci-003`
-	} else if (chosen_model == 'gpt-3.5-turbo') {
+
+      reply = markdownToText(response.data.choices[0].text)
+  } else if (chosen_model == 'gpt-3.5-turbo') {
     console.log('🚀🚀🚀 / Using model', chosen_model)
     const response = await openai.createChatCompletion({
         model: chosen_model,
-				messages:[
-					{"role": "system", content:"You are a personal assistant."},
-					{"role": "user", content: prompt}
-				]})
-    
-      const reply = markdownToText(response.data.choices[0].message.content)
-      console.log('🚀🚀🚀 / reply', reply)
-      return `${reply}\nVia gpt-3.5-turbo`
-	}
+        messages:[
+          {"role": "system", content:"You are a personal assistant."},
+          {"role": "user", content: prompt}
+        ]})
 
-  
+      reply = markdownToText(response.data.choices[0].message.content)
+  }
+  console.log('🚀🚀🚀 / reply', reply)
+  return `${reply}\nVia ${chosen_model}`
 }
 
 function markdownToText(markdown) {
