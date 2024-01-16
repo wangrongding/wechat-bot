@@ -90,3 +90,9 @@ $ docker build . -t wechat-bot
 
 $ docker run -d --rm --name wechat-bot -v $(pwd)/config.js:/app/config.js -v $(pwd)/.env:/app/.env wechat-bot
 ```
+
+## Star History Chart
+
+该项目于 2023/2/13 日成为 Github Trending 榜首。
+
+[![Star History Chart](https://api.star-history.com/svg?repos=wangrongding/wechat-bot&type=Date)](https://star-history.com/#wangrongding/wechat-bot&Date)
