@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node ./index.js"
+    "dev": "node ./index.js",
+    "test": "node ./src/wechaty/testMessage.js"
   },
   "author": "rongding",
   "license": "ISC",
