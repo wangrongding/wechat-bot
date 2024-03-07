@@ -10,6 +10,26 @@
 
 ## 近期的改动
 
+### 2024.03.07 更新
+
+- 拉取最新代码，重新安装依赖（删除 lock 文件，删除 node_modules）
+- 安装依赖时最好不要设置 npm 镜像
+- 遇到 puppeteer 安装失败设置环境变量：
+
+```
+# Mac
+export PUPPETEER_SKIP_DOWNLOAD='true'
+
+# Windows
+SET PUPPETEER_SKIP_DOWNLOAD='true'
+```
+
+- 确保你们的终端走了代理 (开全局梯子，或者手动设置终端走代理)
+- 确保你的 openai key 有余额
+- 配置好 config.js 和 .env 文件
+- 执行 npm run test 能成功拿到 openai 的回复
+- 执行 npm run dev 愉快的玩耍吧~ 🎉
+
 ### 2024.01.17 更新
 
 安装完依赖后，运行 `npm run dev` 前，可以先测试下 openai 的接口是否可用，运行 `npm run test` 即可。
