@@ -10,6 +10,23 @@
 
 ## 近期的改动
 
+### 2024.03.23
+
+近期老有人问为什么所有都配置好后，`npm run test` 请求不通？
+
+首先，确保你按照 2024.03.07 更新的步骤配置好了
+
+然后，确保你的终端走了代理。以我的 mac 为例，我需要先这样设置：
+
+```sh
+# 设置代理
+export https_proxy=http://127.0.0.1:你的代理服务端口号;export http_proxy=http://127.0.0.1:你的代理服务端口号;export all_proxy=socks5://127.0.0.1:你的代理服务端口号
+# 然后再执行 npm run test
+npm run test
+```
+
+![](https://raw.githubusercontent.com/wangrongding/image-house/master/202403231002859.png)
+
 ### 2024.03.07 更新
 
 - 拉取最新代码，重新安装依赖（删除 lock 文件，删除 node_modules）
