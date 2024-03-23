@@ -24,12 +24,12 @@ export async function defaultMessage(msg, bot) {
   // TODO 你们可以根据自己的需求修改这里的逻辑
   if (isText && !isBotSelf) {
     console.log(JSON.stringify(msg))
-    if ((Date.now() - 1e3 * msg.payload.timestamp) > 3000) return 
-    if (!content.startsWith('? ') && !content.startsWith('？ ') && !content.startsWith('> ')) return 
+    if ((Date.now() - 1e3 * msg.payload.timestamp) > 3000) return
+    if (!content.startsWith('? ') && !content.startsWith('？ ') && !content.startsWith('> ')) return
     try {
       const trimed = content.substr(2)
-      if (trimed.length < 5) return 
-      
+      if (trimed.length < 5) return
+
       // 区分群聊和私聊
       if (isRoom && room) {
         await room.say(await getReply(trimed.replace(`${botName}`, '')))
