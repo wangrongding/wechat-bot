@@ -6,12 +6,15 @@
   "type": "module",
   "scripts": {
     "dev": "node ./index.js",
-    "test": "node ./src/wechaty/testMessage.js"
+    "test": "node ./src/wechaty/testMessage.js",
+    "test-openai": "node ./src/openai/__test__.js",
+    "test-kimi": "node ./src/kimi/__test__.js"
   },
   "author": "rongding",
   "license": "ISC",
   "dependencies": {
-    "chatgpt": "^2.3.0",
+    "axios": "^1.6.8",
+    "chatgpt": "^2.5.2",
     "dotenv": "^16.0.3",
     "openai": "^3.1.0",
     "p-timeout": "^6.0.0",

@@ -1,6 +1,9 @@
-// import { getChatGPTReply as getReply } from '../chatgpt/index.js'
-import { getOpenAiReply as getReply } from '../openai/index.js'
+import { getGptReply } from '../openai/index.js'
+import { getKimiReply } from '../kimi/index.js'
 import { botName, roomWhiteList, aliasWhiteList } from '../../config.js'
+
+const getReply = getGptReply
+// const getReply = getKimiReply
 
 /**
  * 默认消息发送

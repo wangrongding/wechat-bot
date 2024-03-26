@@ -9,7 +9,7 @@ const configuration = new Configuration({
 })
 const openai = new OpenAIApi(configuration)
 
-export async function getOpenAiReply(prompt) {
+export async function getGptReply(prompt) {
   console.log('🚀🚀🚀 / prompt', prompt)
   //let chosen_model = 'text-davinci-003'
   let chosen_model = 'gpt-3.5-turbo'

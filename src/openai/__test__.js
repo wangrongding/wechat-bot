@@ -1,4 +1,4 @@
-import { getGptReply } from '../openai/index.js'
+import { getGptReply } from './index.js'
 
 // 测试 open ai api
 async function testMessage() {
