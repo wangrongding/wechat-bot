@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "node ./index.js",
     "dev": "node ./index.js",
     "test": "node ./src/wechaty/testMessage.js",
     "test-openai": "node ./src/openai/__test__.js",
@@ -16,6 +17,7 @@
     "axios": "^1.6.8",
     "chatgpt": "^2.5.2",
     "dotenv": "^16.0.3",
+    "inquirer": "^9.2.16",
     "openai": "^3.1.0",
     "p-timeout": "^6.0.0",
     "qrcode-terminal": "^0.12.0",

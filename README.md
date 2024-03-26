@@ -1,7 +1,5 @@
 # WeChat Bot
 
-![](https://assets.fedtop.com/picbed/202212071317377.png)
-
 一个 基于 `chatgpt` + `wechaty` 的微信机器人
 
 可以用来帮助你自动回复微信消息，或者管理微信群/好友.
@@ -9,6 +7,16 @@
 `简单`，`好用`，`2分钟（4 个步骤）` 就能玩起来了。🌸 如果对您有所帮助，请点个 Star ⭐️ 支持一下。
 
 ## 近期的改动
+
+### 2024.03.26
+
+#### 1. 新增服务类型可选交互
+
+![](https://assets.fedtop.com/picbed/202403261420468.png)
+
+#### 2. 新增国产 ai 服务 Kimi
+
+可以去 ： (kimi apikey)[https://platform.moonshot.cn/console/api-keys] 获取你的 key
 
 ### 2024.03.23
 
@@ -63,10 +71,10 @@ SET PUPPETEER_SKIP_DOWNLOAD='true'
 
 也可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。（如果项目对你有所帮助，也可以请我喝杯咖啡 ☕️ ~）
 
-| <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202303151014249.JPG" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202302092216101.png" width="180px"> |
-| --- | --- | --- |
+| <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202303151014249.JPG" width="180px"> |
+| --- | --- |
 
-## 开发
+## 开发及使用指南
 
 1. 检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v18.0 ，版本太低会导致运行报错,最好使用 LTS 版本。
 2. 先获取自己的 `api key`，地址戳这里 👉🏻 ：[创建你的 api key](https://beta.openai.com/account/api-keys)
@@ -90,7 +98,7 @@ OPENAI_API_KEY='你的key'
 # 安装依赖
 npm i
 # 启动服务
-npm run dev
+npm run dev # 或者 npm run start
 ```
 
 然后就可以扫码登录了，然后根据你的需求，自己修改相关逻辑文件。

@@ -1,17 +1,17 @@
 import { getGptReply } from '../openai/index.js'
 import { getKimiReply } from '../kimi/index.js'
 import { botName, roomWhiteList, aliasWhiteList } from '../../config.js'
-
-const getReply = getGptReply
-// const getReply = getKimiReply
+import { getServe } from './serve.js'
 
 /**
  * 默认消息发送
  * @param msg
  * @param bot
+ * @param ServiceType 服务类型 'GPT' | 'Kimi'
  * @returns {Promise<void>}
  */
-export async function defaultMessage(msg, bot) {
+export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
+  const getReply = getServe(ServiceType)
   const contact = msg.talker() // 发消息人
   const receiver = msg.to() // 消息接收人
   const content = msg.text() // 消息内容
