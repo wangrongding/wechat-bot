@@ -16,7 +16,7 @@
 
 #### 2. 新增国产 ai 服务 Kimi
 
-可以去 ： (kimi apikey)[https://platform.moonshot.cn/console/api-keys] 获取你的 key
+可以去 ： [kimi apikey](https://platform.moonshot.cn/console/api-keys) 获取你的 key
 
 ### 2024.03.23
 
