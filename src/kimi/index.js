@@ -19,7 +19,7 @@ const configuration = {
     Model ID, 可以通过 List Models 获取
     目前可选 moonshot-v1-8k | moonshot-v1-32k | moonshot-v1-128k
   */
-  model: "moonshot-v1-8k",
+  model: "moonshot-v1-128k",
   /* 
     使用什么采样温度，介于 0 和 1 之间。较高的值（如 0.7）将使输出更加随机，而较低的值（如 0.2）将使其更加集中和确定性。
     如果设置，值域须为 [0, 1] 我们推荐 0.3，以达到较合适的效果。
@@ -31,7 +31,7 @@ const configuration = {
     比如对一个 moonshot-v1-8k 模型，它的最大输入 + 输出总长度是 8192，当输入 messages 总长度为 4096 的时候，您最多只能设置为 4096，
     否则我们服务会返回不合法的输入参数（ invalid_request_error ），并拒绝回答。如果您希望获得“输入的精确 token 数”，可以使用下面的“计算 Token” API 使用我们的计算器获得计数。
   */
-  max_tokens: 50,
+  max_tokens: 5000,
   /* 
     是否流式返回, 默认 false, 可选 true
   */
