@@ -1,5 +1,3 @@
-import { getGptReply } from '../openai/index.js'
-import { getKimiReply } from '../kimi/index.js'
 import { botName, roomWhiteList, aliasWhiteList } from '../../config.js'
 import { getServe } from './serve.js'
 
@@ -25,26 +23,20 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
   const isAlias = aliasWhiteList.includes(remarkName) || aliasWhiteList.includes(name) // 发消息的人是否在联系人白名单内
   const isBotSelf = botName === remarkName || botName === name // 是否是机器人自己
   // TODO 你们可以根据自己的需求修改这里的逻辑
-    if (isText && !isBotSelf) {
-    console.log(JSON.stringify(msg))
-        if ((Date.now() - 1e3 * msg.payload.timestamp) > 3000) return
-    try {
-      const trimed = content.substr(2)
-      if (trimed.length < 5) return
-      
-      // 区分群聊和私聊
-      if (isRoom && room) {
-        await room.say(await getReply(trimed.replace(`${botName}`, '')))
-        return
-      }
-      // 私人聊天，白名单内的直接发送
-      if (isAlias && !room) {
-        await contact.say(await getReply(trimed))
-      }
-    } catch (e) {
-      console.error(e)
+  if (isBotSelf || !isText) return // 如果是机器人自己发送的消息或者消息类型不是文本则不处理
+  try {
+    // 区分群聊和私聊
+    if (isRoom && room) {
+      await room.say(await getReply(content.replace(`${botName}`, '')))
     }
+    // 私人聊天，白名单内的直接发送
+    if (isAlias && !room) {
+      await contact.say(await getReply(content))
+    }
+  } catch (e) {
+    console.error(e)
   }
+
 }
 
 /**
