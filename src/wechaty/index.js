@@ -76,12 +76,14 @@ bot.on('logout', onLogout)
 bot.on('message', onMessage)
 // 添加好友
 bot.on('friendship', onFriendShip)
+// 错误
+bot.on('error', (e) => console.error('bot error❌: ', e))
 // 启动微信机器人
 function botStart() {
   bot
     .start()
     .then(() => console.log('Start to log in wechat...'))
-    .catch((e) => console.error(e))
+    .catch((e) => console.error('botStart error❌: ', e))
 }
 
 // 控制启动
