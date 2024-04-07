@@ -9,6 +9,7 @@
     "dev": "node ./index.js",
     "test": "node ./src/wechaty/testMessage.js",
     "test-openai": "node ./src/openai/__test__.js",
+    "test-xunfei": "node ./src/xunfei/__test__.js",
     "test-kimi": "node ./src/kimi/__test__.js"
   },
   "author": "rongding",
@@ -16,7 +17,8 @@
   "dependencies": {
     "axios": "^1.6.8",
     "chatgpt": "^2.5.2",
-    "dotenv": "^16.0.3",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
     "inquirer": "^9.2.16",
     "openai": "^3.1.0",
     "p-timeout": "^6.0.0",
@@ -24,6 +26,7 @@
     "remark": "^14.0.2",
     "strip-markdown": "^5.0.0",
     "wechaty": "^1.20.2",
-    "wechaty-puppet-wechat4u": "^1.14.14"
+    "wechaty-puppet-wechat4u": "^1.14.14",
+    "ws": "^8.16.0"
   }
 }

@@ -62,7 +62,7 @@ export const bot = WechatyBuilder.build({
   // puppet: 'wechaty-puppet-wechat', // 如果 wechaty-puppet-wechat 存在问题，也可以尝试使用上面的 wechaty-puppet-wechat4u ，记得安装 wechaty-puppet-wechat4u
   puppetOptions: {
     uos: true,
-    ...CHROME_BIN
+    ...CHROME_BIN,
   },
 })
 
@@ -99,6 +99,12 @@ function handleStart(type) {
       if (env.KIMI_API_KEY) return botStart()
       console.log('❌ 请先配置.env文件中的 KIMI_API_KEY')
       break
+    case 'Xunfei':
+      if (env.XUNFEI_APP_ID && env.XUNFEI_API_KEY && env.XUNFEI_API_SECRET) {
+        return botStart()
+      }
+      console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
+      break
     default:
       console.log('🚀服务类型错误')
   }
@@ -107,6 +113,7 @@ function handleStart(type) {
 const serveList = [
   { name: 'ChatGPT', value: 'ChatGPT' },
   { name: 'Kimi', value: 'Kimi' },
+  { name: 'Xunfei', value: 'Xunfei' },
   // ... 欢迎大家接入更多的服务
 ]
 const questions = [

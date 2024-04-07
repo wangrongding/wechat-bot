@@ -1,5 +1,6 @@
 import { getGptReply } from '../openai/index.js'
 import { getKimiReply } from '../kimi/index.js'
+import { getXunfeiReply } from '../xunfei/index.js'
 import dotenv from 'dotenv'
 import inquirer from 'inquirer'
 const env = dotenv.config().parsed // 环境参数
@@ -24,6 +25,14 @@ async function handleRequest(type) {
       }
       console.log('❌ 请先配置.env文件中的 KIMI_API_KEY')
       break
+    case 'Xunfei':
+      if (env.XUNFEI_APP_ID && env.XUNFEI_API_KEY && env.XUNFEI_API_SECRET) {
+        const message = await getXunfeiReply("你好!")
+        console.log('🌸🌸🌸 / reply: ', message)
+        return
+      }
+      console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
+      break
     default:
       console.log('🚀服务类型错误')
   }
@@ -32,6 +41,7 @@ async function handleRequest(type) {
 const serveList = [
   { name: 'ChatGPT', value: 'ChatGPT' },
   { name: 'Kimi', value: 'Kimi' },
+  { name: 'Xunfei', value: 'Xunfei' },
   // ... 欢迎大家接入更多的服务
 ]
 const questions = [
