@@ -4,6 +4,7 @@ import qrTerminal from 'qrcode-terminal'
 import { defaultMessage, shardingMessage } from './sendMessage.js'
 import dotenv from 'dotenv'
 const env = dotenv.config().parsed // 环境参数
+import fs from 'fs'
 
 // 扫码
 function onScan(qrcode, status) {
@@ -77,7 +78,17 @@ bot.on('message', onMessage)
 // 添加好友
 bot.on('friendship', onFriendShip)
 // 错误
-bot.on('error', (e) => console.error('bot error❌: ', e))
+bot.on('error', (e) => {
+  console.error('bot error❌: ', e)
+  console.log('❌ 程序退出,请重新运行程序')
+  bot.stop()
+
+  // 如果 WechatEveryDay.memory-card.json 文件存在，删除
+  if (fs.existsSync('WechatEveryDay.memory-card.json')) {
+    fs.unlinkSync('WechatEveryDay.memory-card.json')
+  }
+  process.exit()
+})
 // 启动微信机器人
 function botStart() {
   bot
