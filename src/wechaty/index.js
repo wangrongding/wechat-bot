@@ -97,6 +97,17 @@ function botStart() {
     .catch((e) => console.error('botStart error❌: ', e))
 }
 
+process.on('uncaughtException', (err) => {
+  if (err.code === 'ERR_ASSERTION') {
+    console.error('❌❌❌ 捕获到断言错误: ', err.message)
+  } else {
+    console.error('❌❌❌ 捕获到未处理的异常: ', err)
+  }
+  // if (fs.existsSync('WechatEveryDay.memory-card.json')) {
+  //   fs.unlinkSync('WechatEveryDay.memory-card.json')
+  // }
+})
+
 // 控制启动
 function handleStart(type) {
   serviceType = type
