@@ -1,10 +1,18 @@
+import { Command } from 'commander'
 import { WechatyBuilder, ScanStatus, log } from 'wechaty'
 import inquirer from 'inquirer'
 import qrTerminal from 'qrcode-terminal'
-import { defaultMessage, shardingMessage } from './sendMessage.js'
 import dotenv from 'dotenv'
-const env = dotenv.config().parsed // 环境参数
+
 import fs from 'fs'
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { defaultMessage, shardingMessage } from './wechaty/sendMessage.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const env = dotenv.config().parsed // 环境参数
+const { version, name } = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json'), 'utf8'))
 
 // 扫码
 function onScan(qrcode, status) {
@@ -128,7 +136,7 @@ function handleStart(type) {
       console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
       break
     default:
-      console.log('🚀服务类型错误')
+      console.log('🚀服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
   }
 }
 
@@ -156,4 +164,16 @@ function init() {
       console.log('🚀error:', error)
     })
 }
-init()
+const program = new Command(name)
+program
+  .alias('we')
+  .description('🤖一个基于 WeChaty 结合AI服务实现的微信机器人。')
+  .version(version, '-v, --version, -V')
+  .option('-s, --serve <type>', 'port type', '')
+  // .option('-p, --proxy <url>', 'proxy url', '')
+  .action(function () {
+    const { serve } = this.opts()
+    const args = this.args
+    if (!serve) return init()
+    handleStart(serve)
+  })
