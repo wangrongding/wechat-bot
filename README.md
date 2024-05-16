@@ -8,6 +8,17 @@
 
 ## 近期的改动
 
+### 2024.05.17
+
+为了兼容 docker 部署，避免不必要的选择交互，新增指定服务运行
+
+```sh
+# 运行指定服务 （ 目前支持 ChatGPT | Kimi | Xunfei ）
+npm run start -- --serve Kimi
+# 交互选择服务，仍然保持原有的逻辑
+npm run start
+```
+
 ### 2024.04.08
 
 新增科大讯飞，去这里申请一个 key：[科大讯飞](https://console.xfyun.cn/services/bm35)，每个模型都有 200 万的免费 token ，感觉很难用完。
