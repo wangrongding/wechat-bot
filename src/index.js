@@ -177,3 +177,4 @@ program
     if (!serve) return init()
     handleStart(serve)
   })
+program.parse()
