@@ -1,6 +1,9 @@
 import { botName, roomWhiteList, aliasWhiteList } from '../../config.js'
 import { getServe } from './serve.js'
 
+let autoReplyEnabled = true;
+const aliasRequestCounts = {}; // Object to store alias request counts
+
 /**
  * 默认消息发送
  * @param msg
@@ -37,6 +40,33 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
       console.log('🌸🌸🌸 / content: ', content)
       const response = await getReply(content)
       await contact.say(response)
+    } else if (!isAlias && !room) {
+      // Increment the request count for the alias
+      if (alias !== '小美' && alias !== "干尾巴") {
+        aliasRequestCounts[alias] = (aliasRequestCounts[alias] || 0) + 1;
+      }
+
+      // If the alias has requested more than twice, do not send the fixed response
+      if (aliasRequestCounts[alias] < 2 && alias !== '小美' && alias !== "干尾巴" && autoReplyEnabled) {
+        console.log('🌸🌸🌸 / alias: ', alias, ' / content: ', content)
+        const fixedResponse = "主人最近在忙，不想看微信，请短信留言：13265581557"
+        await contact.say(fixedResponse)
+      } else if (aliasRequestCounts[alias] >= 2 && autoReplyEnabled) {
+        console.log('🌸🌸🌸 / alias: ', alias, ' / content: ', content)
+        const response = await getReply(content)
+        await contact.say(response)
+      }
+
+      if (alias === '干尾巴') {
+        if (content === '1') {
+          toggleAutoReply(true)
+          console.log('🌸🌸🌸 / 开启自动回复')
+        } else if (content === '0') {
+          toggleAutoReply(false)
+          console.log('🌸🌸🌸 / 关闭自动回复')
+        }
+      }
+
     }
   } catch (e) {
     console.error(e)
@@ -110,4 +140,8 @@ async function splitMessage(text) {
     realText = item[item.length - 1]
   }
   return realText
+}
+
+export function toggleAutoReply(enabled) {
+  autoReplyEnabled = enabled;
 }

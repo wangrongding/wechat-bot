@@ -152,17 +152,12 @@ const questions = [
     name: 'serviceType', //存储当前问题回答的变量key，
     message: '请先选择服务类型',
     choices: serveList,
+    default: 'Xunfei', // 设置默认值为 'Xunfei'
   },
 ]
 function init() {
-  inquirer
-    .prompt(questions)
-    .then((res) => {
-      handleStart(res.serviceType)
-    })
-    .catch((error) => {
-      console.log('🚀error:', error)
-    })
+  const defaultServiceType = 'Xunfei';
+  handleStart(defaultServiceType);
 }
 const program = new Command(name)
 program
