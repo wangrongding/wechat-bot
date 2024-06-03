@@ -23,6 +23,8 @@ npm run start
 
 新增科大讯飞，去这里申请一个 key：[科大讯飞](https://console.xfyun.cn/services/bm35)，每个模型都有 200 万的免费 token ，感觉很难用完。
 
+注意： 讯飞的配置文件几个 key，别填反了，很多人找到我说为什么不回复，都是填反了。
+
 而且还有一个好处就是，接口不会像 Kimi 一样限制请求频次，相对来说稳定很多。
 
 ![](https://assets.fedtop.com/picbed/202404080142590.png)
@@ -97,31 +99,57 @@ SET PUPPETEER_SKIP_DOWNLOAD='true'
 | <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202303151014249.JPG" width="180px"> |
 | --- | --- |
 
-## 开发及使用指南
+## 使用指南
+
+### 安装
+
+```sh
+npm i wechat-bot -g
+# 也可以用其他包管理工具：
+yarn global add wechat-bot
+pnpm i -g wechat-bot
+```
+
+### 使用
+
+```sh
+# 命令行执行 wechat-bot 即可（缩写）
+we start
+```
 
 1. 检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v18.0 ，版本太低会导致运行报错,最好使用 LTS 版本。
 2. 先获取自己的 `api key`，地址戳这里 👉🏻 ：[创建你的 api key](https://beta.openai.com/account/api-keys)
 
 ![](https://assets.fedtop.com/picbed/202212121817351.png)
 
-3. 创建完了， 复制下来，然后在项目根目录下创建一个 `.env` 文件，内容如下：
+3. 创建完了，复制下来，然后在项目根目录下新建一个 `.env` 文件，具体步骤如下：
 
 ```sh
-# 执行下面命令，拷贝一份 .env.example 文件
+# 执行下面命令，拷贝一份 .env.example 文件为 .env
 cp .env.example .env
-# 完善.env 文件内容
+# 填写完善 .env 文件中的内容
 OPENAI_API_KEY='你的key'
 ```
 
+## 开发
+
 4. 运行服务
 
-> 安装依赖时，大陆的朋友推荐切到 taobao 镜像源后再安装，要不然可能会因为依赖安装不完整导致出错， 推荐使用我的工具 👉🏻 [prm-cli](https://github.com/wangrongding/prm-cli) 快速切换。
+> 安装依赖时，大陆的朋友推荐切到 taobao 镜像源后再安装，命令：  
+> `npm config set registry https://registry.npmmirror.com`  
+> 想要灵活切换，推荐使用我的工具 👉🏻 [prm-cli](https://github.com/wangrongding/prm-cli) 快速切换。
 
 ```sh
 # 安装依赖
 npm i
 # 启动服务
 npm run dev # 或者 npm run start
+
+# 推荐用 yarn 吧，npm 安装有时会遇到 wechaty 内部依赖安装失败的问题
+# 安装依赖
+yarn
+# 启动服务
+yarn dev # 或者 yarn start
 ```
 
 然后就可以扫码登录了，然后根据你的需求，自己修改相关逻辑文件。
@@ -164,3 +192,34 @@ $ docker run -d --rm --name wechat-bot -v $(pwd)/config.js:/app/config.js -v $(p
 该项目于 2023/2/13 日成为 Github Trending 榜首。
 
 [![Star History Chart](https://api.star-history.com/svg?repos=wangrongding/wechat-bot&type=Date)](https://star-history.com/#wangrongding/wechat-bot&Date)
+
+## License
+
+[MIT](./LICENSE).
+
+## Sponsors
+
+<div align="center">
+  <table>
+    <!-- Header -->
+    <tr>
+      <td colspan="3" align="left">
+        <p align="center">
+          <a href="https://302.ai" target="_blank">
+            <img src="./sponsors/302AI.png" alt="Hi" width="400" />
+          </a>
+        </p>
+      </td>
+    </tr>
+    <!-- 访问量 -->
+    <tr>
+      <td align="left">302.AI 是一个汇集全球顶级 AI 的自助平台，按需付费，零月费，零门槛使用各种类型 AI。</td>
+      <td align="center" width="150px">
+        <a href="https://302.ai" target="_blank">产品链接</a>
+      </td>
+      <td align="center" width="150px">
+        <a href="https://help.302.ai" target="_blank">网站介绍</a>
+      </td>
+    </tr>
+  </table>
+</div>

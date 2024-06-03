@@ -169,7 +169,7 @@ program
   .alias('we')
   .description('🤖一个基于 WeChaty 结合AI服务实现的微信机器人。')
   .version(version, '-v, --version, -V')
-  .option('-s, --serve <type>', '跳过交互，直接设置启动的服务类型', '')
+  .option('-s, --serve <type>', '跳过交互，直接设置启动的服务类型')
   // .option('-p, --proxy <url>', 'proxy url', '')
   .action(function () {
     const { serve } = this.opts()
