@@ -177,4 +177,16 @@ program
     if (!serve) return init()
     handleStart(serve)
   })
+  .command('start')
+  .option('-s, --serve <type>', '跳过交互，直接设置启动的服务类型', '')
+  .action(() => init())
+
+// program
+//   .command('config')
+//   .option('-d, --depth <type>', 'Set the depth of the folder to be traversed', '10')
+//   .action(() => {
+//     // 打印当前项目的路径，而不是执行该文件时的所在路径
+//     console.log('请手动修改下面路径中的 config.json 文件')
+//     console.log(path.resolve(__dirname, '../.env'))
+//   })
 program.parse()

@@ -6,9 +6,90 @@
 
 `简单`，`好用`，`2分钟（4 个步骤）` 就能玩起来了。🌸 如果对您有所帮助，请点个 Star ⭐️ 支持一下。
 
-## 近期的改动
+## 使用前需要配置的 AI 服务（目前支持 3 种，可任选其一）
 
-### 2024.05.17
+- 科大讯飞
+
+  新增科大讯飞，去这里申请一个 key：[科大讯飞](https://console.xfyun.cn/services/bm35)，每个模型都有 200 万的免费 token ，感觉很难用完。  
+  注意： 讯飞的配置文件几个 key，别填反了，很多人找到我说为什么不回复，都是填反了。  
+  而且还有一个好处就是，接口不会像 Kimi 一样限制请求频次，相对来说稳定很多。
+
+- Kimi （请求限制较严重）
+
+  可以去 ： [kimi apikey](https://platform.moonshot.cn/console/api-keys) 获取你的 key  
+  最近比较忙，大家感兴趣可以提交 PR，我会尽快合并。目前 Kimi 刚刚集成，还可以实现上传文件等功能，然后有其它较好的服务也可以提交 PR 。
+
+- ChatGPT
+
+  先获取自己的 `api key`，地址戳这里 👉🏻 ：[创建你的 api key](https://beta.openai.com/account/api-keys)
+
+  创建完了，复制下来，然后在项目根目录下新建一个 `.env` 文件，具体步骤如下：
+
+  ```sh
+  # 执行下面命令，拷贝一份 .env.example 文件为 .env
+  cp .env.example .env
+  # 填写完善 .env 文件中的内容
+  OPENAI_API_KEY='你的key'
+  ```
+
+## Sponsors
+
+<div align="center">
+  <table>
+    <!-- Header -->
+    <tr>
+      <td colspan="3" align="left">
+        <p align="center">
+          <a href="https://302.ai" target="_blank">
+            <img src="./sponsors/302AI.png" alt="Hi" width="300" />
+          </a>
+        </p>
+      </td>
+    </tr>
+    <!-- 访问量 -->
+    <tr>
+      <td align="left">302.AI 是一个汇集全球顶级 AI 的自助平台，按需付费，零月费，零门槛使用各种类型 AI。</td>
+      <td align="center" width="120px">
+        <a href="https://302.ai" target="_blank">产品链接</a>
+      </td>
+      <td align="center" width="120px">
+        <a href="https://help.302.ai" target="_blank">网站介绍</a>
+      </td>
+    </tr>
+  </table>
+</div>
+
+## 开发/使用
+
+检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v18.0 ，版本太低会导致运行报错,最好使用 LTS 版本。
+
+1. 安装依赖
+
+> 安装依赖时，大陆的朋友推荐切到 taobao 镜像源后再安装，命令：  
+> `npm config set registry https://registry.npmmirror.com`  
+> 想要灵活切换，推荐使用我的工具 👉🏻 [prm-cli](https://github.com/wangrongding/prm-cli) 快速切换。
+
+```sh
+# 安装依赖
+npm i
+# 推荐用 yarn 吧，npm 安装有时会遇到 wechaty 内部依赖安装失败的问题
+yarn
+```
+
+2. 运行服务
+
+```sh
+# 启动服务
+npm run dev # 或者 npm run start
+# 启动服务
+yarn dev # 或者 yarn start
+```
+
+然后就可以扫码登录了，然后根据你的需求，自己修改相关逻辑文件。
+
+![](https://assets.fedtop.com/picbed/202403261420468.png)
+
+![](https://assets.fedtop.com/picbed/202212071315670.png)
 
 为了兼容 docker 部署，避免不必要的选择交互，新增指定服务运行
 
@@ -19,142 +100,11 @@ npm run start -- --serve Kimi
 npm run start
 ```
 
-### 2024.04.08
-
-新增科大讯飞，去这里申请一个 key：[科大讯飞](https://console.xfyun.cn/services/bm35)，每个模型都有 200 万的免费 token ，感觉很难用完。
-
-注意： 讯飞的配置文件几个 key，别填反了，很多人找到我说为什么不回复，都是填反了。
-
-而且还有一个好处就是，接口不会像 Kimi 一样限制请求频次，相对来说稳定很多。
-
-![](https://assets.fedtop.com/picbed/202404080142590.png)
-
-### 2024.03.26
-
-#### 1. 新增服务类型可选交互
-
-![](https://assets.fedtop.com/picbed/202403261420468.png)
-
-#### 2. 新增国产 ai 服务 Kimi
-
-看到最近 Kimi 爆火，遂集成进来，正好也解决了很多国内小伙伴经常反馈 openai 的接口请求不通需要代理对新手不友好等问题。
-
-可以去 ： [kimi apikey](https://platform.moonshot.cn/console/api-keys) 获取你的 key
-
-最近比较忙，大家感兴趣可以提交 PR，我会尽快合并。目前 Kimi 刚刚集成，还可以实现上传文件等功能，然后有其它较好的服务也可以提交 PR 。
-
-### 2024.03.23
-
-近期老有人问为什么所有都配置好后，`npm run test` 请求不通？
-
-首先，确保你按照 2024.03.07 更新的步骤配置好了
-
-然后，确保你的终端走了代理。以我的 mac 为例，我需要先这样设置：
-
-```sh
-# 设置代理
-export https_proxy=http://127.0.0.1:你的代理服务端口号;export http_proxy=http://127.0.0.1:你的代理服务端口号;export all_proxy=socks5://127.0.0.1:你的代理服务端口号
-# 然后再执行 npm run test
-npm run test
-```
-
-![](https://raw.githubusercontent.com/wangrongding/image-house/master/202403231002859.png)
-
-### 2024.03.07 更新
-
-- 拉取最新代码，重新安装依赖（删除 lock 文件，删除 node_modules）
-- 安装依赖时最好不要设置 npm 镜像
-- 遇到 puppeteer 安装失败设置环境变量：
-
-```
-# Mac
-export PUPPETEER_SKIP_DOWNLOAD='true'
-
-# Windows
-SET PUPPETEER_SKIP_DOWNLOAD='true'
-```
-
-- 确保你们的终端走了代理 (开全局梯子，或者手动设置终端走代理)
-- 确保你的 openai key 有余额
-- 配置好 config.js 和 .env 文件
-- 执行 npm run test 能成功拿到 openai 的回复
-- 执行 npm run dev 愉快的玩耍吧~ 🎉
-
-### 2024.01.17 更新
+3. 测试
 
 安装完依赖后，运行 `npm run dev` 前，可以先测试下 openai 的接口是否可用，运行 `npm run test` 即可。
 
 遇到 timeout 问题需要自行解决。（一般就是代理未成功，或者你的梯子限制了调 openai api 的服务）
-
-### 12.13 更新
-
-不少人今天运行不了，参考这条 [issue](https://github.com/wangrongding/wechat-bot/issues/54#issuecomment-1347880291) ,暂时这样处理下，有好的方案大家可以提出来，谢谢~
-
-### 12.12 更新
-
-- `OpenAI Chatgpt` 因为一些原因，对接口访问添加了一系列的限制。具体可以看这里：[问题详情](https://github.com/transitive-bullshit/chatgpt-api#update-december-11-2022)，所以我改用官方自己的了，目前机器人可用。
-
-也可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。（如果项目对你有所帮助，也可以请我喝杯咖啡 ☕️ ~）
-
-| <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202303151014249.JPG" width="180px"> |
-| --- | --- |
-
-## 使用指南
-
-### 安装
-
-```sh
-npm i wechat-bot -g
-# 也可以用其他包管理工具：
-yarn global add wechat-bot
-pnpm i -g wechat-bot
-```
-
-### 使用
-
-```sh
-# 命令行执行 wechat-bot 即可（缩写）
-we start
-```
-
-1. 检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v18.0 ，版本太低会导致运行报错,最好使用 LTS 版本。
-2. 先获取自己的 `api key`，地址戳这里 👉🏻 ：[创建你的 api key](https://beta.openai.com/account/api-keys)
-
-![](https://assets.fedtop.com/picbed/202212121817351.png)
-
-3. 创建完了，复制下来，然后在项目根目录下新建一个 `.env` 文件，具体步骤如下：
-
-```sh
-# 执行下面命令，拷贝一份 .env.example 文件为 .env
-cp .env.example .env
-# 填写完善 .env 文件中的内容
-OPENAI_API_KEY='你的key'
-```
-
-## 开发
-
-4. 运行服务
-
-> 安装依赖时，大陆的朋友推荐切到 taobao 镜像源后再安装，命令：  
-> `npm config set registry https://registry.npmmirror.com`  
-> 想要灵活切换，推荐使用我的工具 👉🏻 [prm-cli](https://github.com/wangrongding/prm-cli) 快速切换。
-
-```sh
-# 安装依赖
-npm i
-# 启动服务
-npm run dev # 或者 npm run start
-
-# 推荐用 yarn 吧，npm 安装有时会遇到 wechaty 内部依赖安装失败的问题
-# 安装依赖
-yarn
-# 启动服务
-yarn dev # 或者 yarn start
-```
-
-然后就可以扫码登录了，然后根据你的需求，自己修改相关逻辑文件。
-
-![](https://assets.fedtop.com/picbed/202212071315670.png)
 
 ## 你要修改的
 
@@ -174,6 +124,45 @@ yarn dev # 或者 yarn start
 ![](https://assets.fedtop.com/picbed/202212131123257.png)
 
 ## 常见问题
+
+可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。（如果项目对你有所帮助，也可以请我喝杯咖啡 ☕️ ~）
+
+| <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202303151014249.JPG" width="180px"> |
+| --- | --- |
+
+### 运行报错等问题
+
+首先你需要做到以下几点：
+
+- 拉取最新代码，重新安装依赖（删除 lock 文件，删除 node_modules）
+- 安装依赖时最好不要设置 npm 镜像
+- 遇到 puppeteer 安装失败设置环境变量：
+
+  ```
+  # Mac
+  export PUPPETEER_SKIP_DOWNLOAD='true'
+
+  # Windows
+  SET PUPPETEER_SKIP_DOWNLOAD='true'
+  ```
+
+- 确保你们的终端走了代理 (开全局梯子，或者手动设置终端走代理)
+
+  ```sh
+  # 设置代理
+  export https_proxy=http://127.0.0.1:你的代理服务端口号;export http_proxy=http://127.0.0.1:你的代理服务端口号;export all_proxy=socks5://127.0.0.1:你的代理服务端口号
+  # 然后再执行 npm run test
+  npm run test
+  ```
+
+  ![](https://raw.githubusercontent.com/wangrongding/image-house/master/202403231002859.png)
+
+- 确保你的 openai key 有余额
+- 配置好 config.js 和 .env 文件
+- 执行 npm run test 能成功拿到 openai 的回复
+- 执行 npm run dev 愉快的玩耍吧~ 🎉
+
+也可以参考这条 [issue](https://github.com/wangrongding/wechat-bot/issues/54#issuecomment-1347880291)
 
 - 怎么玩？ 完成自定义修改后，群聊时，在白名单中的群，有人 @你 时会触发自动回复，私聊中，联系人白名单中的人发消息给你时会触发自动回复。
 - 运行报错？检查 node 版本是否符合，如果不符合，升级 node 版本即可，检查依赖是否安装完整，如果不完整，大陆推荐切换下 npm 镜像源，然后重新安装依赖即可。（可以用我的 [prm-cli](https://github.com/wangrongding/prm-cli) 工具快速切换）
@@ -196,30 +185,3 @@ $ docker run -d --rm --name wechat-bot -v $(pwd)/config.js:/app/config.js -v $(p
 ## License
 
 [MIT](./LICENSE).
-
-## Sponsors
-
-<div align="center">
-  <table>
-    <!-- Header -->
-    <tr>
-      <td colspan="3" align="left">
-        <p align="center">
-          <a href="https://302.ai" target="_blank">
-            <img src="./sponsors/302AI.png" alt="Hi" width="400" />
-          </a>
-        </p>
-      </td>
-    </tr>
-    <!-- 访问量 -->
-    <tr>
-      <td align="left">302.AI 是一个汇集全球顶级 AI 的自助平台，按需付费，零月费，零门槛使用各种类型 AI。</td>
-      <td align="center" width="120px">
-        <a href="https://302.ai" target="_blank">产品链接</a>
-      </td>
-      <td align="center" width="120px">
-        <a href="https://help.302.ai" target="_blank">网站介绍</a>
-      </td>
-    </tr>
-  </table>
-</div>
