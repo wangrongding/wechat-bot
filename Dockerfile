@@ -1,9 +1,9 @@
 ARG APT_SOURCE="default"
 
-FROM node:19 as builder-default
+FROM node:latest as builder-default
 ENV NPM_REGISTRY="https://registry.npmjs.org"
 
-FROM node:19 as builder-aliyun
+FROM node:latest as builder-aliyun
 
 ENV NPM_REGISTRY="https://registry.npmmirror.com"
 RUN sed -i s/deb.debian.org/mirrors.aliyun.com/g /etc/apt/sources.list \
@@ -55,4 +55,4 @@ RUN npm config set registry ${NPM_REGISTRY} && npm i
 COPY *.js ./
 COPY src/ ./src/
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
