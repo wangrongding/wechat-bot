@@ -57,11 +57,12 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
         // })
       }
       if (regexIamge.test(question)) { 
-        axios('https://image.anosu.top/pixiv/direct?r18=1&keyword=人妻', {
+        axios('https://api.lolicon.app/setu/v2?r18=1&tag=人妻&tag=巨乳', {
           method:'GET'
         }).then( async res => {
           const url = res
-          const fileBox = FileBox.fromUrl(url.request.res.responseUrl)
+          // console.log(url.data.data[0].urls.original)
+          const fileBox = FileBox.fromUrl(url.data.data[0].urls.original)
           await room.say(fileBox)
         })
         // const fileBox = FileBox.fromUrl('https://image.anosu.top/pixiv/direct?r18=1')
