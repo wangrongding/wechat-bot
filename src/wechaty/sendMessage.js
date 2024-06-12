@@ -57,7 +57,7 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
         // })
       }
       if (regexIamge.test(question)) { 
-        axios('https://image.anosu.top/pixiv/direct?r18=1', {
+        axios('https://image.anosu.top/pixiv/direct?r18=1&keyword=人妻', {
           method:'GET'
         }).then( async res => {
           const url = res
