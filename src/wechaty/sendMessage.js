@@ -2,7 +2,15 @@ import axios from 'axios'
 import { botName, roomWhiteList, aliasWhiteList } from '../../config.js'
 import { getServe } from './serve.js'
 import { FileBox } from 'file-box'
-
+axios.interceptors.request.use(config => {
+	if (/get/i.test(config.method)) { //判断get请求
+		config.params  =  config.params || {};
+		config.params.t = Date.parse(new Date())/1000; //添加时间戳
+	}
+    return config;
+}, error => {
+    return Promise.reject(error);
+})
 /**
  * 默认消息发送
  * @param msg
@@ -42,6 +50,9 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
       if (regexVideo.test(question)) {
         axios('https://api.qtkj.love/api/qttj.php', {
           method: 'GET',
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
         }).then(async (res) => {
           const url = res
           const fileBox = FileBox.fromUrl(url.request.res.responseUrl)
@@ -58,7 +69,10 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
       }
       if (regexIamge.test(question)) { 
         axios('https://api.lolicon.app/setu/v2?r18=1&tag=人妻&tag=巨乳', {
-          method:'GET'
+          method: 'GET',
+          headers: {
+            'Cache-Control':'no-'
+          }
         }).then( async res => {
           const url = res
           // console.log(url.data.data[0].urls.original)
