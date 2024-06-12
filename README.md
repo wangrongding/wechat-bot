@@ -32,7 +32,7 @@
   OPENAI_API_KEY='你的key'
   ```
 
-## Sponsors
+## 赞助商
 
 <div align="center">
   <table>
