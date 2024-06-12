@@ -122,8 +122,9 @@ function handleStart(type) {
   console.log('🌸🌸🌸 / type: ', type)
   switch (type) {
     case 'ChatGPT':
-      if (env.OPENAI_API_KEY) return botStart()
-      console.log('❌ 请先配置.env文件中的 OPENAI_API_KEY')
+      // if (env.OPENAI_API_KEY) return
+      botStart()
+      // console.log('❌ 请先配置.env文件中的 OPENAI_API_KEY')
       break
     case 'Kimi':
       if (env.KIMI_API_KEY) return botStart()

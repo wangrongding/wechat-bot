@@ -1,5 +1,7 @@
+import axios from 'axios'
 import { botName, roomWhiteList, aliasWhiteList } from '../../config.js'
 import { getServe } from './serve.js'
+import { FileBox } from 'file-box'
 
 /**
  * 默认消息发送
@@ -29,14 +31,27 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
     if (isRoom && room) {
       const question = await msg.mentionText() || content.replace(`${botName}`, '') // 去掉艾特的消息主体
       console.log('🌸🌸🌸 / question: ', question)
-      const response = await getReply(question)
-      await room.say(response)
+      // const response = await getReply(question)
+      const members = await room.memberList()
+      const mentionText = members.map(member => `@${member.name()}`).join(' ');
+      if (question === '五排') {
+        await room.say(`五排有无?${mentionText}`)
+      }
+      if (question === '烧鸡') {
+        fetch("https://api.qtkj.love/api/qttj.php", {
+          method: "GET",
+        }).then(async (res) => {
+          const url = await res;
+          const fileBox = FileBox.fromUrl(url.url)
+          await room.say(fileBox)
+        })
+      }
     }
     // 私人聊天，白名单内的直接发送
     if (isAlias && !room) {
       console.log('🌸🌸🌸 / content: ', content)
-      const response = await getReply(content)
-      await contact.say(response)
+      // const response = await getReply(content)
+      await contact.say('你好')
     }
   } catch (e) {
     console.error(e)
