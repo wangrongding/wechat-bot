@@ -118,27 +118,28 @@ process.on('uncaughtException', (err) => {
 
 // 控制启动
 function handleStart(type) {
-  serviceType = type
-  console.log('🌸🌸🌸 / type: ', type)
-  switch (type) {
-    case 'ChatGPT':
-      // if (env.OPENAI_API_KEY) return
-      botStart()
-      // console.log('❌ 请先配置.env文件中的 OPENAI_API_KEY')
-      break
-    case 'Kimi':
-      if (env.KIMI_API_KEY) return botStart()
-      console.log('❌ 请先配置.env文件中的 KIMI_API_KEY')
-      break
-    case 'Xunfei':
-      if (env.XUNFEI_APP_ID && env.XUNFEI_API_KEY && env.XUNFEI_API_SECRET) {
-        return botStart()
-      }
-      console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
-      break
-    default:
-      console.log('🚀服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
-  }
+  // serviceType = type
+  // console.log('🌸🌸🌸 / type: ', type)
+  botStart()
+  // switch (type) {
+  //   case 'ChatGPT':
+  //     // if (env.OPENAI_API_KEY) return
+  //     botStart()
+  //     // console.log('❌ 请先配置.env文件中的 OPENAI_API_KEY')
+  //     break
+  //   case 'Kimi':
+  //     if (env.KIMI_API_KEY) return botStart()
+  //     console.log('❌ 请先配置.env文件中的 KIMI_API_KEY')
+  //     break
+  //   case 'Xunfei':
+  //     if (env.XUNFEI_APP_ID && env.XUNFEI_API_KEY && env.XUNFEI_API_SECRET) {
+  //       return botStart()
+  //     }
+  //     console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
+  //     break
+  //   default:
+  //     console.log('🚀服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
+  // }
 }
 
 const serveList = [
@@ -156,14 +157,15 @@ const questions = [
   },
 ]
 function init() {
-  inquirer
-    .prompt(questions)
-    .then((res) => {
-      handleStart(res.serviceType)
-    })
-    .catch((error) => {
-      console.log('🚀error:', error)
-    })
+  handleStart()
+  // inquirer
+  //   // .prompt(questions)
+  //   .then(() => {
+  //     handleStart()
+  //   })
+  //   .catch((error) => {
+  //     console.log('🚀error:', error)
+  //   })
 }
 const program = new Command(name)
 program
