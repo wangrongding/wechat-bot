@@ -64,6 +64,7 @@ async function onMessage(msg) {
 
 // 初始化机器人
 const CHROME_BIN = process.env.CHROME_BIN ? { endpoint: process.env.CHROME_BIN } : {}
+
 let serviceType = ''
 export const bot = WechatyBuilder.build({
   name: 'WechatEveryDay',

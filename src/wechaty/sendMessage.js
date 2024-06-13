@@ -2,14 +2,23 @@ import axios from 'axios'
 import { botName, roomWhiteList, aliasWhiteList } from '../../config.js'
 import { getServe } from './serve.js'
 import { FileBox } from 'file-box'
+import puppeteer from 'puppeteer'
+const browser = await puppeteer.launch({
+  headless: true,
+  defaultViewport: {
+    width: 0,
+    height: 0
+  }
+})
+let avlist = []
 axios.interceptors.request.use(config => {
-	if (/get/i.test(config.method)) { //判断get请求
-		config.params  =  config.params || {};
-		config.params.t = Date.parse(new Date())/1000; //添加时间戳
-	}
-    return config;
+  if (/get/i.test(config.method)) { //判断get请求
+    config.params = config.params || {};
+    config.params.t = Date.parse(new Date()) / 1000; //添加时间戳
+  }
+  return config;
 }, error => {
-    return Promise.reject(error);
+  return Promise.reject(error);
 })
 /**
  * 默认消息发送
@@ -37,7 +46,7 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
   try {
     // 区分群聊和私聊
     if (isRoom && room) {
-      const question = await msg.mentionText() //|| content.replace(`${botName}`, '') // 去掉艾特的消息主体
+      const question = await msg.mentionText()
       console.log('🌸🌸🌸 / question: ', question)
       // const response = await getReply(question)
       const members = await room.memberList()
@@ -45,7 +54,7 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
       const regexIamge = /涩图/
       // const mentionText = members.map(member => `@${member.name()}`).join(' ');
       if (question === '五排') {
-        await room.say(`五排有无?`,...members)
+        await room.say(`五排有无?`, ...members)
       }
       if (regexVideo.test(question)) {
         axios('https://api.qtkj.love/api/qttj.php', {
@@ -57,7 +66,7 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
           const url = res
           const fileBox = FileBox.fromUrl(url.request.res.responseUrl)
           await room.say(fileBox)
-          
+
         })
         // fetch("https://api.qtkj.love/api/qttj.php", {
         //   method: "GET",
@@ -67,13 +76,10 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
         //   `await room.say(fileBox)`
         // })
       }
-      if (regexIamge.test(question)) { 
-        axios('https://api.lolicon.app/setu/v2?r18=1&tag=人妻&tag=巨乳', {
+      if (regexIamge.test(question)) {
+        axios('https://api.lolicon.app/setu/v2?r18=1&excludeAI=true', {
           method: 'GET',
-          headers: {
-            'Cache-Control':'no-'
-          }
-        }).then( async res => {
+        }).then(async res => {
           const url = res
           // console.log(url.data.data[0].urls.original)
           const fileBox = FileBox.fromUrl(url.data.data[0].urls.original)
@@ -81,6 +87,15 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
         })
         // const fileBox = FileBox.fromUrl('https://image.anosu.top/pixiv/direct?r18=1')
         // await room.say('https://image.anosu.top/pixiv/direct?r18=1')
+      }
+      if (question === '每日推荐') {
+        if (avlist.length == 0) {
+          avlist = await onPy()
+        }
+        const random = Math.floor(Math.random() * 13)
+        const fileBoxUrl = FileBox.fromUrl(avlist[random].img)
+        await room.say(fileBoxUrl)
+        await room.say(`标题：${avlist[random].title}\n链接：${avlist[random].link}`)
       }
     }
     // 私人聊天，白名单内的直接发送
@@ -161,4 +176,24 @@ async function splitMessage(text) {
     realText = item[item.length - 1]
   }
   return realText
+}
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+async function onPy() {
+  const page = await browser.newPage();
+  await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36");
+  await page.goto('https://missav.com/dm229/cn/today-hot');
+  await sleep(3000)
+  await page.waitForSelector('.grid', { timeout: 0 });
+  const av = await page.$eval('.grid', el => {
+    return [...el.querySelectorAll('.thumbnail')].map(item => {
+      return {
+        title: item.querySelector('a').querySelector('img')?.alt,
+        img: item.querySelector('a').querySelector('img')?.src,
+        link: item.querySelector('a').href
+      }
+    })
+  });
+  return av
 }
