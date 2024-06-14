@@ -31,34 +31,6 @@
   # 填写完善 .env 文件中的内容
   OPENAI_API_KEY='你的key'
   ```
-
-## Sponsors
-
-<div align="center">
-  <table>
-    <!-- Header -->
-    <tr>
-      <td colspan="3" align="left">
-        <p align="center">
-          <a href="https://302.ai" target="_blank">
-            <img src="./sponsors/302AI.png" alt="Hi" width="300" />
-          </a>
-        </p>
-      </td>
-    </tr>
-    <!-- 访问量 -->
-    <tr>
-      <td align="left">302.AI 是一个汇集全球顶级 AI 的自助平台，按需付费，零月费，零门槛使用各种类型 AI。</td>
-      <td align="center" width="120px">
-        <a href="https://302.ai" target="_blank">产品链接</a>
-      </td>
-      <td align="center" width="120px">
-        <a href="https://help.302.ai" target="_blank">网站介绍</a>
-      </td>
-    </tr>
-  </table>
-</div>
-
 ## 开发/使用
 
 检查好自己的开发环境，确保已经安装了 `nodejs` , 版本需要满足 Node.js >= v18.0 ，版本太低会导致运行报错,最好使用 LTS 版本。
@@ -72,17 +44,20 @@
 ```sh
 # 安装依赖
 npm i
-# 推荐用 yarn 吧，npm 安装有时会遇到 wechaty 内部依赖安装失败的问题
 yarn
+# 推荐用 pnpm 吧，npm 安装有时会遇到 wechaty 内部依赖安装失败的问题
+pnpm i
 ```
 
 2. 运行服务
 
 ```sh
 # 启动服务
-npm run dev # 或者 npm run start
+npm run start
 # 启动服务
-yarn dev # 或者 yarn start
+yarn start # 或者 yarn start
+# 启动服务
+pnpm start
 ```
 
 然后就可以扫码登录了，然后根据你的需求，自己修改相关逻辑文件。
@@ -115,59 +90,7 @@ npm run start
 - 群聊，记得把机器人名称改成你自己微信号的名称，然后添加对应群聊的名称到白名单中，这样就可以自动回复群聊消息了。
 - 私聊，记得把需要自动回复的好友名称添加到白名单中，这样就可以自动回复私聊消息了。
 
-文件是 👉🏻 [sendMessage.js](./src/wechaty/sendMessage.js)
-
-![](https://assets.fedtop.com/picbed/202212110942315.png)
-
-可以看到，自动回复都是基于 `chatgpt` 的，记得要开代理。
-
-![](https://assets.fedtop.com/picbed/202212131123257.png)
-
-## 常见问题
-
-可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。（如果项目对你有所帮助，也可以请我喝杯咖啡 ☕️ ~）
-
-| <img src="https://assets.fedtop.com/picbed/202302090947704.png" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/202303151014249.JPG" width="180px"> |
-| --- | --- |
-
-### 运行报错等问题
-
-首先你需要做到以下几点：
-
-- 拉取最新代码，重新安装依赖（删除 lock 文件，删除 node_modules）
-- 安装依赖时最好不要设置 npm 镜像
-- 遇到 puppeteer 安装失败设置环境变量：
-
-  ```
-  # Mac
-  export PUPPETEER_SKIP_DOWNLOAD='true'
-
-  # Windows
-  SET PUPPETEER_SKIP_DOWNLOAD='true'
-  ```
-
-- 确保你们的终端走了代理 (开全局梯子，或者手动设置终端走代理)
-
-  ```sh
-  # 设置代理
-  export https_proxy=http://127.0.0.1:你的代理服务端口号;export http_proxy=http://127.0.0.1:你的代理服务端口号;export all_proxy=socks5://127.0.0.1:你的代理服务端口号
-  # 然后再执行 npm run test
-  npm run test
-  ```
-
-  ![](https://raw.githubusercontent.com/wangrongding/image-house/master/202403231002859.png)
-
-- 确保你的 openai key 有余额
-- 配置好 config.js 和 .env 文件
-- 执行 npm run test 能成功拿到 openai 的回复
-- 执行 npm run dev 愉快的玩耍吧~ 🎉
-
-也可以参考这条 [issue](https://github.com/wangrongding/wechat-bot/issues/54#issuecomment-1347880291)
-
-- 怎么玩？ 完成自定义修改后，群聊时，在白名单中的群，有人 @你 时会触发自动回复，私聊中，联系人白名单中的人发消息给你时会触发自动回复。
-- 运行报错？检查 node 版本是否符合，如果不符合，升级 node 版本即可，检查依赖是否安装完整，如果不完整，大陆推荐切换下 npm 镜像源，然后重新安装依赖即可。（可以用我的 [prm-cli](https://github.com/wangrongding/prm-cli) 工具快速切换）
-- 调整对话模式？可以修改[openai/index.js](./src/openai/index.js) ,具体可以根据官方文档给出的示例（非常多，自己对应调整参数即可） ：https://beta.openai.com/examples
-
+文件是 👉🏻 [sendMessage.js](./config.js)
 ## 如果你使用 Docker
 
 ```sh
@@ -175,12 +98,6 @@ $ docker build . -t wechat-bot
 
 $ docker run -d --rm --name wechat-bot -v $(pwd)/config.js:/app/config.js -v $(pwd)/.env:/app/.env wechat-bot
 ```
-
-## Star History Chart
-
-该项目于 2023/2/13 日成为 Github Trending 榜首。
-
-[![Star History Chart](https://api.star-history.com/svg?repos=wangrongding/wechat-bot&type=Date)](https://star-history.com/#wangrongding/wechat-bot&Date)
 
 ## License
 
