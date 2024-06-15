@@ -177,8 +177,10 @@ const sleep = (ms) => {
 async function onPy() {
   const page = await browser.newPage();
   await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36");
-  await page.goto('https://missav.plus/zh-hans/category/av-日本/');
-  await page.waitForSelector('.row.no-gutters', { timeout: 0 });
+  await page.goto('https://missav.plus/zh-hans/category/av-日本/',{
+    timeout:60 * 1000
+  });
+  await page.waitForSelector('.row.no-gutters', { timeout: 60*1000 });
   const av = await page.$eval('.row.no-gutters', el => {
     return [...el.querySelectorAll('.col-6')].map(item => {
       return {
