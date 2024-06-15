@@ -2,7 +2,8 @@ ARG APT_SOURCE="default"
 
 FROM node:latest as builder-default
 ENV NPM_REGISTRY="https://registry.npmjs.org"
-
+ENV https_proxy="https://172.17.0.1:10808"
+ENV http_proxy="http://172.17.0.1:10808"
 FROM node:latest as builder-aliyun
 
 ENV NPM_REGISTRY="https://registry.npmmirror.com"
