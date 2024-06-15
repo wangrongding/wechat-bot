@@ -7,7 +7,6 @@ const browser = await puppeteer.launch({
   headless: 'new',
   args: ['--no-sandbox', '--disable-setuid-sandbox']
 })
-let avlist = []
 axios.interceptors.request.use(config => {
   if (/get/i.test(config.method)) { //判断get请求
     config.params = config.params || {};
@@ -86,13 +85,11 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
         // await room.say('https://image.anosu.top/pixiv/direct?r18=1')
       }
       if (question === '每日推荐') {
-        if (avlist.length == 0) {
-          avlist = await onPy()
-        }
-        const random = Math.floor(Math.random() * 13)
-        const fileBoxUrl = FileBox.fromUrl(avlist[random].img)
+        const list = await onPy()
+        const random = Math.floor(Math.random() * list.length)
+        const fileBoxUrl = FileBox.fromUrl(list[random].img)
         await room.say(fileBoxUrl)
-        await room.say(`标题：${avlist[random].title}\n链接：${avlist[random].link}`)
+        await room.say(`标题：${list[random].title}\n链接：${list[random].link}`)
       }
     }
     // 私人聊天，白名单内的直接发送
@@ -180,15 +177,14 @@ const sleep = (ms) => {
 async function onPy() {
   const page = await browser.newPage();
   await page.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36");
-  await page.goto('https://missav.com/dm229/cn/today-hot');
-  await sleep(3000)
-  await page.waitForSelector('.grid', { timeout: 0 });
-  const av = await page.$eval('.grid', el => {
-    return [...el.querySelectorAll('.thumbnail')].map(item => {
+  await page.goto('https://missav.plus/zh-hans/category/av-日本/');
+  await page.waitForSelector('.row.no-gutters', { timeout: 0 });
+  const av = await page.$eval('.row.no-gutters', el => {
+    return [...el.querySelectorAll('.col-6')].map(item => {
       return {
-        title: item.querySelector('a').querySelector('img')?.alt,
-        img: item.querySelector('a').querySelector('img')?.src,
-        link: item.querySelector('a').href
+        title: item.querySelector('.thumb').querySelector('img')?.alt,
+        img: item.querySelector('.thumb').querySelector('img').dataset?.src,
+        link: item.querySelector('.thumb').href
       }
     })
   });
