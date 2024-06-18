@@ -23,6 +23,8 @@
 
   先获取自己的 `api key`，地址戳这里 👉🏻 ：[创建你的 api key](https://beta.openai.com/account/api-keys)
 
+  **注意：这个是需要去付费购买的，很多人过来问为什么请求不通，请确保终端走了代理，并且付费购买了它的服务**
+
   创建完了，复制下来，然后在项目根目录下新建一个 `.env` 文件，具体步骤如下：
 
   ```sh
@@ -34,30 +36,13 @@
 
 ## 赞助商
 
-<div align="center">
-  <table>
-    <!-- Header -->
-    <tr>
-      <td colspan="3" align="left">
-        <p align="center">
-          <a href="https://302.ai" target="_blank">
-            <img src="./sponsors/302AI.png" alt="Hi" width="300" />
-          </a>
-        </p>
-      </td>
-    </tr>
-    <!-- 访问量 -->
-    <tr>
-      <td align="left">302.AI 是一个汇集全球顶级 AI 的自助平台，按需付费，零月费，零门槛使用各种类型 AI。</td>
-      <td align="center" width="120px">
-        <a href="https://302.ai" target="_blank">产品链接</a>
-      </td>
-      <td align="center" width="120px">
-        <a href="https://help.302.ai" target="_blank">网站介绍</a>
-      </td>
-    </tr>
-  </table>
-</div>
+<p align="center">
+  <a href="https://302.ai" target="_blank">
+    <img src="./sponsors/302AI.png" alt="Hi" width="200" />
+  </a>
+</p>
+
+> 302.AI 是一个汇集全球顶级 AI 的自助平台，按需付费，零月费，零门槛使用各种类型 AI。 [产品链接](https://302.ai) | [网站介绍](https://help.302.ai)
 
 ## 开发/使用
 
