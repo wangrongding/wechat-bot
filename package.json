@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "node ./cli.js",
     "start": "node ./cli.js",
     "test": "node ./src/wechaty/testMessage.js",
     "test-openai": "node ./src/openai/__test__.js",
