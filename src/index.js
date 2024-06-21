@@ -135,15 +135,22 @@ function handleStart(type) {
       }
       console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
       break
+    case 'deepseek-free':
+      if (env.DEEPSEEK_FREE_URL && env.DEEPSEEK_FREE_TOKEN && env.DEEPSEEK_FREE_MODEL){
+        return botStart()
+      }
+      console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
+      break
     default:
       console.log('🚀服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
   }
 }
 
-const serveList = [
+export const serveList = [
   { name: 'ChatGPT', value: 'ChatGPT' },
   { name: 'Kimi', value: 'Kimi' },
   { name: 'Xunfei', value: 'Xunfei' },
+  { name: 'deepseek-free', value: 'deepseek-free' },
   // ... 欢迎大家接入更多的服务
 ]
 const questions = [

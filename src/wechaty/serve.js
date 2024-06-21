@@ -1,6 +1,7 @@
 import { getGptReply } from '../openai/index.js'
 import { getKimiReply } from '../kimi/index.js'
 import { getXunfeiReply } from '../xunfei/index.js'
+import {getDeepSeekFreeReply} from "../deepseek-free/index.js";
 
 
 /**
@@ -16,6 +17,8 @@ export function getServe(serviceType) {
       return getKimiReply
     case 'Xunfei':
       return getXunfeiReply
+    case 'deepseek-free':
+      return getDeepSeekFreeReply
     default:
       return getGptReply
   }

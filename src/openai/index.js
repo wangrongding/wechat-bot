@@ -1,9 +1,7 @@
 import { remark } from 'remark'
 import stripMarkdown from 'strip-markdown'
 import OpenAIApi from 'openai'
-import { HttpsProxyAgent } from 'https-proxy-agent';
 import dotenv from 'dotenv'
-import * as http from "https";
 const env = dotenv.config().parsed // 环境参数
 let config = {
   apiKey: env.OPENAI_API_KEY,
