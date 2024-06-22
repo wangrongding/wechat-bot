@@ -19,7 +19,7 @@ const configuration = {
     Model ID, 可以通过 List Models 获取
     目前可选 moonshot-v1-8k | moonshot-v1-32k | moonshot-v1-128k
   */
-  model: "moonshot-v1-128k",
+  model: 'moonshot-v1-128k',
   /* 
     使用什么采样温度，介于 0 和 1 之间。较高的值（如 0.7）将使输出更加随机，而较低的值（如 0.2）将使其更加集中和确定性。
     如果设置，值域须为 [0, 1] 我们推荐 0.3，以达到较合适的效果。
@@ -40,40 +40,42 @@ const configuration = {
 
 export async function getKimiReply(prompt) {
   try {
-    const res = await axios.post(server.chat, Object.assign(configuration, {
-      /* 
+    const res = await axios.post(
+      server.chat,
+      Object.assign(configuration, {
+        /* 
         包含迄今为止对话的消息列表。
         要保持对话的上下文，需要将之前的对话历史并入到该数组
         这是一个结构体的列表，每个元素类似如下：{"role": "user", "content": "你好"} role 只支持 system,user,assistant 其一，content 不得为空
       */
-      messages: [
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-    }), {
-      timeout: 10000,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${env.KIMI_API_KEY}`
+        messages: [
+          {
+            role: 'user',
+            content: prompt,
+          },
+        ],
+      }),
+      {
+        timeout: 10000,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${env.KIMI_API_KEY}`,
+        },
+        // pass a http proxy agent
+        // proxy: {
+        //   host: 'localhost',
+        //   port: 7890,
+        // }
       },
-      // pass a http proxy agent
-      // proxy: {
-      //   host: 'localhost',
-      //   port: 7890,
-      // }
-    })
+    )
 
-    const { choices } = res.data;
-    return choices[0].message.content;
+    const { choices } = res.data
+    return choices[0].message.content
   } catch (error) {
-    console.log("Kimi 错误对应详情可参考官网： https://platform.moonshot.cn/docs/api-reference#%E9%94%99%E8%AF%AF%E8%AF%B4%E6%98%8E");
-    console.log("常见的 401 一般意味着你鉴权失败, 请检查你的 API_KEY 是否正确。");
-    console.log("常见的 429 一般意味着你被限制了请求频次，请求频率过高，或 kimi 服务器过载，可以适当调整请求频率，或者等待一段时间再试。");
-    console.error(error.code);
-    console.error(error.message);
+    console.log('Kimi 错误对应详情可参考官网： https://platform.moonshot.cn/docs/api-reference#%E9%94%99%E8%AF%AF%E8%AF%B4%E6%98%8E')
+    console.log('常见的 401 一般意味着你鉴权失败, 请检查你的 API_KEY 是否正确。')
+    console.log('常见的 429 一般意味着你被限制了请求频次，请求频率过高，或 kimi 服务器过载，可以适当调整请求频率，或者等待一段时间再试。')
+    console.error(error.code)
+    console.error(error.message)
   }
 }
-
-

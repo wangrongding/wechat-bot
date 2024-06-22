@@ -34,9 +34,9 @@ export async function getGptReply(prompt) {
     const response = await openai.createChatCompletion({
       model: chosen_model,
       messages: [
-        { "role": "system", content: "You are a personal assistant." },
-        { "role": "user", content: prompt }
-      ]
+        { role: 'system', content: 'You are a personal assistant.' },
+        { role: 'user', content: prompt },
+      ],
     })
 
     reply = markdownToText(response.data.choices[0].message.content)
@@ -51,5 +51,3 @@ function markdownToText(markdown) {
     .processSync(markdown ?? '')
     .toString()
 }
-
-

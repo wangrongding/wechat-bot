@@ -11,7 +11,7 @@ async function handleRequest(type) {
   switch (type) {
     case 'ChatGPT':
       if (env.OPENAI_API_KEY) {
-        const message = await getGptReply("hello")
+        const message = await getGptReply('hello')
         console.log('🌸🌸🌸 / reply: ', message)
         return
       }
@@ -19,7 +19,7 @@ async function handleRequest(type) {
       break
     case 'Kimi':
       if (env.KIMI_API_KEY) {
-        const message = await getKimiReply("你好!")
+        const message = await getKimiReply('你好!')
         console.log('🌸🌸🌸 / reply: ', message)
         return
       }
@@ -27,7 +27,7 @@ async function handleRequest(type) {
       break
     case 'Xunfei':
       if (env.XUNFEI_APP_ID && env.XUNFEI_API_KEY && env.XUNFEI_API_SECRET) {
-        const message = await getXunfeiReply("你好!")
+        const message = await getXunfeiReply('你好!')
         console.log('🌸🌸🌸 / reply: ', message)
         return
       }
