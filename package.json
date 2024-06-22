@@ -1,15 +1,22 @@
 {
   "name": "wechat-bot",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.1",
   "description": "wechat-bot",
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "format": "prettier --write ./src",
     "start": "node ./cli.js",
     "test": "node ./src/wechaty/testMessage.js",
     "test-openai": "node ./src/openai/__test__.js",
     "test-xunfei": "node ./src/xunfei/__test__.js",
-    "test-kimi": "node ./src/kimi/__test__.js"
+    "test-kimi": "node ./src/kimi/__test__.js",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,md}": [
+      "prettier --write"
+    ]
   },
   "bin": {
     "we": "./cli.js",
@@ -33,5 +40,9 @@
     "wechaty": "^1.20.2",
     "wechaty-puppet-wechat4u": "^1.14.14",
     "ws": "^8.16.0"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7"
   }
 }
