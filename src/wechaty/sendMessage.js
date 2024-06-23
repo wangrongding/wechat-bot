@@ -27,7 +27,7 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
   try {
     // 区分群聊和私聊
     if (isRoom && room) {
-      const question = await msg.mentionText() || content.replace(`${botName}`, '') // 去掉艾特的消息主体
+      const question = (await msg.mentionText()) || content.replace(`${botName}`, '') // 去掉艾特的消息主体
       console.log('🌸🌸🌸 / question: ', question)
       const response = await getReply(question)
       await room.say(response)
@@ -41,7 +41,6 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
   } catch (e) {
     console.error(e)
   }
-
 }
 
 /**

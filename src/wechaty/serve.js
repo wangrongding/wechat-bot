@@ -1,8 +1,7 @@
 import { getGptReply } from '../openai/index.js'
 import { getKimiReply } from '../kimi/index.js'
 import { getXunfeiReply } from '../xunfei/index.js'
-import {getDeepSeekFreeReply} from "../deepseek-free/index.js";
-
+import { getDeepSeekFreeReply } from '../deepseek-free/index.js'
 
 /**
  * 获取ai服务

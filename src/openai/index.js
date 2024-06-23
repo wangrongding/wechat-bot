@@ -6,7 +6,7 @@ const env = dotenv.config().parsed // 环境参数
 let config = {
   apiKey: env.OPENAI_API_KEY,
 }
-if (process.env.OPENAI_PROXY_URL){
+if (process.env.OPENAI_PROXY_URL) {
   config.baseURL = process.env.OPENAI_PROXY_URL
 }
 const openai = new OpenAIApi(config)
@@ -36,9 +36,9 @@ export async function getGptReply(prompt) {
     const response = await openai.chat.completions.create({
       model: chosen_model,
       messages: [
-        { "role": "system", content: "You are a personal assistant." },
-        { "role": "user", content: prompt }
-      ]
+        { role: 'system', content: 'You are a personal assistant.' },
+        { role: 'user', content: prompt },
+      ],
     })
 
     reply = markdownToText(response.data.choices[0].message.content)
@@ -53,5 +53,3 @@ function markdownToText(markdown) {
     .processSync(markdown ?? '')
     .toString()
 }
-
-
