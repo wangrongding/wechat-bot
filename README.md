@@ -14,7 +14,8 @@
 
   新增科大讯飞，去这里申请一个 key：[科大讯飞](https://console.xfyun.cn/services/bm35)，每个模型都有 200 万的免费 token ，感觉很难用完。  
   注意： 讯飞的配置文件几个 key，别填反了，很多人找到我说为什么不回复，都是填反了。  
-  而且还有一个好处就是，接口不会像 Kimi 一样限制请求频次，相对来说稳定很多。
+  而且还有一个好处就是，接口不会像 Kimi 一样限制请求频次，相对来说稳定很多。  
+  服务出错可参考： [issues/170](https://github.com/wangrongding/wechat-bot/issues/170), [issues/180](https://github.com/wangrongding/wechat-bot/issues/180)
 
 - Kimi （请求限制较严重）
 

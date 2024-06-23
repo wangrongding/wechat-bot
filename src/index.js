@@ -87,15 +87,15 @@ bot.on('message', onMessage)
 bot.on('friendship', onFriendShip)
 // 错误
 bot.on('error', (e) => {
-  console.error('bot error❌: ', e)
-  console.log('❌ 程序退出,请重新运行程序')
-  bot.stop()
+  console.error('❌ bot error handle: ', e)
+  // console.log('❌ 程序退出,请重新运行程序')
+  // bot.stop()
 
-  // 如果 WechatEveryDay.memory-card.json 文件存在，删除
-  if (fs.existsSync('WechatEveryDay.memory-card.json')) {
-    fs.unlinkSync('WechatEveryDay.memory-card.json')
-  }
-  process.exit()
+  // // 如果 WechatEveryDay.memory-card.json 文件存在，删除
+  // if (fs.existsSync('WechatEveryDay.memory-card.json')) {
+  //   fs.unlinkSync('WechatEveryDay.memory-card.json')
+  // }
+  // process.exit()
 })
 
 // 启动微信机器人
@@ -103,14 +103,14 @@ function botStart() {
   bot
     .start()
     .then(() => console.log('Start to log in wechat...'))
-    .catch((e) => console.error('botStart error❌: ', e))
+    .catch((e) => console.error('❌ botStart error: ', e))
 }
 
 process.on('uncaughtException', (err) => {
   if (err.code === 'ERR_ASSERTION') {
-    console.error('❌❌❌ 捕获到断言错误: ', err.message)
+    console.error('❌ uncaughtException 捕获到断言错误: ', err.message)
   } else {
-    console.error('❌❌❌ 捕获到未处理的异常: ', err)
+    console.error('❌ uncaughtException 捕获到未处理的异常: ', err)
   }
   // if (fs.existsSync('WechatEveryDay.memory-card.json')) {
   //   fs.unlinkSync('WechatEveryDay.memory-card.json')
@@ -143,7 +143,7 @@ function handleStart(type) {
       console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
       break
     default:
-      console.log('🚀服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
+      console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
   }
 }
 
@@ -178,7 +178,7 @@ function init() {
         handleStart(res.serviceType)
       })
       .catch((error) => {
-        console.log('🚀error:', error)
+      console.log('❌ inquirer error:', error)
       })
   }
 }
