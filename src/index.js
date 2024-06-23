@@ -97,6 +97,7 @@ bot.on('error', (e) => {
   // }
   // process.exit()
 })
+
 // 启动微信机器人
 function botStart() {
   bot
@@ -135,15 +136,22 @@ function handleStart(type) {
       }
       console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
       break
+    case 'deepseek-free':
+      if (env.DEEPSEEK_FREE_URL && env.DEEPSEEK_FREE_TOKEN && env.DEEPSEEK_FREE_MODEL) {
+        return botStart()
+      }
+      console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
+      break
     default:
       console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
   }
 }
 
-const serveList = [
+export const serveList = [
   { name: 'ChatGPT', value: 'ChatGPT' },
   { name: 'Kimi', value: 'Kimi' },
   { name: 'Xunfei', value: 'Xunfei' },
+  { name: 'deepseek-free', value: 'deepseek-free' },
   // ... 欢迎大家接入更多的服务
 ]
 const questions = [
@@ -154,16 +162,27 @@ const questions = [
     choices: serveList,
   },
 ]
+
 function init() {
-  inquirer
-    .prompt(questions)
-    .then((res) => {
-      handleStart(res.serviceType)
-    })
-    .catch((error) => {
+  if (env.SERVICE_TYPE) {
+    // 判断env中SERVICE_TYPE是否配置和并且属于serveList数组中value的值
+    if (serveList.find((item) => item.value === env.SERVICE_TYPE)) {
+      handleStart(env.SERVICE_TYPE)
+    } else {
+      console.log('❌ 请正确配置.env文件中的 SERVICE_TYPE，或者删除该项')
+    }
+  } else {
+    inquirer
+      .prompt(questions)
+      .then((res) => {
+        handleStart(res.serviceType)
+      })
+      .catch((error) => {
       console.log('❌ inquirer error:', error)
-    })
+      })
+  }
 }
+
 const program = new Command(name)
 program
   .alias('we')
