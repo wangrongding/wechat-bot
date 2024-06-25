@@ -10,6 +10,7 @@
 
 - deepseek获取自己的 `api key`，地址戳这里 👉🏻 ：[deepseek开放平台](https://platform.deepseek.com/usage)  
   将获取到的`api key`填入 `.evn` 文件中的 `DEEPSEEK_FREE_TOKEN` 中。
+
 - 科大讯飞
 
   新增科大讯飞，去这里申请一个 key：[科大讯飞](https://console.xfyun.cn/services/bm35)，每个模型都有 200 万的免费 token ，感觉很难用完。  
@@ -34,6 +35,9 @@
   # 填写完善 .env 文件中的内容
   OPENAI_API_KEY='你的key'
   ```
+
+- 其他  
+  （待实践）理论上使用openAI格式的api，都可以使用，在env文件中修改对应的key、moudel、url即可。
 
 ## 赞助商
 
