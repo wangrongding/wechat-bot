@@ -16,7 +16,10 @@ const chosen_model = env.OPENAI_MODEL || 'gpt-4o'
 export async function getGptReply(prompt) {
   console.log('🚀🚀🚀 / prompt', prompt)
   const response = await openai.chat.completions.create({
-    messages: [{ role: 'user', content: prompt }],
+    messages: [
+      { role: 'system', content: env.OPENAI_SYSTEM_MESSAGE },
+      { role: 'user', content: prompt },
+    ],
     model: chosen_model,
   })
   console.log('🚀🚀🚀 / reply', response.choices[0].message.content)
