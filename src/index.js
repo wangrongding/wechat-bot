@@ -178,7 +178,7 @@ function init() {
         handleStart(res.serviceType)
       })
       .catch((error) => {
-      console.log('❌ inquirer error:', error)
+        console.log('❌ inquirer error:', error)
       })
   }
 }
