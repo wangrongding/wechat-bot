@@ -116,9 +116,11 @@ process.on('uncaughtException', (err) => {
   //   fs.unlinkSync('WechatEveryDay.memory-card.json')
   // }
 })
+import { botName, roomWhiteList, aliasWhiteList } from '../config.js'
 
 // 控制启动
 function handleStart(type) {
+  console.log(`botName:${botName}, roomWhiteList${roomWhiteList}, aliasWhiteList$${aliasWhiteList}`)
   serviceType = type
   console.log('🌸🌸🌸 / type: ', type)
   switch (type) {

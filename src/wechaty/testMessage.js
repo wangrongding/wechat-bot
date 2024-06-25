@@ -5,9 +5,12 @@ import dotenv from 'dotenv'
 import inquirer from 'inquirer'
 import { getDeepSeekFreeReply } from '../deepseek-free/index.js'
 const env = dotenv.config().parsed // 环境参数
+import { botName, roomWhiteList, aliasWhiteList } from '../../config.js'
 
 // 控制启动
 async function handleRequest(type) {
+  console.log(`botName:${botName}, roomWhiteList${roomWhiteList}, aliasWhiteList${aliasWhiteList}`)
+
   console.log('type: ', type)
   switch (type) {
     case 'ChatGPT':
