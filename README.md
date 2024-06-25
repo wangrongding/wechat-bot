@@ -37,7 +37,7 @@
   ```
 
 - 其他  
-  （待实践）理论上使用openAI格式的api，都可以使用，在env文件中修改对应的key、moudel、url即可。
+  （待实践）理论上使用openAI格式的api，都可以使用，在env文件中修改对应的api_key、model、proxy_url即可。
 
 ## 赞助商
 
