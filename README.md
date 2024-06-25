@@ -157,7 +157,7 @@ ROOM_WHITELIST=XX群1,群2
   ![](https://raw.githubusercontent.com/wangrongding/image-house/master/202403231002859.png)
 
 - 确保你的 openai key 有余额
-- 配置好 config.js 和 .env 文件
+- 配置好 .env 文件
 - 执行 npm run test 能成功拿到 openai 的回复
 - 执行 npm run dev 愉快的玩耍吧~ 🎉
 
@@ -172,7 +172,7 @@ ROOM_WHITELIST=XX群1,群2
 ```sh
 $ docker build . -t wechat-bot
 
-$ docker run -d --rm --name wechat-bot -v $(pwd)/config.js:/app/config.js -v $(pwd)/.env:/app/.env wechat-bot
+$ docker run -d --rm --name wechat-bot -v $(pwd)/.env:/app/.env wechat-bot
 ```
 
 ## Star History Chart

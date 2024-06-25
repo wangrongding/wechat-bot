@@ -5,6 +5,5 @@ test.js
 package-lock.json
 yarn.lock
 Chromium.app
-config.js
 
 .DS_Store

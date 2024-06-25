@@ -7,7 +7,7 @@ import dotenv from 'dotenv'
 import fs from 'fs'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { defaultMessage, shardingMessage } from './wechaty/sendMessage.js'
+import { defaultMessage } from './wechaty/sendMessage.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -116,11 +116,9 @@ process.on('uncaughtException', (err) => {
   //   fs.unlinkSync('WechatEveryDay.memory-card.json')
   // }
 })
-import { botName, roomWhiteList, aliasWhiteList } from '../config.js'
 
 // 控制启动
 function handleStart(type) {
-  console.log(`botName:${botName}, roomWhiteList${roomWhiteList}, aliasWhiteList$${aliasWhiteList}`)
   serviceType = type
   console.log('🌸🌸🌸 / type: ', type)
   switch (type) {
