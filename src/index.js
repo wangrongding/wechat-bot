@@ -7,7 +7,7 @@ import dotenv from 'dotenv'
 import fs from 'fs'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
-import { defaultMessage, shardingMessage } from './wechaty/sendMessage.js'
+import { defaultMessage } from './wechaty/sendMessage.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -178,7 +178,7 @@ function init() {
         handleStart(res.serviceType)
       })
       .catch((error) => {
-      console.log('❌ inquirer error:', error)
+        console.log('❌ inquirer error:', error)
       })
   }
 }

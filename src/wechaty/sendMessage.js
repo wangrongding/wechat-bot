@@ -1,4 +1,17 @@
-import { botName, roomWhiteList, aliasWhiteList } from '../../config.js'
+import dotenv from 'dotenv'
+// 加载环境变量
+dotenv.config()
+const env = dotenv.config().parsed // 环境参数
+
+// 从环境变量中导入机器人的名称
+const botName = env.BOT_NAME
+
+// 从环境变量中导入联系人白名单
+const aliasWhiteList = env.ALIAS_WHITELIST ? env.ALIAS_WHITELIST.split(',') : []
+
+// 从环境变量中导入群聊白名单
+const roomWhiteList = env.ROOM_WHITELIST ? env.ROOM_WHITELIST.split(',') : []
+
 import { getServe } from './serve.js'
 
 /**

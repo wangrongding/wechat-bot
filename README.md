@@ -9,7 +9,8 @@
 ## 使用前需要配置的 AI 服务（目前支持 4 种，可任选其一）
 
 - deepseek获取自己的 `api key`，地址戳这里 👉🏻 ：[deepseek开放平台](https://platform.deepseek.com/usage)  
-  将获取到的`api key`填入 `.evn` 文件中，``
+  将获取到的`api key`填入 `.evn` 文件中的 `DEEPSEEK_FREE_TOKEN` 中。
+
 - 科大讯飞
 
   新增科大讯飞，去这里申请一个 key：[科大讯飞](https://console.xfyun.cn/services/bm35)，每个模型都有 200 万的免费 token ，感觉很难用完。  
@@ -34,6 +35,9 @@
   # 填写完善 .env 文件中的内容
   OPENAI_API_KEY='你的key'
   ```
+
+- 其他  
+  （待实践）理论上使用openAI格式的api，都可以使用，在env文件中修改对应的api_key、model、proxy_url即可。
 
 ## 赞助商
 
@@ -153,7 +157,7 @@ ROOM_WHITELIST=XX群1,群2
   ![](https://raw.githubusercontent.com/wangrongding/image-house/master/202403231002859.png)
 
 - 确保你的 openai key 有余额
-- 配置好 config.js 和 .env 文件
+- 配置好 .env 文件
 - 执行 npm run test 能成功拿到 openai 的回复
 - 执行 npm run dev 愉快的玩耍吧~ 🎉
 
@@ -168,7 +172,7 @@ ROOM_WHITELIST=XX群1,群2
 ```sh
 $ docker build . -t wechat-bot
 
-$ docker run -d --rm --name wechat-bot -v $(pwd)/config.js:/app/config.js -v $(pwd)/.env:/app/.env wechat-bot
+$ docker run -d --rm --name wechat-bot -v $(pwd)/.env:/app/.env wechat-bot
 ```
 
 ## Star History Chart
