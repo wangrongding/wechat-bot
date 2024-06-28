@@ -25,6 +25,10 @@ export function sendMessage(resultText, messageType = 'qr') {
 }
 
 export function sendMail(resultText, messageType = 'text') {
+  // 环境变量判空
+  if (!env.MAIL_HOST || !env.MAIL_USERNAME || !env.MAIL_PASSWORD || !env.MAIL_TO) {
+    return false
+  }
   // 创建一个SMTP传输器
   const transporter = nodemailer.createTransport({
     host: env.MAIL_HOST, // QQ邮箱的SMTP服务器地址
@@ -66,6 +70,10 @@ export function sendMail(resultText, messageType = 'text') {
 
 // 钉钉机器人
 export async function dingSend(resultText, msgtype = 'text') {
+  // 环境变量判空
+  if (!env.DING_TOKEN) {
+    return false
+  }
   // 发送钉钉消息
   try {
     const timestamp = new Date().getTime() // 时间戳
