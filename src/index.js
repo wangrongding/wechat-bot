@@ -8,6 +8,7 @@ import fs from 'fs'
 import path, { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { defaultMessage } from './wechaty/sendMessage.js'
+import { sendMessage } from './utils/sendMessage.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -20,6 +21,8 @@ function onScan(qrcode, status) {
     // 在控制台显示二维码
     qrTerminal.generate(qrcode, { small: true })
     const qrcodeImageUrl = ['https://api.qrserver.com/v1/create-qr-code/?data=', encodeURIComponent(qrcode)].join('')
+    sendMessage(qrcodeImageUrl, 'qr')
+
     console.log('onScan:', qrcodeImageUrl, ScanStatus[status], status)
   } else {
     log.info('onScan: %s(%s)', ScanStatus[status], status)
@@ -88,6 +91,7 @@ bot.on('friendship', onFriendShip)
 // 错误
 bot.on('error', (e) => {
   console.error('❌ bot error handle: ', e)
+  sendMessage(e, 'error')
   // console.log('❌ 程序退出,请重新运行程序')
   // bot.stop()
 
