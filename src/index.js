@@ -140,7 +140,7 @@ function handleStart(type) {
       if (env.DEEPSEEK_FREE_URL && env.DEEPSEEK_FREE_TOKEN && env.DEEPSEEK_FREE_MODEL) {
         return botStart()
       }
-      console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
+      console.log('❌ 请先配置.env文件中的DEEPSEEK_FREE_URL,DEEPSEEK_FREE_TOKEN,DEEPSEEK_FREE_MODEL')
       break
     default:
       console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
