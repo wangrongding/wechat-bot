@@ -5,6 +5,9 @@ import nodemailer from 'nodemailer'
 const env = dotenv.config().parsed // 环境参数
 
 export function sendMessage(resultText, messageType = 'qr') {
+  if (checkDate()) {
+    return false
+  }
   try {
     switch (messageType) {
       case 'qr':
@@ -112,3 +115,43 @@ export async function dingSend(resultText, msgtype = 'text') {
     console.log('钉钉消息发送失败', error)
   }
 }
+
+// 检测目录下是否有date.json文件，没有则创建，读取其中的date时间，超过30分钟则返回true
+import fs from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+function checkDate() {
+  let massageInterval
+  try {
+    massageInterval = Number(env.MASSAGE_INTERVAL) || 30 // 默认30分钟
+  } catch (e) {
+    massageInterval = 30 // 默认30分钟
+  }
+  let date = new Date().getTime() // 当前时间
+  const fileDir = path.resolve(__dirname, 'date.json') // 文件路径
+  const dirPath = path.dirname(fileDir) // 获取目录路径
+
+  // 确保目录存在
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true })
+  }
+
+  if (fs.existsSync(fileDir)) {
+    // 读取文件内容
+    const data = fs.readFileSync(fileDir, 'utf-8')
+    const jsonData = JSON.parse(data)
+    console.log('读取到date.json文件，内容为：', jsonData)
+    return (date - jsonData.time) / 60000 > massageInterval
+  } else {
+    // 创建date.json文件
+    const obj = { time: date }
+    fs.writeFileSync(fileDir, JSON.stringify(obj), 'utf-8')
+    return true
+  }
+}
+
+// 示例调用
+console.log(checkDate())
