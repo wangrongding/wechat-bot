@@ -8,7 +8,7 @@
 
 ## 使用前需要配置的 AI 服务（目前支持 4 种，可任选其一）
 
-- deepseek获取自己的 `api key`，地址戳这里 👉🏻 ：[deepseek开放平台](https://platform.deepseek.com/usage)  
+- deepseek 获取自己的 `api key`，地址戳这里 👉🏻 ：[deepseek 开放平台](https://platform.deepseek.com/usage)  
   将获取到的`api key`填入 `.evn` 文件中的 `DEEPSEEK_FREE_TOKEN` 中。
 
 - 科大讯飞
@@ -37,7 +37,7 @@
   ```
 
 - 其他  
-  （待实践）理论上使用openAI格式的api，都可以使用，在env文件中修改对应的api_key、model、proxy_url即可。
+  （待实践）理论上使用 openAI 格式的 api，都可以使用，在 env 文件中修改对应的 api_key、model、proxy_url 即可。
 
 ## 赞助商
 
@@ -48,6 +48,8 @@
 </p>
 
 > 302.AI 是一个汇集全球顶级 AI 的自助平台，按需付费，零月费，零门槛使用各种类型 AI。 [产品链接](https://302.ai) | [网站介绍](https://help.302.ai)
+
+目前该项目流量较大，已经上过 27 次 [Github Trending 榜](https://github.com/trending)，如果您的公司或者产品需要推广，可以在下方二维码处联系我，我会在项目中加入您的广告，帮助您的产品获得更多的曝光。
 
 ## 开发/使用
 
@@ -104,8 +106,9 @@ npm run start
 
 - 群聊，记得把机器人名称改成你自己微信号的名称，然后添加对应群聊的名称到白名单中，这样就可以自动回复群聊消息了。
 - 私聊，记得把需要自动回复的好友名称添加到白名单中，这样就可以自动回复私聊消息了。
+- 更深入的可以通过修改 `src/wechaty/sendMessage.js` 文件来满足你自己的业务场景。（大多人反馈可能无法自动回复，也可以通过调试这个文件来排查具体原因）
 
-在.env文件中修改你的配置即可，示例如下
+在.env 文件中修改你的配置即可，示例如下
 
 ```sh
 # 白名单配置
@@ -190,13 +193,21 @@ DING_SIGN=******
 - 运行报错？检查 node 版本是否符合，如果不符合，升级 node 版本即可，检查依赖是否安装完整，如果不完整，大陆推荐切换下 npm 镜像源，然后重新安装依赖即可。（可以用我的 [prm-cli](https://github.com/wangrongding/prm-cli) 工具快速切换）
 - 调整对话模式？可以修改[openai/index.js](./src/openai/index.js) ,具体可以根据官方文档给出的示例（非常多，自己对应调整参数即可） ：https://beta.openai.com/examples
 
-## 如果你使用 Docker
+## 使用 Docker 部署
 
 ```sh
 $ docker build . -t wechat-bot
 
 $ docker run -d --rm --name wechat-bot -v $(pwd)/.env:/app/.env wechat-bot
 ```
+
+## 贡献者们
+
+<a href="https://github.com/wangrongding/wechat-bot/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=wangrongding/wechat-bot" />
+</a>
+
+欢迎大家积极贡献更好的功能实现，让 wechat-bot 变得更强！
 
 ## Star History Chart
 
