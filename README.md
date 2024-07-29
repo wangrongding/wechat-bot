@@ -125,6 +125,29 @@ ROOM_WHITELIST=XX群1,群2
 
 ![](https://assets.fedtop.com/picbed/202212131123257.png)
 
+4. 消息通知
+
+- 运行报错通知
+- 登录扫码通知
+
+目前仅支持邮件通知，钉钉机器人通知，后续会继续增加。  
+.env文件填写对应的配置，不填则不会通知
+
+```sh
+# 邮件通知
+MAIL_HOST=smtp.qq.com
+MAIL_PORT=465
+MAIL_USERNAME=xxx@qq.com
+#你的邮箱密码或授权码
+MAIL_PASSWORD=******
+#收件人邮箱
+MAIL_TO=*****@qq.com
+
+# 钉钉机器人 仅测试加签机器人
+DING_TOKEN=*****
+DING_SIGN=******
+```
+
 ## 常见问题
 
 可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。（如果项目对你有所帮助，也可以请我喝杯咖啡 ☕️ ~）

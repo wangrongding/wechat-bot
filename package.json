@@ -33,6 +33,7 @@
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
     "inquirer": "^9.2.16",
+    "nodemailer": "^6.9.14",
     "openai": "^4.52.0",
     "p-timeout": "^6.0.0",
     "qrcode-terminal": "^0.12.0",
