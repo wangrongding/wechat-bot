@@ -6,7 +6,18 @@
 
 `简单`，`好用`，`2分钟（4 个步骤）` 就能玩起来了。🌸 如果对您有所帮助，请点个 Star ⭐️ 支持一下。
 
-## 使用前需要配置的 AI 服务（目前支持 4 种，可任选其一）
+## 使用前需要配置的 AI 服务（目前支持 5 种，可任选其一）
+
+- 302.AI
+
+  AI聚合平台，有套壳GPT的API，也有其他模型，点这里可以[添加API](https://dash.302.ai/apis/list)，添加之后把API KEY配置到.env里，如下，MODEL可以自行选择配置
+
+  ```
+  _302AI_API_KEY = 'xxxx'
+  _302AI_MODEL= 'gpt-4o-mini'
+  ```
+
+  由于openai充值需要国外信用卡，流程比较繁琐，大多需要搞国外虚拟卡，手续费也都不少，该平台可以直接支付宝，算是比较省事的，注册填问卷可领1刀额度，后续充值也有手续费，用户可自行酌情选择。
 
 - deepseek 获取自己的 `api key`，地址戳这里 👉🏻 ：[deepseek 开放平台](https://platform.deepseek.com/usage)  
   将获取到的`api key`填入 `.evn` 文件中的 `DEEPSEEK_FREE_TOKEN` 中。
