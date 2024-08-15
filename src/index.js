@@ -142,6 +142,12 @@ function handleStart(type) {
       }
       console.log('❌ 请先配置.env文件中的 XUNFEI_APP_ID，XUNFEI_API_KEY，XUNFEI_API_SECRET')
       break
+    case '302AI':
+      if (env._302AI_API_KEY) {
+        return botStart()
+      }
+      console.log('❌ 请先配置.env文件中的 _302AI_API_KEY')
+      break
     default:
       console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
   }
@@ -152,6 +158,7 @@ export const serveList = [
   { name: 'Kimi', value: 'Kimi' },
   { name: 'Xunfei', value: 'Xunfei' },
   { name: 'deepseek-free', value: 'deepseek-free' },
+  { name: '302AI', value: '302AI' },
   // ... 欢迎大家接入更多的服务
 ]
 const questions = [

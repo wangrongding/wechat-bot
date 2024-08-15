@@ -6,6 +6,9 @@ const env = dotenv.config().parsed // 环境参数
 // 从环境变量中导入机器人的名称
 const botName = env.BOT_NAME
 
+// 从环境变量中导入需要自动回复的消息前缀，默认配空串或不配置则等于无前缀
+const autoReplyPrefix = env.AUTO_REPLY_PREFIX ? env.AUTO_REPLY_PREFIX : ''
+
 // 从环境变量中导入联系人白名单
 const aliasWhiteList = env.ALIAS_WHITELIST ? env.ALIAS_WHITELIST.split(',') : []
 
@@ -39,16 +42,19 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
   if (isBotSelf || !isText) return // 如果是机器人自己发送的消息或者消息类型不是文本则不处理
   try {
     // 区分群聊和私聊
-    if (isRoom && room) {
-      const question = (await msg.mentionText()) || content.replace(`${botName}`, '') // 去掉艾特的消息主体
+    // 群聊消息去掉艾特主体后，匹配自动回复前缀
+    if (isRoom && room && content.replace(`${botName}`, '').trimStart().startsWith(`${autoReplyPrefix}`)) {
+      const question = (await msg.mentionText()) || content.replace(`${botName}`, '').replace(`${autoReplyPrefix}`, '') // 去掉艾特的消息主体
       console.log('🌸🌸🌸 / question: ', question)
       const response = await getReply(question)
       await room.say(response)
     }
     // 私人聊天，白名单内的直接发送
-    if (isAlias && !room) {
-      console.log('🌸🌸🌸 / content: ', content)
-      const response = await getReply(content)
+    // 私人聊天直接匹配自动回复前缀
+    if (isAlias && !room && content.trimStart().startsWith(`${autoReplyPrefix}`)) {
+      const question = content.replace(`${autoReplyPrefix}`, '')
+      console.log('🌸🌸🌸 / content: ', question)
+      const response = await getReply(question)
       await contact.say(response)
     }
   } catch (e) {
