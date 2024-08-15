@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 const env = dotenv.config().parsed
 const key = env._302AI_API_KEY
-const model = env._302AI_MODEL
+const model = env._302AI_MODEL ? env._302AI_MODEL : 'gpt-4o-mini'
 
 function setConfig(prompt) {
   return {
