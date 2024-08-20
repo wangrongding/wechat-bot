@@ -148,6 +148,12 @@ function handleStart(type) {
       }
       console.log('❌ 请先配置.env文件中的 _302AI_API_KEY')
       break
+    case 'dify':
+      if (env.DIFY_API_KEY) {
+        return botStart()
+      }
+      console.log('❌ 请先配置.env文件中的 DIFY_API_KEY')
+      break
     default:
       console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei')
   }
@@ -159,6 +165,7 @@ export const serveList = [
   { name: 'Xunfei', value: 'Xunfei' },
   { name: 'deepseek-free', value: 'deepseek-free' },
   { name: '302AI', value: '302AI' },
+  { name: 'dify', value: 'dify' },
   // ... 欢迎大家接入更多的服务
 ]
 const questions = [
