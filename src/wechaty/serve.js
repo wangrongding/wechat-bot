@@ -22,7 +22,7 @@ export function getServe(serviceType) {
       return getDeepSeekFreeReply
     case '302AI':
       return get302AiReply
-    case 'Dify':
+    case 'dify':
       return getDifyReply
     default:
       return getGptReply
