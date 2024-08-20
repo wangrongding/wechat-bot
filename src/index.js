@@ -149,7 +149,7 @@ function handleStart(type) {
       console.log('❌ 请先配置.env文件中的 _302AI_API_KEY')
       break
     case 'dify':
-      if (env.DIFY_API_KEY) {
+      if (env.DIFY_API_KEY && env.DIFY_URL) {
         return botStart()
       }
       console.log('❌ 请先配置.env文件中的 DIFY_API_KEY')
