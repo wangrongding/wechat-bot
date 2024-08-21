@@ -67,6 +67,11 @@
 - 其他  
   （待实践）理论上使用 openAI 格式的 api，都可以使用，在 env 文件中修改对应的 api_key、model、proxy_url 即可。
 
+## API资源/平台收录
+
+- [gpt4free](https://github.com/xtekky/gpt4free)
+- [chatanywhere](https://github.com/chatanywhere/GPT_API_free)
+
 ## 赞助商
 
 <p align="center">
