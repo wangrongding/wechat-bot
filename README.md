@@ -6,7 +6,11 @@
 
 `简单`，`好用`，`2分钟（4 个步骤）` 就能玩起来了。🌸 如果对您有所帮助，请点个 Star ⭐️ 支持一下。
 
-## 使用前需要配置的 AI 服务（目前支持 5 种，可任选其一）
+<div align='center'>
+  <a href="https://trendshift.io/repositories/11077" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11077" alt="wangrongding%2Fwechat-bot | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+</div>
+
+## 使用前需要配置的 AI 服务（目前支持 6 种，可任选其一）
 
 - 302.AI
 
@@ -45,6 +49,19 @@
   cp .env.example .env
   # 填写完善 .env 文件中的内容
   OPENAI_API_KEY='你的key'
+  ```
+
+- dify
+
+  地址：[dify](https://dify.ai/), 创建你的应用之后, 获取到你的 api key 之后, 填写到 .env 文件中即可, 也支持私有化部署dify版本
+
+  ```sh
+  # 执行下面命令，拷贝一份 .env.example 文件为 .env
+  cp .env.example .env
+  # 填写完善 .env 文件中的内容
+  DIFY_API_KEY='你的key'
+  # 如果需要私有化部署，请修改.env中下面的配置
+  # DIFY_URL='https://[你的私有化部署地址]'
   ```
 
 - 其他  
