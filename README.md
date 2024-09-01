@@ -8,7 +8,16 @@
 
 <div align='center'>
   <a href="https://trendshift.io/repositories/11077" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11077" alt="wangrongding%2Fwechat-bot | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-</div>
+</div>  
+
+
+## 贡献者们
+
+<a href="https://github.com/wangrongding/wechat-bot/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=wangrongding/wechat-bot&columns=20" />
+</a>
+
+欢迎大家提交 PR 接入更多的 ai 服务(比如扣子等...)，积极贡献更好的功能实现，让 wechat-bot 变得更强！
 
 ## 使用前需要配置的 AI 服务（目前支持 6 种，可任选其一）
 
@@ -213,14 +222,6 @@ $ docker build . -t wechat-bot
 
 $ docker run -d --rm --name wechat-bot -v $(pwd)/.env:/app/.env wechat-bot
 ```
-
-## 贡献者们
-
-<a href="https://github.com/wangrongding/wechat-bot/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=wangrongding/wechat-bot" />
-</a>
-
-欢迎大家积极贡献更好的功能实现，让 wechat-bot 变得更强！
 
 ## Star History Chart
 
