@@ -46,7 +46,8 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
     if (isRoom && room && content.replace(`${botName}`, '').trimStart().startsWith(`${autoReplyPrefix}`)) {
       const question = (await msg.mentionText()) || content.replace(`${botName}`, '').replace(`${autoReplyPrefix}`, '') // 去掉艾特的消息主体
       console.log('🌸🌸🌸 / question: ', question)
-      const response = await getReply(question)
+      const conversationId = room.id // 使用群聊 ID 作为会话 ID
+      const response = await getReply(question, conversationId)
       await room.say(response)
     }
     // 私人聊天，白名单内的直接发送
@@ -54,7 +55,8 @@ export async function defaultMessage(msg, bot, ServiceType = 'GPT') {
     if (isAlias && !room && content.trimStart().startsWith(`${autoReplyPrefix}`)) {
       const question = content.replace(`${autoReplyPrefix}`, '')
       console.log('🌸🌸🌸 / content: ', question)
-      const response = await getReply(question)
+      const conversationId = contact.id // 使用联系人 ID 作为会话 ID
+      const response = await getReply(question, conversationId)
       await contact.say(response)
     }
   } catch (e) {
@@ -78,7 +80,8 @@ export async function shardingMessage(message, bot) {
   const room = message.room()
   if (!room) {
     console.log(`Chat GPT Enabled User: ${talker.name()}`)
-    const response = await getChatGPTReply(text)
+    const conversationId = talker.id // 使用联系人 ID 作为会话 ID
+    const response = await getChatGPTReply(text, conversationId)
     await trySay(talker, response)
     return
   }
@@ -89,7 +92,8 @@ export async function shardingMessage(message, bot) {
   }
   realText = text.replace(`${botName}`, '')
   const topic = await room.topic()
-  const response = await getChatGPTReply(realText)
+  const conversationId = room.id // 使用群聊 ID 作为会话 ID
+  const response = await getChatGPTReply(realText, conversationId)
   const result = `${realText}\n ---------------- \n ${response}`
   await trySay(room, result)
 }
@@ -129,3 +133,4 @@ async function splitMessage(text) {
   }
   return realText
 }
+
