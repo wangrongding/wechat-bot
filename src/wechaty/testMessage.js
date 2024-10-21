@@ -6,6 +6,7 @@ import inquirer from 'inquirer'
 import { getDeepSeekFreeReply } from '../deepseek-free/index.js'
 import { get302AiReply } from '../302ai/index.js'
 import { getDifyReply } from '../dify/index.js'
+import { getOllamaReply } from '../ollama/index.js'
 const env = dotenv.config().parsed // 环境参数
 
 // 控制启动
@@ -60,6 +61,14 @@ async function handleRequest(type) {
       }
       console.log('❌ 请先配置.env文件中的 _302AI_API_KEY')
       break
+    case 'ollama':
+      if (env.OLLAMA_URL) {
+        const message = await getOllamaReply('hello')
+        console.log('🌸🌸🌸 / reply: ', message)
+        return
+      }
+      console.log('❌ 请先配置.env文件中的 OLLAMA_URL')
+      break
     default:
       console.log('🚀服务类型错误')
   }
@@ -73,6 +82,7 @@ const serveList = [
   { name: '302AI', value: '302AI' },
   { name: 'dify', value: 'dify' },
   // ... 欢迎大家接入更多的服务
+  { name: 'ollama', value: 'ollama' },
 ]
 const questions = [
   {
