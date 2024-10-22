@@ -8,8 +8,7 @@
 
 <div align='center'>
   <a href="https://trendshift.io/repositories/11077" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11077" alt="wangrongding%2Fwechat-bot | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-</div>  
-
+</div>
 
 ## 贡献者们
 
@@ -71,6 +70,19 @@
   DIFY_API_KEY='你的key'
   # 如果需要私有化部署，请修改.env中下面的配置
   # DIFY_URL='https://[你的私有化部署地址]'
+  ```
+
+- ollama
+
+  Ollama 是一个本地化的 AI 服务，它的 API 与 OpenAI 非常接近。配置 Ollama 的过程与各种在线服务略有不同
+
+  ```sh
+  # 执行下面命令，拷贝一份 .env.example 文件为 .env
+  cp .env.example .env
+  # 填写完善 .env 文件中的内容
+  OLLAMA_URL='http://127.0.0.1:11434/api/chat'
+  OLLAMA_MODEL='qwen2.5:7b'
+  OLLAMA_SYSTEM_MESSAGE='You are a personal assistant.'
   ```
 
 - 其他  
