@@ -18,6 +18,10 @@ function createRequest(prompt) {
       model: model_name,
       messages: [
         {
+          role: 'system',
+          content: env.OLLAMA_SYSTEM_MESSAGE,
+        },
+        {
           role: 'user',
           content: prompt,
         },
@@ -29,8 +33,10 @@ function createRequest(prompt) {
 
 export async function getOllamaReply(prompt) {
   try {
+    console.log('=============== ollama request start ======================')
     const request = createRequest(prompt)
     const res = await axios(request)
+    console.log('=============== ollama request finished ======================')
     return res.data.message.content
   } catch (error) {
     console.error(error.code)
