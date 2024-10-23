@@ -19,7 +19,7 @@ const configuration = {
     Model ID, 可以通过 List Models 获取
     目前可选 moonshot-v1-8k | moonshot-v1-32k | moonshot-v1-128k
   */
-  model: 'moonshot-v1-128k',
+  model: 'moonshot-v1-8k',
   /* 
     使用什么采样温度，介于 0 和 1 之间。较高的值（如 0.7）将使输出更加随机，而较低的值（如 0.2）将使其更加集中和确定性。
     如果设置，值域须为 [0, 1] 我们推荐 0.3，以达到较合适的效果。
@@ -54,9 +54,10 @@ export async function getKimiReply(prompt) {
             content: prompt,
           },
         ],
+        model: 'moonshot-v1-128k',
       }),
       {
-        timeout: 10000,
+        timeout: 120000,
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${env.KIMI_API_KEY}`,
