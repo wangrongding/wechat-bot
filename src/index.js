@@ -159,8 +159,13 @@ function handleStart(type) {
         return botStart()
       }
       break
+    case 'tongyi':
+      if (env.TONGYI_URL && env.TONGYI_MODEL) {
+        return botStart()
+      }
+      break
     default:
-      console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei | DIFY | OLLAMA')
+      console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei | DIFY | OLLAMA | TONGYI')
   }
 }
 
@@ -173,6 +178,7 @@ export const serveList = [
   { name: 'dify', value: 'dify' },
   // ... 欢迎大家接入更多的服务
   { name: 'ollama', value: 'ollama' },
+  { name: 'tongyi', value: 'tongyi' },
 ]
 const questions = [
   {
