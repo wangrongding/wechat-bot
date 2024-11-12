@@ -18,7 +18,7 @@
 
 欢迎大家提交 PR 接入更多的 ai 服务(比如扣子等...)，积极贡献更好的功能实现，让 wechat-bot 变得更强！
 
-## 使用前需要配置的 AI 服务（目前支持 6 种，可任选其一）
+## 使用前需要配置的 AI 服务（目前支持 8 种，可任选其一）
 
 - 302.AI
 
@@ -83,6 +83,22 @@
   OLLAMA_URL='http://127.0.0.1:11434/api/chat'
   OLLAMA_MODEL='qwen2.5:7b'
   OLLAMA_SYSTEM_MESSAGE='You are a personal assistant.'
+  ```
+
+- 通义千问
+
+  通义千问是阿里云提供的 AI 服务，获取到你的 api key 之后, 填写到 .env 文件中即可
+
+  ```sh
+  # 执行下面命令，拷贝一份 .env.example 文件为 .env
+  cp .env.example .env
+  # 填写完善 .env 文件中的内容
+  # 通义千问, URL 包含 uri 路径
+  TONGYI_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  # 通义千问的 API_KEY
+  TONGYI_API_KEY = ''
+  # 通义千问使用的模型
+  TONGYI_MODEL='qwen-plus'
   ```
 
 - 其他  

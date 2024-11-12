@@ -7,3 +7,4 @@ yarn.lock
 Chromium.app
 
 .DS_Store
+.idea
