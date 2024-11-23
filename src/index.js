@@ -164,6 +164,12 @@ function handleStart(type) {
         return botStart()
       }
       break
+    case 'fastgpt':
+      if (env.FASTGPT_API_KEY && env.FASTGPT_API_URL) {
+        return botStart()
+      }
+      console.log('❌ 请先配置.env文件中的 FASTGPT_API_KEY 和 FASTGPT_API_URL')
+      break
     default:
       console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei | DIFY | OLLAMA | TONGYI')
   }
@@ -179,6 +185,7 @@ export const serveList = [
   // ... 欢迎大家接入更多的服务
   { name: 'ollama', value: 'ollama' },
   { name: 'tongyi', value: 'tongyi' },
+  { name: 'fastgpt', value: 'fastgpt' },
 ]
 const questions = [
   {
