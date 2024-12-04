@@ -101,6 +101,19 @@
 
   由于openai充值需要国外信用卡，流程比较繁琐，大多需要搞国外虚拟卡，手续费也都不少，该平台可以直接支付宝，算是比较省事的，注册填问卷可领1刀额度，后续充值也有手续费，用户可自行酌情选择。
 
+- fastGPT
+
+  地址：[fastGPT](https://cloud.fastgpt.cn/app/list), 创建你的应用之后, 获取到你的 api key 之后, 填写到 .env 文件中即可, 也支持私有化部署fastGPT版本
+
+  ```sh
+  # 执行下面命令，拷贝一份 .env.example 文件为 .env
+  cp .env.example .env
+  # 填写完善 .env 文件中的内容
+  FASTGPT_API_KEY='你的key'
+  # 如果需要私有化部署，请修改.env中下面的配置
+  FASTGPT_API_KEY='https://[你的私有化部署地址]'
+  ```
+
 - 其他  
   （待实践）理论上使用 openAI 格式的 api，都可以使用，在 env 文件中修改对应的 api_key、model、proxy_url 即可。
 

@@ -7,6 +7,7 @@ import { getDeepSeekFreeReply } from '../deepseek-free/index.js'
 import { get302AiReply } from '../302ai/index.js'
 import { getDifyReply } from '../dify/index.js'
 import { getOllamaReply } from '../ollama/index.js'
+import { getFastGPTReply } from '../fastgpt/index.js'
 const env = dotenv.config().parsed // 环境参数
 
 // 控制启动
@@ -69,6 +70,14 @@ async function handleRequest(type) {
       }
       console.log('❌ 请先配置.env文件中的 OLLAMA_URL')
       break
+    case 'fastgpt':
+      if (env.FASTGPT_API_KEY && env.FASTGPT_API_URL) {
+        const message = await getFastGPTReply('你好')
+        console.log('🌸🌸🌸 / reply: ', message)
+        return
+      }
+      console.log('❌ 请先配置.env文件中的 FASTGPT_API_KEY 和 FASTGPT_API_URL')
+      break
     default:
       console.log('🚀服务类型错误')
   }
@@ -83,6 +92,7 @@ const serveList = [
   { name: 'dify', value: 'dify' },
   // ... 欢迎大家接入更多的服务
   { name: 'ollama', value: 'ollama' },
+  { name: 'fastgpt', value: 'fastgpt' },
 ]
 const questions = [
   {
