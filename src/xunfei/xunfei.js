@@ -10,7 +10,10 @@ const appID = env.XUNFEI_APP_ID
 const apiKey = env.XUNFEI_API_KEY
 const apiSecret = env.XUNFEI_API_SECRET
 // 地址必须填写，代表着大模型的版本号！！！！！！！！！！！！！！！！
-const httpUrl = new URL('https://spark-api.xf-yun.com/v3.5/chat')
+const httpUrl = new URL('https://spark-api.xf-yun.com/v4.0/chat')
+
+// 新增用户自定义prompt设定
+const prompt = env.XUNFEI_PROMPT
 
 let modelDomain // V1.1-V3.5动态获取，高于以上版本手动指定
 function authenticate() {
@@ -28,6 +31,15 @@ function authenticate() {
       break
     case '/v3.5/chat':
       modelDomain = 'generalv3.5'
+      break
+    case '/chat/pro-128k':
+      modelDomain = 'pro-128k'
+      break
+    case '/chat/max-32k':
+      modelDomain = 'max-32k'
+      break
+    case '/v4.0/chat':
+      modelDomain = '4.0Ultra'
       break
   }
 
@@ -77,8 +89,9 @@ export async function xunfeiSendMsg(inputVal) {
             // 如果想获取结合上下文的回答，需要开发者每次将历史问答信息一起传给服务端，如下示例
             // 注意：text里面的所有content内容加一起的tokens需要控制在8192以内，开发者如有较长对话需求，需要适当裁剪历史信息
             text: [
-              { role: 'user', content: '你是谁' }, //# 用户的历史问题
-              { role: 'assistant', content: '你是一个专业的智能助手' }, //# AI的历史回答结果
+              // { role: 'user', content: '你是谁' }, //# 用户的历史问题
+              { role: 'system', content: prompt }, //# 自行设定的prompt
+              // { role: 'assistant', content: '你是一个专业的智能助手' }, //# AI的历史回答结果
               // ....... 省略的历史对话
               { role: 'user', content: inputVal }, //# 最新的一条问题，如无需上下文，可只传最新一条问题
             ],
