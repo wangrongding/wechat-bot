@@ -31,7 +31,7 @@ function claudeConfig(prompt) {
       'anthropic-version': apiVersion,
       'Content-Type': 'application/json',
     },
-    data: JSON.stringify(body),
+    data: body,
   }
 }
 export async function getClaudeReply(prompt) {
