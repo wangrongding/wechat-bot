@@ -164,6 +164,12 @@ function handleStart(type) {
         return botStart()
       }
       break
+    case 'claude':
+      if (env.CLAUDE_API_KEY && env.CLAUDE_MODEL) {
+        return botStart()
+      }
+      console.log('❌ 请先配置.env文件中的 CLAUDE_API_KEY 和 CLAUDE_MODEL')
+      break
     default:
       console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei | DIFY | OLLAMA | TONGYI')
   }
@@ -179,6 +185,7 @@ export const serveList = [
   // ... 欢迎大家接入更多的服务
   { name: 'ollama', value: 'ollama' },
   { name: 'tongyi', value: 'tongyi' },
+  { name: 'claude', value: 'claude' },
 ]
 const questions = [
   {
