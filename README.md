@@ -134,9 +134,7 @@
     <tr>
       <td align="left">
         302.AI 是一个汇集全球顶级 AI 的自助平台，按需付费，零月费，零门槛使用各种类型 AI。
-        <a href="https://help.302.ai" target="_blank">网站介绍</a>
-        |
-        <a href="https://302.ai" target="_blank">产品链接</a>
+        <a href="https://gpt302.saaslink.net/hqRIfk" target="_blank">产品链接</a>
       </td>
       <td align="left">提供claude gemini 等模型 价格低至0.55一刀 (vx: spkf789)</td>
     </tr>
