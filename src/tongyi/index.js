@@ -38,5 +38,5 @@ export async function getTongyiReply(prompt) {
   console.log('🚀🚀🚀 / prompt', prompt)
   const Content = await completion.choices[0].message.content
   console.log('🚀🚀🚀 / reply', Content)
-  return `${Content}\nVia ${model_name}`
+  return `${Content}`
 }

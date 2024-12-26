@@ -33,5 +33,5 @@ export async function getGptReply(prompt) {
     model: chosen_model,
   })
   console.log('🚀🚀🚀 / reply', response.choices[0].message.content)
-  return `${response.choices[0].message.content}\nVia ${chosen_model}`
+  return `${response.choices[0].message.content}`
 }
