@@ -117,14 +117,14 @@
     <tr>
       <td align="center" width="50%">
         <p align="center">
-          <a href="https://302.ai" target="_blank">
+          <a href="https://gpt302.saaslink.net/hqRIfk" target="_blank">
             <img src="./sponsors/302AI.png" alt="Hi"/>
           </a>
         </p>
       </td>
       <td align="center" width="50%">
         <p align="center">
-          <a href="https://302.ai" target="_blank">
+          <a href="" target="_blank">
             <img src="./sponsors/server.jpg" alt="Hi"/>
           </a>
         </p>
