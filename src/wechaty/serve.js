@@ -6,6 +6,7 @@ import { get302AiReply } from '../302ai/index.js'
 import { getDifyReply } from '../dify/index.js'
 import { getOllamaReply } from '../ollama/index.js'
 import { getTongyiReply } from '../tongyi/index.js'
+import { getClaudeReply } from '../claude/index.js'
 
 /**
  * 获取ai服务
@@ -30,6 +31,8 @@ export function getServe(serviceType) {
       return getOllamaReply
     case 'tongyi':
       return getTongyiReply
+    case 'claude':
+      return getClaudeReply
     default:
       return getGptReply
   }
