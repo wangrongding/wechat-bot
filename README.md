@@ -18,7 +18,7 @@
 
 欢迎大家提交 PR 接入更多的 ai 服务(比如扣子等...)，积极贡献更好的功能实现，让 wechat-bot 变得更强！
 
-## 使用前需要配置的 AI 服务（目前支持 8 种，可任选其一）
+## 使用前需要配置的 AI 服务（目前支持 9 种，可任选其一）
 
 - ChatGPT
 
@@ -100,6 +100,23 @@
   ```
 
   由于openai充值需要国外信用卡，流程比较繁琐，大多需要搞国外虚拟卡，手续费也都不少，该平台可以直接支付宝，算是比较省事的，注册填问卷可领1刀额度，后续充值也有手续费，用户可自行酌情选择。
+
+- claude
+
+  前往 [官网](https://console.anthropic.com) 注册并获取API KEY后进行配置即可
+
+  ```bash
+  # 执行下面命令，拷贝一份 .env.example 文件为 .env，如果已存在则忽略此步
+  cp .env.example .env
+
+  # 编辑.env文件并添加claude相关配置
+
+  CLAUDE_API_VERSION = '2023-06-01'
+  CLAUDE_API_KEY = '你的API KEY'
+  CLAUDE_MODEL = 'claude-3-5-sonnet-latest'
+  # 系统人设
+  CLAUDE_SYSTEM = ''
+  ```
 
 - 其他  
   （待实践）理论上使用 openAI 格式的 api，都可以使用，在 env 文件中修改对应的 api_key、model、proxy_url 即可。
