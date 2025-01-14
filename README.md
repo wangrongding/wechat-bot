@@ -143,7 +143,7 @@
     <!-- des -->
     <tr>
       <td align="left">
-        302.AI 是一个汇集全球顶级 AI 的自助平台，按需付费，零月费，零门槛使用各种类型 AI。
+        302.AI是一个按需付费的一站式企业级AI应用平台，开放平台，开源生态，让AI为每个需求找到答案。
         <a href="https://gpt302.saaslink.net/hqRIfk" target="_blank">产品链接</a>
       </td>
     </tr>
