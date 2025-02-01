@@ -1,4 +1,6 @@
 import { getGptReply } from '../openai/index.js'
+import { getDoubaoReply } from '../doubao/index.js'
+import { getDeepseekReply } from '../deepseek/index.js'
 import { getKimiReply } from '../kimi/index.js'
 import { getXunfeiReply } from '../xunfei/index.js'
 import { getDeepSeekFreeReply } from '../deepseek-free/index.js'
@@ -17,6 +19,10 @@ export function getServe(serviceType) {
   switch (serviceType) {
     case 'ChatGPT':
       return getGptReply
+    case 'doubao':
+      return getDoubaoReply
+    case 'deepseek':
+      return getDeepseekReply
     case 'Kimi':
       return getKimiReply
     case 'Xunfei':

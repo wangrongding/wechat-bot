@@ -6,7 +6,7 @@ const env = dotenv.config().parsed // 环境参数
 const token = env.DEEPSEEK_FREE_TOKEN
 const model = env.DEEPSEEK_FREE_MODEL
 const url = env.DEEPSEEK_FREE_URL
-const syscontent = env.DEEPSEEK_SYSTEM_MESSAGE
+const syscontent = env.DEEPSEEK_FREE_SYSTEM_MESSAGE
 
 function setConfig(prompt) {
   return {
