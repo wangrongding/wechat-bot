@@ -33,6 +33,11 @@
   OPENAI_API_KEY='你的key'
   ```
 
+- deepseek
+
+  获取自己的 `api key`，地址戳这里 👉🏻 ：[deepseek 开放平台](https://platform.deepseek.com/usage)  
+  将获取到的`api key`填入 `.evn` 文件中的 `DEEPSEEK_FREE_TOKEN` 中。
+
 - 通义千问
 
   通义千问是阿里云提供的 AI 服务，获取到你的 api key 之后, 填写到 .env 文件中即可
@@ -48,9 +53,6 @@
   # 通义千问使用的模型
   TONGYI_MODEL='qwen-plus'
   ```
-
-- deepseek 获取自己的 `api key`，地址戳这里 👉🏻 ：[deepseek 开放平台](https://platform.deepseek.com/usage)  
-  将获取到的`api key`填入 `.evn` 文件中的 `DEEPSEEK_FREE_TOKEN` 中。
 
 - 科大讯飞
 
