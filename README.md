@@ -20,6 +20,11 @@
 
 ## 使用前需要配置的 AI 服务（目前支持 9 种，可任选其一）
 
+- deepseek
+
+  获取自己的 `api key`，地址戳这里 👉🏻 ：[deepseek 开放平台](https://platform.deepseek.com/usage)  
+  将获取到的`api key`填入 `.evn` 文件中的 `DEEPSEEK_FREE_TOKEN` 中。
+
 - ChatGPT
 
   先获取自己的 `api key`，地址戳这里 👉🏻 ：[创建你的 api key](https://beta.openai.com/account/api-keys)
@@ -32,11 +37,6 @@
   # 填写完善 .env 文件中的内容
   OPENAI_API_KEY='你的key'
   ```
-
-- deepseek
-
-  获取自己的 `api key`，地址戳这里 👉🏻 ：[deepseek 开放平台](https://platform.deepseek.com/usage)  
-  将获取到的`api key`填入 `.evn` 文件中的 `DEEPSEEK_FREE_TOKEN` 中。
 
 - 通义千问
 
