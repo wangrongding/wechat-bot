@@ -1,5 +1,6 @@
 import { Command } from 'commander'
 import { WechatyBuilder, ScanStatus, log } from 'wechaty'
+import { PuppetPadlocal } from 'wechaty-puppet-padlocal'
 import inquirer from 'inquirer'
 import qrTerminal from 'qrcode-terminal'
 import dotenv from 'dotenv'
@@ -63,14 +64,14 @@ async function onMessage(msg) {
 }
 
 // 初始化机器人
+const PADLOCAL_TOKEN = 'puppet_padlocal_63bf7a1e1c1a48358db0798ccbfcec38' // 替换为您的实际 token
 const CHROME_BIN = process.env.CHROME_BIN ? { endpoint: process.env.CHROME_BIN } : {}
 let serviceType = ''
 export const bot = WechatyBuilder.build({
   name: 'WechatEveryDay',
-  puppet: 'wechaty-puppet-wechat4u', // 如果有token，记得更换对应的puppet
+  puppet: new PuppetPadlocal({ token: PADLOCAL_TOKEN }), // 如果有token，记得更换对应的puppet
   // puppet: 'wechaty-puppet-wechat', // 如果 wechaty-puppet-wechat 存在问题，也可以尝试使用上面的 wechaty-puppet-wechat4u ，记得安装 wechaty-puppet-wechat4u
   puppetOptions: {
-    uos: true,
     ...CHROME_BIN,
   },
 })
