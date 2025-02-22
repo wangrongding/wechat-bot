@@ -237,7 +237,7 @@ AUTO_REPLY_PREFIX=''
 
 修改可参考： https://github.com/wangrongding/wechat-bot/pull/263/files  
 自行购买 pad 协议渠道（wechaty 出的，购买仍需谨慎）：http://pad-local.com  
-由于底层依赖的 wechaty 本身不怎么维护了，听说是被腾讯告了，所以大家购买也要谨慎，群友分享目前 pad 协议可正常使用，但最好别一次性买太久的。
+由于底层依赖的 wechaty 本身不怎么维护了，听说是被腾讯告了，所以大家购买也要谨慎，群友分享目前 pad 协议可正常使用(但频繁登录登出也会收到警告)，最好别一次性买太久的。
 
 ## 常见问题
 
