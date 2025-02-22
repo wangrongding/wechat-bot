@@ -126,6 +126,14 @@ function handleStart(type) {
       if (env.OPENAI_API_KEY) return botStart()
       console.log('❌ 请先配置.env文件中的 OPENAI_API_KEY')
       break
+    case 'doubao':
+      if (env.DOUBAO_API_KEY) return botStart()
+      console.log('❌ 请先配置.env文件中的 DOUBAO_API_KEY')
+      break
+    case 'deepseek':
+      if (env.DEEPSEEK_API_KEY) return botStart()
+      console.log('❌ 请先配置.env文件中的 DEEPSEEK_API_KEY')
+      break
     case 'Kimi':
       if (env.KIMI_API_KEY) return botStart()
       console.log('❌ 请先配置.env文件中的 KIMI_API_KEY')
@@ -171,12 +179,14 @@ function handleStart(type) {
       console.log('❌ 请先配置.env文件中的 CLAUDE_API_KEY 和 CLAUDE_MODEL')
       break
     default:
-      console.log('❌ 服务类型错误, 目前支持： ChatGPT | Kimi | Xunfei | DIFY | OLLAMA | TONGYI')
+      console.log('❌ 服务类型错误, 目前支持： ChatGPT | doubao | deepseek | Kimi | Xunfei | DIFY | OLLAMA | TONGYI')
   }
 }
 
 export const serveList = [
   { name: 'ChatGPT', value: 'ChatGPT' },
+  { name: 'doubao', value: 'doubao' },
+  { name: 'deepseek', value: 'deepseek' },
   { name: 'Kimi', value: 'Kimi' },
   { name: 'Xunfei', value: 'Xunfei' },
   { name: 'deepseek-free', value: 'deepseek-free' },
