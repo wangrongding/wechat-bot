@@ -1,69 +1,90 @@
-import CryptoJS from 'crypto-js'
-import dotenv from 'dotenv'
-import WebSocket from 'ws'
+import CryptoJS from "crypto-js";
+import dotenv from "dotenv";
+import WebSocket from "ws";
 
-const env = dotenv.config().parsed // 环境参数
-// APPID，APISecret，APIKey在https://console.xfyun.cn/services/cbm这里获取
-// 星火认知大模型WebAPI文档:https://www.xfyun.cn/doc/spark/Web.html
-// SDK&API错误码查询:https://www.xfyun.cn/document/error-code?code=
-const appID = env.XUNFEI_APP_ID
-const apiKey = env.XUNFEI_API_KEY
-const apiSecret = env.XUNFEI_API_SECRET
-// 地址必须填写，代表着大模型的版本号！！！！！！！！！！！！！！！！
-const httpUrl = new URL('https://spark-api.xf-yun.com/v3.5/chat')
+const env = dotenv.config().parsed; // 环境参数
 
-let modelDomain // V1.1-V3.5动态获取，高于以上版本手动指定
-function authenticate() {
-  // console.log(httpUrl.pathname)
-  // 动态获取domain信息
-  switch (httpUrl.pathname) {
-    case '/v1.1/chat':
-      modelDomain = 'general'
-      break
-    case '/v2.1/chat':
-      modelDomain = 'generalv2'
-      break
-    case '/v3.1/chat':
-      modelDomain = 'generalv3'
-      break
-    case '/v3.5/chat':
-      modelDomain = 'generalv3.5'
-      break
+// APPID，APISecret，APIKey在 https://console.xfyun.cn/services/cbm 获取
+const appID = env.XUNFEI_APP_ID;
+const apiKey = env.XUNFEI_API_KEY;
+const apiSecret = env.XUNFEI_API_SECRET;
+
+// 地址必须填写，代表着大模型的版本号
+const modelVersion = env.XUNFEI_MODEL_VERSION || "v4.0"; // 默认值 "v4.0"
+const httpUrl = new URL(`https://spark-api.xf-yun.com/${modelVersion}/chat`);
+
+// 判断 prompt 是否存在，如果不存在则使用默认值
+const prompt = env.XUNFEI_PROMPT || "你是一个专业的智能助手";
+
+// 动态映射模型版本到 domain 的逻辑
+const modelVersionMap = {
+  "v1.1": "general",
+  "v2.1": "generalv2",
+  "v3.1": "generalv3",
+  "v3.5": "generalv3.5",
+  "pro-128k": "pro-128k",
+  "max-32k": "max-32k",
+  "v4.0": "4.0Ultra",
+};
+
+// 获取模型域名
+function getModelDomain(httpUrl) {
+  try {
+    const modelPath = httpUrl.pathname.split("/")[1]; // 提取版本号或模型路径
+    return modelVersionMap[modelPath] || "unknown"; // 如果没有匹配，返回 "unknown"
+  } catch (error) {
+    console.error("获取模型域名失败:", error);
+    return "unknown";
   }
-
-  return new Promise((resolve, reject) => {
-    let url = 'wss://' + httpUrl.host + httpUrl.pathname
-
-    let host = 'localhost:8080'
-    let date = new Date().toGMTString()
-    let algorithm = 'hmac-sha256'
-    let headers = 'host date request-line'
-    let signatureOrigin = `host: ${host}\ndate: ${date}\nGET ${httpUrl.pathname} HTTP/1.1`
-    let signatureSha = CryptoJS.HmacSHA256(signatureOrigin, apiSecret)
-    let signature = CryptoJS.enc.Base64.stringify(signatureSha)
-    let authorizationOrigin = `api_key="${apiKey}", algorithm="${algorithm}", headers="${headers}", signature="${signature}"`
-    let authorization = btoa(authorizationOrigin)
-    url = `${url}?authorization=${authorization}&date=${date}&host=${host}`
-    resolve(url)
-  })
 }
 
+let modelDomain = getModelDomain(httpUrl);
+
+// 签名生成逻辑（可复用）
+function generateSignature(httpUrl, apiKey, apiSecret) {
+  const host = "localhost:8080";
+  const date = new Date().toGMTString();
+  const algorithm = "hmac-sha256";
+  const headers = "host date request-line";
+
+  const signatureOrigin = `host: ${host}\ndate: ${date}\nGET ${httpUrl.pathname} HTTP/1.1`;
+  const signatureSha = CryptoJS.HmacSHA256(signatureOrigin, apiSecret);
+  const signature = CryptoJS.enc.Base64.stringify(signatureSha);
+
+  const authorizationOrigin = `api_key="${apiKey}", algorithm="${algorithm}", headers="${headers}", signature="${signature}"`;
+  const authorization = btoa(authorizationOrigin);
+
+  const url = `wss://${httpUrl.host}${httpUrl.pathname}?authorization=${authorization}&date=${date}&host=${host}`;
+  return url;
+}
+
+// 获取 WebSocket 地址
+function authenticate() {
+  return new Promise((resolve, reject) => {
+    try {
+      const url = generateSignature(httpUrl, apiKey, apiSecret);
+      resolve(url);
+    } catch (error) {
+      console.error("认证失败:", error);
+      reject(error);
+    }
+  });
+}
+
+// 发送消息并处理 WebSocket 逻辑
 export async function xunfeiSendMsg(inputVal) {
   // 获取请求地址
-  let myUrl = await authenticate()
-  let socket = new WebSocket(String(myUrl))
-  let total_res = '' // 请空回答历史
+  let myUrl = await authenticate();
+  let socket = new WebSocket(String(myUrl));
+  let total_res = ""; // 清空回答历史
 
   // 创建一个Promise
   let messagePromise = new Promise((resolve, reject) => {
-    // 监听websocket的各阶段事件 并做相应处理
-    socket.addEventListener('open', (event) => {
-      // console.log('socket开启连接', event);
-      // 发送消息
-      let params = {
+    socket.addEventListener("open", () => {
+      const params = {
         header: {
           app_id: appID,
-          uid: 'fd3f47e4-d',
+          uid: "fd3f47e4-d",
         },
         parameter: {
           chat: {
@@ -74,52 +95,39 @@ export async function xunfeiSendMsg(inputVal) {
         },
         payload: {
           message: {
-            // 如果想获取结合上下文的回答，需要开发者每次将历史问答信息一起传给服务端，如下示例
-            // 注意：text里面的所有content内容加一起的tokens需要控制在8192以内，开发者如有较长对话需求，需要适当裁剪历史信息
             text: [
-              { role: 'user', content: '你是谁' }, //# 用户的历史问题
-              { role: 'assistant', content: '你是一个专业的智能助手' }, //# AI的历史回答结果
-              // ....... 省略的历史对话
-              { role: 'user', content: inputVal }, //# 最新的一条问题，如无需上下文，可只传最新一条问题
+              { role: "system", content: prompt },
+              { role: "user", content: inputVal }, // 最新的问题
             ],
           },
         },
-      }
-      socket.send(JSON.stringify(params))
-    })
+      };
+      socket.send(JSON.stringify(params));
+    });
 
-    socket.addEventListener('message', (event) => {
-      let data = JSON.parse(String(event.data))
-      total_res += data.payload.choices.text[0].content
+    socket.addEventListener("message", (event) => {
+      const data = JSON.parse(String(event.data));
       if (data.header.code !== 0) {
-        console.log('socket出错了', data.header.code, ':', data.header.message)
-        // 出错了"手动关闭连接"
-        socket.close()
-        reject('')
+        console.error("Socket 出错:", data.header.code, data.header.message);
+        socket.close();
+        reject("");
+      } else if (data.payload.choices.text && data.header.status === 2) {
+        total_res += data.payload.choices.text[0].content;
+        setTimeout(() => {
+          socket.close();
+        }, 1000);
       }
-      if (data.header.code === 0) {
-        // 对话已经完成
-        if (data.payload.choices.text && data.header.status === 2) {
-          total_res += data.payload.choices.text[0].content
-          setTimeout(() => {
-            // "对话完成，手动关闭连接"
-            socket.close()
-          }, 1000)
-        }
-      }
-    })
+    });
 
-    socket.addEventListener('close', (event) => {
-      console.log('socket 连接关闭')
-      // 对话完成后socket会关闭，将聊天记录换行处理
-      resolve(total_res)
-    })
+    socket.addEventListener("close", () => {
+      resolve(total_res);
+    });
 
-    socket.addEventListener('error', (event) => {
-      console.log('socket连接错误', event)
-      reject('')
-    })
-  })
+    socket.addEventListener("error", (event) => {
+      console.error("Socket 连接错误:", event);
+      reject("");
+    });
+  });
 
-  return await messagePromise
+  return await messagePromise;
 }
