@@ -199,7 +199,7 @@ npm run start
 
 安装完依赖后，运行 `npm run dev` 前，可以先测试下 openai 的接口是否可用，运行 `npm run test` 即可。
 
-遇到 timeout 问题需要自行科学上网解决。（一般就是代理未成功，或者你的科学上网服务限制了 openai api 的服务）
+遇到 timeout 问题需要自行用魔法解决。（一般就是代理未成功，或者你的魔法服务限制了 openai api 的服务）
 
 ## 你要修改的
 
