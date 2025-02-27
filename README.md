@@ -199,7 +199,7 @@ npm run start
 
 安装完依赖后，运行 `npm run dev` 前，可以先测试下 openai 的接口是否可用，运行 `npm run test` 即可。
 
-遇到 timeout 问题需要自行解决。（一般就是代理未成功，或者你的梯子限制了调 openai api 的服务）
+遇到 timeout 问题需要自行科学上网解决。（一般就是代理未成功，或者你的科学上网服务限制了 openai api 的服务）
 
 ## 你要修改的
 
@@ -262,7 +262,7 @@ AUTO_REPLY_PREFIX=''
   SET PUPPETEER_SKIP_DOWNLOAD='true'
   ```
 
-- 确保你们的终端走了代理 (开全局梯子，或者手动设置终端走代理)
+- 确保你们的终端走了代理 (开全局代理，或者手动设置终端走代理)
 
   ```sh
   # 设置代理
