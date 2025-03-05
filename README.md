@@ -292,6 +292,8 @@ $ docker build . -t wechat-bot
 $ docker run -d --rm --name wechat-bot -v $(pwd)/.env:/app/.env wechat-bot
 ```
 
+- 如果docker build过程中node反复下载超时，可先下载nodejs镜像到本地镜像库，并将DockerFile中的'node:19'修改为本地nodejs镜像版本
+
 ## Star History Chart
 
 该项目于 2023/2/13 日成为 Github Trending 榜首。
