@@ -35,7 +35,7 @@ const configuration = {
   /* 
     是否流式返回, 默认 false, 可选 true
   */
-  stream: false,
+  stream: true,
 }
 
 export async function getKimiReply(prompt) {
@@ -69,9 +69,21 @@ export async function getKimiReply(prompt) {
         // }
       },
     )
+    if (!configuration.stream) return res.data.choices[0].message.content
 
-    const { choices } = res.data
-    return choices[0].message.content
+    let result = ''
+    const lines = res.data.split('\n').filter((line) => line.trim() !== '')
+    for (const line of lines) {
+      if (line.startsWith('data: ')) {
+        const messageObj = line.substring(6)
+        if (messageObj === '[DONE]') break
+        const message = JSON.parse(messageObj)
+        if (message.choices && message.choices[0].delta && message.choices[0].delta.content) {
+          result += message.choices[0].delta.content
+        }
+      }
+    }
+    return result
   } catch (error) {
     console.log('Kimi 错误对应详情可参考官网： https://platform.moonshot.cn/docs/api-reference#%E9%94%99%E8%AF%AF%E8%AF%B4%E6%98%8E')
     console.log('常见的 401 一般意味着你鉴权失败, 请检查你的 API_KEY 是否正确。')
