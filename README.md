@@ -42,6 +42,19 @@
   OPENAI_API_KEY='你的key'
   ```
 
+- 豆包
+
+  豆包最新的Doubao-Seed-1.6模型，支持输入图片和深度思考，而且每个模型都有 50 万的免费tokens。在火山引擎注册登录账号，可以选择最新的Doubao-Seed-1.6-thinking模型，选择“API接入” -> “获取 API Key”。
+
+  ```sh
+  # 拷贝 .env.example 文件为 .env
+  cp .env.example .env
+  # 修改 .env 文件中的内容
+  DOUBAO_API_KEY='你的key'
+  # 简单测试API是否可用
+  node src/doubao/__test__.js
+  ```
+
 - 通义千问
 
   通义千问是阿里云提供的 AI 服务，获取到你的 api key 之后, 填写到 .env 文件中即可
