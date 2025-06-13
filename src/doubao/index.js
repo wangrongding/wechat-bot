@@ -16,21 +16,38 @@ if (!fs.existsSync(envPath)) {
 
 let config = {
   apiKey: env.DOUBAO_API_KEY,
-}
-if (env.DOUBAO_URL) {
-  config.baseURL = env.DOUBAO_URL
+  baseURL: env.DOUBAO_URL,
 }
 const openai = new OpenAI(config)
 const chosen_model = env.DOUBAO_MODEL
-export async function getDoubaoReply(prompt) {
+export async function getDoubaoReply(prompt, img_url = '') {
+  const only_text = img_url == ''
   console.log('🚀🚀🚀 / prompt', prompt)
-  const response = await openai.chat.completions.create({
-    messages: [
-      { role: 'system', content: env.DOUBAO_SYSTEM_MESSAGE },
-      { role: 'user', content: prompt },
-    ],
-    model: chosen_model,
-  })
+  let response
+  if (only_text) {
+    response = await openai.chat.completions.create({
+      messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }],
+      model: chosen_model,
+    })
+  } else {
+    response = await openai.chat.completions.create({
+      messages: [
+        {
+          role: 'user',
+          content: [
+            {
+              type: 'image_url',
+              image_url: {
+                url: img_url,
+              },
+            },
+            { type: 'text', text: prompt },
+          ],
+        },
+      ],
+      model: chosen_model,
+    })
+  }
   console.log('🚀🚀🚀 / reply', response.choices[0].message.content)
   return `${response.choices[0].message.content}`
 }
