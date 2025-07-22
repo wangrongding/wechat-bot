@@ -151,24 +151,34 @@
   <table>
     <!-- Header -->
     <tr>
-      <td align="center" width="100%">
+      <td align="center" width="50%">
         <p align="center">
           <a href="https://gpt302.saaslink.net/hqRIfk" target="_blank">
-            <img src="./sponsors/302AI.png" alt="Hi" width="300px"/>
+            <img src="./sponsors/302AI.png" alt="302AI" width="300px"/>
+          </a>
+        </p>
+      </td>
+      <td align="center" width="50%">
+        <p align="center">
+          <a href="https://www.compshare.cn/?ytag=GPU_YY-gh_wechatbot" target="_blank">
+            <img src="./sponsors/UCloud.png" alt="UCloud" width="300px"/>
           </a>
         </p>
       </td>
     </tr>
-    <!-- des -->
+    <!-- Description -->
     <tr>
       <td align="left">
         302.AI是一个按需付费的一站式企业级AI应用平台，开放平台，开源生态，让AI为每个需求找到答案。
         <a href="https://gpt302.saaslink.net/hqRIfk" target="_blank">产品链接</a>
       </td>
+      <td align="left">
+        万卡RTX40系GPU+海内外主流模型API服务，秒级响应，按量计费，新客免费用。
+        <a href="https://www.compshare.cn/?ytag=GPU_YY-gh_wechatbot" target="_blank">产品链接</a>
+      </td>
     </tr>
   </table>
 </div>
-
 目前该项目流量较大，已经上过 27 次 [Github Trending 榜](https://github.com/trending)，如果您的公司或者产品需要推广，可以在下方二维码处联系我，我会在项目中加入您的广告，帮助您的产品获得更多的曝光。
 
 ## 开发/使用
