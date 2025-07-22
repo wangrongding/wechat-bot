@@ -161,7 +161,7 @@
       <td align="center" width="50%">
         <p align="center">
           <a href="https://www.compshare.cn/?ytag=GPU_YY-gh_wechatbot" target="_blank">
-            <img src="./sponsors/UCloud.png" alt="UCloud" width="300px"/>
+            <img src="./sponsors/Ucloud.png" alt="UCloud" width="300px"/>
           </a>
         </p>
       </td>
