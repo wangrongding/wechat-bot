@@ -256,7 +256,8 @@ AUTO_REPLY_PREFIX=''
 
 ## 常见问题
 
-可以进交流群,一起交流探讨相关问题和解决方案，添加的时候记得备注来意。（如果项目对你有所帮助，也可以请我喝杯咖啡 ☕️ ~）
+以下是我的微信和群二维码，添加的时候记得备注清楚来意。  
+希望可以一起交流探讨相关问题和解决方案。
 
 | <img src="https://github.com/user-attachments/assets/902b1a20-0ea0-4348-9ac1-b9eb6645223c" width="180px"> | <img src="https://raw.githubusercontent.com/wangrongding/image-house/master/WechatIMG173.jpg" width="180px"> |
 | --- | --- |
