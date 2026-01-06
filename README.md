@@ -152,7 +152,7 @@
       <td align="center" width="50%">
         <p align="center">
           <a href="https://91api.dev/register?aff=9P6u" target="_blank">
-            <img src="./sponsors/91Api.jpg" alt="91Api" width="300px"/>
+            <img src="./sponsors/91api.jpg" alt="91Api" width="300px"/>
           </a>
         </p>
       </td>
