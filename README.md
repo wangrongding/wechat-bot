@@ -151,6 +151,13 @@
     <tr>
       <td align="center" width="50%">
         <p align="center">
+          <a href="https://91api.dev/register?aff=9P6u" target="_blank">
+            <img src="./sponsors/91Api.jpg" alt="91Api" width="300px"/>
+          </a>
+        </p>
+      </td>
+      <td align="center" width="50%">
+        <p align="center">
           <a href="https://www.compshare.cn/model-api?ytag=GPU_YY-gh_wechatbot" target="_blank">
             <img src="./sponsors/Ucloud.png" alt="UCloud" width="300px"/>
           </a>
@@ -159,6 +166,10 @@
     </tr>
     <!-- Description -->
     <tr>
+      <td align="left">
+        一站式集成 500+主流大模型中转聚合API平台，高效稳定，高并发，价格超低
+        <a href="https://91api.dev/register?aff=9P6u" target="_blank">产品链接</a>
+      </td>
       <td align="left">
         万卡RTX40系GPU+海内外主流模型API服务，秒级响应，按量计费，新客免费用。
         <a href="https://www.compshare.cn/model-api?ytag=GPU_YY-gh_wechatbot" target="_blank">产品链接</a>
