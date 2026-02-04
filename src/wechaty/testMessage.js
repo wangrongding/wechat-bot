@@ -7,6 +7,8 @@ import { getDeepSeekFreeReply } from '../deepseek-free/index.js'
 import { get302AiReply } from '../302ai/index.js'
 import { getDifyReply } from '../dify/index.js'
 import { getOllamaReply } from '../ollama/index.js'
+import { getGeminiReply } from '../Gemini/index.js'
+
 const env = dotenv.config().parsed // 环境参数
 
 // 控制启动
@@ -64,6 +66,14 @@ async function handleRequest(type) {
     case 'ollama':
       if (env.OLLAMA_URL) {
         const message = await getOllamaReply('hello')
+        console.log('🌸🌸🌸 / reply: ', message)
+        return
+      }
+      console.log('❌ 请先配置.env文件中的 OLLAMA_URL')
+      break
+    case 'Gemini':
+      if (env.GEMINI_API_KEY) {
+        const message = await getGeminiReply('hello')
         console.log('🌸🌸🌸 / reply: ', message)
         return
       }

@@ -9,6 +9,7 @@ import { getDifyReply } from '../dify/index.js'
 import { getOllamaReply } from '../ollama/index.js'
 import { getTongyiReply } from '../tongyi/index.js'
 import { getClaudeReply } from '../claude/index.js'
+import { getGeminiReply } from '../Gemini/index.js'
 
 /**
  * 获取ai服务
@@ -39,6 +40,8 @@ export function getServe(serviceType) {
       return getTongyiReply
     case 'claude':
       return getClaudeReply
+    case 'Gemini':
+      return getGeminiReply
     default:
       return getGptReply
   }

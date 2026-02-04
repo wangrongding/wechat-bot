@@ -135,6 +135,23 @@
   CLAUDE_SYSTEM = ''
   ```
 
+- Gemini
+
+  前往[Gemini API Quickstart官网](https://ai.google.dev/gemini-api/docs/quickstart)创建API并在.env中配置即可，里面有详细教程。
+  Gemini配置比较简单，只需要一个API就可以了。
+  收费方式和OpenAI差不多，依旧是需要海外信用卡。
+  ```bash
+  # 执行下面命令，拷贝一份 .env.example 文件为 .env，如果已存在则忽略此步
+  cp .env.example .env
+
+  # 编辑.env文件并添加claude相关配置
+  GEMINI_API_KEY = '你的API KEY'
+  GEMINI_MODEL = 'gemini-2.5-flash'
+
+  ```
+  关于GEMINI_MODEL处可用的Model List，参见[Models](https://ai.google.dev/gemini-api/docs/models)
+
+
 - 其他  
   （待实践）理论上使用 openAI 格式的 api，都可以使用，在 env 文件中修改对应的 api_key、model、proxy_url 即可。
 
