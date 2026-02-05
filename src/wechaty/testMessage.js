@@ -77,7 +77,7 @@ async function handleRequest(type) {
         console.log('🌸🌸🌸 / reply: ', message)
         return
       }
-      console.log('❌ 请先配置.env文件中的 OLLAMA_URL')
+      console.log('❌ 请先配置.env文件中的 GEMINI_API_KEY')
       break
     default:
       console.log('🚀服务类型错误')
