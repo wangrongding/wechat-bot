@@ -28,6 +28,7 @@
   "author": "荣顶",
   "license": "ISC",
   "dependencies": {
+    "@google/genai": "^1.40.0",
     "axios": "^1.6.8",
     "chatgpt": "^2.5.2",
     "commander": "^12.0.0",
