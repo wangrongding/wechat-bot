@@ -1,6 +1,6 @@
 {
   "name": "wechat-bot",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "wechat-bot",
   "main": "index.js",
   "type": "module",
@@ -33,6 +33,11 @@
   "bin": {
     "wb": "./cli.js",
     "wechat-bot": "./cli.js"
+  },
+  "homepage": "https://github.com/wangrongding/wechat-bot/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangrongding/wechat-bot.git"
   },
   "author": "荣顶",
   "license": "ISC",
