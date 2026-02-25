@@ -1,6 +1,6 @@
 {
   "name": "wechat-bot",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0",
   "description": "wechat-bot",
   "main": "index.js",
   "type": "module",
@@ -20,8 +20,17 @@
       "prettier --write"
     ]
   },
+  "files": [
+    "src",
+    "./.env.example",
+    "./cli.js",
+    "./Dockerfile",
+    "./Dockerfile.alpine",
+    "./LICENSE.md",
+    "./README.md",
+    "./RECORD.md"
+  ],
   "bin": {
-    "we": "./cli.js",
     "wb": "./cli.js",
     "wechat-bot": "./cli.js"
   },
