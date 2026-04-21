@@ -47,6 +47,7 @@
     "commander": "^12.0.0",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
+    "form-data": "^4.0.5",
     "inquirer": "^9.2.16",
     "openai": "^4.52.0",
     "p-timeout": "^6.0.0",
