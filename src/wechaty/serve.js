@@ -36,6 +36,8 @@ export function getServe(serviceType) {
       return lazyServe(() => import('../claude/index.js'), 'getClaudeReply')
     case 'pi':
       return lazyServe(() => import('../pi/index.js'), 'getPiReply')
+    case 'Gemini':
+      return lazyServe(() => import('../Gemini/index.js'), 'getGeminiReply')
     default:
       return lazyServe(() => import('../openai/index.js'), 'getGptReply')
   }

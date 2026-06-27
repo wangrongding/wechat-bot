@@ -26,6 +26,7 @@ export const serveList = [
   { name: 'tongyi', value: 'tongyi' },
   { name: 'claude', value: 'claude' },
   { name: 'pi', value: 'pi' },
+  { name: 'Gemini', value: 'Gemini' },
 ]
 
 function getMissingConfig(type) {
@@ -56,6 +57,8 @@ function getMissingConfig(type) {
       return env.CLAUDE_API_KEY && env.CLAUDE_MODEL ? [] : ['CLAUDE_API_KEY', 'CLAUDE_MODEL']
     case 'pi':
       return []
+    case 'Gemini':
+      return env.GEMINI_API_KEY && env.GEMINI_MODEL ? [] : ['GEMINI_API_KEY', 'GEMINI_MODEL']
     default:
       return ['SERVICE_TYPE']
   }
