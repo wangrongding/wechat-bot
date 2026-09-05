@@ -26,6 +26,8 @@ export function getServe(serviceType) {
       return lazyServe(() => import('../deepseek-free/index.js'), 'getDeepSeekFreeReply')
     case '302AI':
       return lazyServe(() => import('../302ai/index.js'), 'get302AiReply')
+    case 'atlascloud':
+      return lazyServe(() => import('../atlascloud/index.js'), 'getAtlasCloudReply')
     case 'dify':
       return lazyServe(() => import('../dify/index.js'), 'getDifyReply')
     case 'ollama':
