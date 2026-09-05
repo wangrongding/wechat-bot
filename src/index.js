@@ -23,6 +23,7 @@ export const serveList = [
   { name: 'Xunfei', value: 'Xunfei' },
   { name: 'deepseek-free', value: 'deepseek-free' },
   { name: '302AI', value: '302AI' },
+  { name: 'atlascloud', value: 'atlascloud' },
   { name: 'dify', value: 'dify' },
   { name: 'ollama', value: 'ollama' },
   { name: 'tongyi', value: 'tongyi' },
@@ -48,6 +49,8 @@ function getMissingConfig(type) {
         : ['DEEPSEEK_FREE_URL', 'DEEPSEEK_FREE_TOKEN', 'DEEPSEEK_FREE_MODEL']
     case '302AI':
       return env._302AI_API_KEY ? [] : ['_302AI_API_KEY']
+    case 'atlascloud':
+      return env.ATLASCLOUD_API_KEY ? [] : ['ATLASCLOUD_API_KEY']
     case 'dify':
       return env.DIFY_API_KEY && env.DIFY_URL ? [] : ['DIFY_API_KEY', 'DIFY_URL']
     case 'ollama':

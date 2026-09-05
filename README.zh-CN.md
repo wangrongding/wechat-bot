@@ -202,6 +202,18 @@ wb agent --im wechat --agent pi
 
   由于openai充值需要国外信用卡，流程比较繁琐，大多需要搞国外虚拟卡，手续费也都不少，该平台可以直接支付宝，算是比较省事的，注册填问卷可领1刀额度，后续充值也有手续费，用户可自行酌情选择。
 
+- atlascloud
+
+  [Atlas Cloud](https://www.atlascloud.ai/) 是 OpenAI 兼容的推理平台，提供 DeepSeek、GLM、Kimi、Qwen、MiniMax 等模型。在[控制台](https://www.atlascloud.ai/console)获取 api key 后配置：
+
+  ```env
+  ATLASCLOUD_API_KEY = 'xxxx'
+  # 可选，默认 https://api.atlascloud.ai/v1
+  ATLASCLOUD_URL = 'https://api.atlascloud.ai/v1'
+  # 可选，默认 deepseek-ai/deepseek-v4-pro
+  ATLASCLOUD_MODEL = 'deepseek-ai/deepseek-v4-pro'
+  ```
+
 - claude
 
   前往 [官网](https://console.anthropic.com) 注册并获取API KEY后进行配置即可

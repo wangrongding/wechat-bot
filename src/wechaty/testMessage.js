@@ -4,6 +4,7 @@ import { getXunfeiReply } from '../xunfei/index.js'
 import dotenv from 'dotenv'
 import inquirer from 'inquirer'
 import { getDeepSeekFreeReply } from '../deepseek-free/index.js'
+import { getAtlasCloudReply } from '../atlascloud/index.js'
 import { get302AiReply } from '../302ai/index.js'
 import { getDifyReply } from '../dify/index.js'
 import { getOllamaReply } from '../ollama/index.js'
@@ -61,6 +62,14 @@ async function handleRequest(type) {
       }
       console.log('❌ 请先配置.env文件中的 _302AI_API_KEY')
       break
+    case 'atlascloud':
+      if (env.ATLASCLOUD_API_KEY) {
+        const message = await getAtlasCloudReply('hello')
+        console.log('🌸🌸🌸 / reply: ', message)
+        return
+      }
+      console.log('❌ 请先配置.env文件中的 ATLASCLOUD_API_KEY')
+      break
     case 'ollama':
       if (env.OLLAMA_URL) {
         const message = await getOllamaReply('hello')
@@ -80,6 +89,7 @@ const serveList = [
   { name: 'Xunfei', value: 'Xunfei' },
   { name: 'deepseek-free', value: 'deepseek-free' },
   { name: '302AI', value: '302AI' },
+  { name: 'atlascloud', value: 'atlascloud' },
   { name: 'dify', value: 'dify' },
   // ... 欢迎大家接入更多的服务
   { name: 'ollama', value: 'ollama' },

@@ -99,7 +99,7 @@ WeChat has recently become very strict about this type of usage. The default pro
 
 If you only use `wb wx ...` to access local WeChat data, or only use `wb lark ...` to operate Lark IM, you do not need to configure an LLM.
 
-If you want automatic WeChat replies or `wb analyze` deep analysis, choose a `--serve` service. Current options include `ChatGPT`, `doubao`, `deepseek`, `Kimi`, `Xunfei`, `deepseek-free`, `302AI`, `dify`, `ollama`, `tongyi`, `claude`, and `pi`.
+If you want automatic WeChat replies or `wb analyze` deep analysis, choose a `--serve` service. Current options include `ChatGPT`, `doubao`, `deepseek`, `Kimi`, `Xunfei`, `deepseek-free`, `302AI`, `atlascloud`, `dify`, `ollama`, `tongyi`, `claude`, and `pi`.
 
 - pi
 
@@ -207,6 +207,18 @@ If you want automatic WeChat replies or `wb analyze` deep analysis, choose a `--
   ```
 
   You can choose the model yourself. Users should evaluate platform cost, payment flow, and service quality before using it.
+
+- atlascloud
+
+  [Atlas Cloud](https://www.atlascloud.ai/) is an OpenAI-compatible platform serving DeepSeek, GLM, Kimi, Qwen and MiniMax. Get an API key from the [console](https://www.atlascloud.ai/console), then configure:
+
+  ```env
+  ATLASCLOUD_API_KEY = 'xxxx'
+  # optional, defaults to https://api.atlascloud.ai/v1
+  ATLASCLOUD_URL = 'https://api.atlascloud.ai/v1'
+  # optional, defaults to deepseek-ai/deepseek-v4-pro
+  ATLASCLOUD_MODEL = 'deepseek-ai/deepseek-v4-pro'
+  ```
 
 - claude
 
