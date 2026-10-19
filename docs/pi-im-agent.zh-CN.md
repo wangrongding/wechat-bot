@@ -289,3 +289,18 @@ wb analyze --room "群名" --serve pi
 - 微信自动回复受白名单控制。
 - OpenCLI 远程执行默认关闭。
 - `/分析` 会把消息样本交给当前模型或 agent，处理隐私数据前请确认模型运行位置和配置。
+
+## Pi 回复中的网页搜索
+
+全新的 Pi agent 配置会自动加载 [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp)，提供免费的网页搜索和页面读取，无需搜索服务账号或 API key。搜索使用 Fast 模式。需要 Pi 1.3.0 或更新版本，以及 Pi 支持的 Node.js 版本（22.19+）。Pi 根据用户问题决定是否调用工具。
+
+```env
+# auto（默认）、parallel（明确启用）或 off
+PI_WEB_SEARCH='auto'
+```
+
+`auto` 保留已有的 Pi MCP、扩展、包、工具设置、搜索凭据、自定义程序和 `PI_AGENT_ARGS`。只有模型设置时仍可自动启用。已有自定义配置时，可设置 `PI_WEB_SEARCH='parallel'` 来添加 Parallel。Pi 的 `mcp.json` 中名为 `parallel` 的配置优先，包括 `enabled: false` 和带认证的地址；不会覆盖配置文件，也不会在明确选择的服务失败时自动切换。
+
+设置 `PI_WEB_SEARCH='off'` 可关闭内置集成。即使选择 `parallel`，也会遵守 `--tools`、`--exclude-tools`、`--no-tools`、`--no-mcp`、`--no-extensions` 等限制。`wb pi` 透传命令的行为保持不变。
+
+调用工具时，搜索查询和所请求的 URL 会发送给 Parallel。处理必须留在本地的私密聊天分析时，请关闭网页工具。匿名服务有使用额度限制，错误通过 Pi MCP 工具报告。Pi 管理传输、取消和 30 秒请求超时。旧版 Pi 仍可回复，但会在 stderr 中提示更新以使用网页搜索。

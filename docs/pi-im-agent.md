@@ -246,6 +246,21 @@ PI_AGENT_ARGS='--print --no-session'
 
 This means each IM message is handled as a single-turn non-interactive reply. If you want to reuse a session, remove `--no-session`, but note that context and private data may be saved in the Pi session.
 
+## Web search for Pi replies
+
+Fresh Pi agent configurations automatically load [Parallel Search MCP](https://docs.parallel.ai/integrations/mcp/search-mcp) for free web search and page fetching, with no search account or API key. Search uses Fast mode. This requires Pi 1.3.0 or newer and its supported Node.js version (22.19+). Pi chooses when to call the tools while answering an IM message.
+
+```env
+# auto (default), parallel (explicitly enable), or off
+PI_WEB_SEARCH='auto'
+```
+
+`auto` leaves existing Pi MCP configuration, extension/package settings, tool settings, search credentials, custom binaries/packages, and customized `PI_AGENT_ARGS` alone. Model-only settings do not disable automatic search. If you already customize Pi and want to add Parallel, set `PI_WEB_SEARCH='parallel'`. A saved `parallel` entry in Pi's `mcp.json` takes precedence, including `enabled: false` and authenticated endpoints. No configuration files are overwritten and an explicitly configured provider never falls back to Parallel after a failure.
+
+`PI_WEB_SEARCH='off'` disables the bundled integration. Tool restrictions such as `--tools`, `--exclude-tools`, `--no-tools`, `--no-mcp`, and `--no-extensions` are respected even in `parallel` mode. Direct `wb pi` passthrough commands keep their existing behavior.
+
+Search queries and requested URLs go to Parallel when the agent calls these tools. Avoid enabling web tools when processing private chat analysis that must stay local. Anonymous use has service limits; failures are reported through Pi's MCP tools. Pi owns transport, cancellation, and the 30-second request timeout. An older Pi can still reply without this integration, with an update message on stderr.
+
 ## FAQ
 
 ### No reply after QR-code login

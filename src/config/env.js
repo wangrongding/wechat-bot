@@ -102,5 +102,6 @@ export function getPiRuntimeConfig() {
     bin: env.PI_BIN || '',
     npmPackage: env.PI_NPM_PACKAGE || '@earendil-works/pi-coding-agent',
     agentArgs: env.PI_AGENT_ARGS || '--print --no-session',
+    webSearch: env.PI_WEB_SEARCH || 'auto',
   }
 }

@@ -23,7 +23,8 @@
     "test-xunfei": "node ./src/xunfei/__test__.js",
     "test-kimi": "node ./src/kimi/__test__.js",
     "test-dify": "node ./src/dify/__test__.js",
-    "prepare": "npx husky"
+    "prepare": "npx husky",
+    "test:pi-search": "node --test src/adapters/piSearch.test.js"
   },
   "lint-staged": {
     "*.{js,ts,md}": [

@@ -1,5 +1,6 @@
 import { getPiRuntimeConfig } from '../config/env.js'
 import { splitCommand, runCommand, streamCommand } from '../utils/process.js'
+import { getPiSearchArgs } from './piSearch.js'
 
 export function resolvePiCommand() {
   const config = getPiRuntimeConfig()
@@ -26,8 +27,10 @@ export async function askPi(prompt, options = {}) {
   const base = resolvePiCommand()
   const config = getPiRuntimeConfig()
   const agentArgs = splitCommand(options.agentArgs || config.agentArgs)
-  const result = await runCommand(base.command, [...base.args, ...agentArgs, prompt], {
-    cwd: options.cwd || process.cwd(),
+  const cwd = options.cwd || process.cwd()
+  const searchArgs = getPiSearchArgs(agentArgs, { config, cwd })
+  const result = await runCommand(base.command, [...base.args, ...agentArgs, ...searchArgs, prompt], {
+    cwd,
   })
 
   if (result.code !== 0) {
